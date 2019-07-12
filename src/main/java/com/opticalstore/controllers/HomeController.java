@@ -3,6 +3,7 @@ package com.opticalstore.controllers;
 
 import com.opticalstore.commons.mappers.GlassesMapper;
 import com.opticalstore.models.GlassesDto;
+import com.opticalstore.services.FormService;
 import com.opticalstore.services.GlassesService;
 import com.opticalstore.services.MarksService;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,14 @@ public class HomeController {
     private GlassesService glassesService;
     private GlassesMapper glassesMapper;
     private MarksService marksService;
+    private FormService formService;
 
 
-    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, MarksService marksService) {
+    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, MarksService marksService, FormService formService) {
         this.glassesService = glassesService;
         this.glassesMapper = glassesMapper;
         this.marksService = marksService;
+        this.formService = formService;
     }
 
     @GetMapping("/")
@@ -37,6 +40,7 @@ public class HomeController {
     public String addPage(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
         return "add-planet";
     }
 
