@@ -1,0 +1,66 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="user_table">
+    <div class="row">
+        <div class="col-sm" th:if="${glasses != null}">
+            <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.7">
+                <tr class="active">
+<!--                    <th>Glasses image</th>-->
+<!--                    <th>Number</th>-->
+<!--                    <th>Type</th>-->
+<!--                    <th>Mark</th>-->
+
+<!--                    <th>Form</th>-->
+<!--                    <th>Gender</th>-->
+<!--                    <th>Polarization</th>-->
+<!--                    <th>Width of the lens</th>-->
+<!--                    <th>Prices</th>-->
+
+                    <th>Zdjęcie</th>
+                    <th>Numer id</th>
+                    <th>Typ</th>
+                    <th>Marka</th>
+                    <th>Kształt</th>
+                    <th>Płeć</th>
+                    <th>Polaryzacja</th>
+                    <th>Szerokość</th>
+                    <th>Cena</th>
+
+                    <!--                .glassesType(from.getGlassesType())-->
+                    <!--                .glassesNumber(from.getGlassesNumber())-->
+                    <!--                .glassesGender(from.getGlassesGender())-->
+                    <!--                .glassesMark(from.getGlassesMark())-->
+                    <!--                .form(from.getForm())-->
+                    <!--                .price(from.getPrice())-->
+                    <!--                .polarization(from.isPolarization())-->
+                    <!--                .widthOfTheLens(from.getWidthOfTheLens())-->
+                    <!--                .build();-->
+
+                </tr>
+                <tr th:each="p : ${glasses}">
+                    <td><img th:src="@{${p.getGlassesImage()}}" style="height: 40%; width: 40%"></td>
+                    <td th:text="${#numbers.formatInteger(p.getGlassesNumber(), 1)}"></td>
+                    <td th:text="${p.getGlassesType()}"></td>
+                    <td th:text="${p.getGlassesMarks()}"></td>
+
+<!--                    <td>-->
+<!--                        <ul>-->
+<!--                            <li th:each="t : ${p.getGlassesMarks()}">-->
+<!--                                <span class="badge badge-secondary" style="cursor: pointer" th:text="${t}"></span>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </td>-->
+                    <td th:text="${p.getForm()}"></td>
+                    <td th:text="${p.getGlassesGender()}"></td>
+                    <td th:text="${p.isPolarization()} ? 'Tak' : 'Nie'"></td>
+                    <td th:text="${#numbers.formatInteger(p.getWidthOfTheLens(), 1)} + mm"></td>
+                    <td th:text="${#numbers.formatDecimal(p.getPrice(), 1,2, 'POINT')} + zl">
+                    <td>
+                        <form action="/delete" method="get">
+                            <input type="hidden" th:value="${p.getGlassesNumber()}" name="glasses">
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

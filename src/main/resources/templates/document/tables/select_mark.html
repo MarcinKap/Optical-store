@@ -1,0 +1,21 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="select_mark">
+    <div class="row">
+        <div class="form-row" th:if="${glasses != null}">
+            <div class="col-sm-12 col-md-6 form-group">
+                <td>Wybierz Markę:</td>
+                <td>
+                    <select type="text" name="glassesMarks">
+                        <!--                                <option value="Emporio Armani">Emporio Armani</option>-->
+                        <!--                                <option value="Oakley">Oakley</option>-->
+                        <!--                                <option value="RayBan">RayBan</option>-->
+                        <!--                                <option value="Pear">Pear</option>-->
+                        <option th:each="g : ${glasses}"
+                                th:value="${g.getGlassesMarks}"
+                                th:text="${g.getGlassesMarks}">
+                        </option>
+                    </select>
+                </td>
+            </div>
+        </div>
+    </div>
+</div>

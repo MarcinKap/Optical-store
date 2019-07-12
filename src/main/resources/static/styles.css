@@ -1,0 +1,23 @@
+body, html {
+    height: 100%;
+    /*background-image: url("https://img.purch.com/h/1000/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC81NzQvb3JpZ2luYWwvbmdjMzA3OS1jaGFuZHJhLXNwYWNlLWJ1YmJsZXMuanBn");*/
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    margin: 0;
+}
+
+.content {
+   color: white;
+   font-size: 2em;
+}
+
+.content-enjoy {
+    font-family: 'Oleo Script', cursive;
+    color: white;
+    font-size: 2em;
+}
+
+
+

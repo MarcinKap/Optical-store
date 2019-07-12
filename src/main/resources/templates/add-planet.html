@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="document/head :: head_section"></head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-md-12 col-sm-12">
+            <form th:action="@{/add}" action="/add" th:object="${glassesDto}" method="post">
+
+
+                Numer id
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-6 form-group">
+                        <input type="text" name="glassesNumber" placeholder="Numer id" class="form-control">
+                    </div>
+                </div>
+                Zdjecie
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-12 form-group">
+                        <input type="text" name="glassesImage" placeholder="link" class="form-control">
+                    </div>
+                </div>
+<!--                Typ-->
+                <input type="radio" name="glassesType" value="male"> Male<br>
+                <input type="radio" name="glassesType" value="female"> Female<br>
+
+<!--                Marka-->
+                <div class="form-row" th:if="${glasses != null}">
+                    <div class="col-sm-12 col-md-6 form-group">
+
+                        <td>Wybierz Markę:</td>
+                        <td>
+                            <select type="text" name="glassesMarks">
+                                <!--                                <option value="Emporio Armani">Emporio Armani</option>-->
+                                <!--                                <option value="Oakley">Oakley</option>-->
+                                <!--                                <option value="RayBan">RayBan</option>-->
+                                <!--                                <option value="Pear">Pear</option>-->
+                                <option th:each="m : ${marks}"
+                                        th:value="${m.getMark()}"
+                                        th:text="${m.getMark()}">
+                                </option>
+                            </select>
+                        </td>
+                    </div>
+                </div>
+                Kształt
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-6 form-group">
+                        <input type="text" name="form" placeholder="Kształt" class="form-control">
+                    </div>
+                </div>
+                Płeć
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-6 form-group">
+                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">
+                    </div>
+                </div>
+                Polaryzacja
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-6 form-group">
+                        <input type="checkbox" name="polarization" th:checked="${flag}">
+                    </div>
+                </div>
+                Szerokość
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-6 form-group">
+                        <input type="number" name="widthOfTheLens" placeholder="Szerokość" class="form-control">
+                    </div>
+                </div>
+                Cena
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-6 form-group">
+                        <input type="number" name="price" placeholder="Cena" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-12 form-group">
+                        <button type="submit" class="btn btn-success btn-sm form-control">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+</html>
