@@ -2,7 +2,9 @@ package com.opticalstore.services;
 
 
 import com.opticalstore.commons.mappers.MarksMapper;
+import com.opticalstore.models.Glasses;
 import com.opticalstore.models.GlassesDto;
+import com.opticalstore.models.GlassesMark;
 import com.opticalstore.models.GlassesMarkDto;
 import com.opticalstore.repositories.MarksRepository;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,13 @@ public class MarksService {
                 .stream()
                 .map(marksMapper::map)
                 .collect(Collectors.toList());
+    }
+
+    public GlassesMark saveGlassesMark(GlassesMark glassesMark) {
+        return marksRepository.save(glassesMark);
+    }
+    public boolean deleteMarksByName(String markName) {
+        return marksRepository.deleteMarkByName(markName) == 1; // 1 if success.
     }
 
 }

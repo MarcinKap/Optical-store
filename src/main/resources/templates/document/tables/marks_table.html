@@ -1,0 +1,21 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="marks_table">
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.7">
+                <tr class="active">
+                    <th>Marka</th>
+
+                </tr>
+                <tr th:each="m : ${marks}">
+                    <td th:text="${m.getMark()}"></td>
+                    <td>
+                        <form action="/deletemark" method="get">
+                            <input type="hidden" th:value="${m.getMark()}" name="marks">
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -54,6 +54,13 @@
                     <td th:text="${#numbers.formatInteger(p.getWidthOfTheLens(), 1)} + mm"></td>
                     <td th:text="${#numbers.formatDecimal(p.getPrice(), 1,2, 'POINT')} + zl">
                     <td>
+<!--                    a href="/add-marks"-->
+                        <form action="/add-marks" method="get">
+<!--                            <input type="hidden" th:value="${p.getGlassesNumber()}" name="glasses">-->
+                            <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        </form>
+                    </td>
+                    <td>
                         <form action="/delete" method="get">
                             <input type="hidden" th:value="${p.getGlassesNumber()}" name="glasses">
                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
