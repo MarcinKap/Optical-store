@@ -10,17 +10,28 @@
     </a> | <a href="/logout">logout</a> | <a href="/file/xls">get XLS</a>
     | <a href="/api/v1/planets/download/file/xls/planets.xls">get file</a>
 </span>
+
 <hr>
-Wyszukaj okulary po numerze Id
-<form th:action="@{/search}" action="/search" method="get">
-    <input type="number" required name="glassesNumber"  placeholder="Numer id" class="form-control">
-    <button type="submit" class="btn btn-success btn-sm form-control">
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-    </button>
-</form>
 
-<div th:replace="document/content :: content_section_title"></div>
-<div th:replace="document/tables/searched_glasses_table :: searched_glasses_table"></div>
+<div class="row">
+    <div class="col-sm-15 col-md-2 form-group">
+        Wyszukaj po numerze Id
+        <br/>
+        <span> <a href="/advanced-search">Szukanie zaawansowane</a> </span>
 
+
+        <form th:action="@{/search}" action="/search" method="get">
+            <input type="number" required name="glassesNumber" placeholder="Numer id" class="form-control">
+            <button type="submit" class="btn btn-success btn-sm form-control">
+                <i> Szukaj</i>
+            </button>
+        </form>
+    </div>
+
+
+    <div class="col-sm-15 col-md-15 form-group">
+        <div th:replace="document/tables/user_table :: user_table"></div>
+    </div>
+</div>
 </body>
 </html>
