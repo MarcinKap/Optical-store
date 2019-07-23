@@ -5,6 +5,8 @@
 <body>
 <div class="container">
     <div class="row">
+        <tr th:each="p : ${glasses}">
+
         <div class="col-6 col-md-12 col-sm-12">
             <form th:action="@{/update}" action="/update" method="post">
 
@@ -12,13 +14,13 @@
                 Numer id
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
-                        <input  type="number" name="glassesNumber" placeholder="Numer id" class="form-control">
+                        <input  type="number" name="glassesNumber" th:value="${#numbers.formatInteger(p.getGlassesNumber(), 1)}" placeholder="Numer id" class="form-control">
                     </div>
                 </div>
                 Zdjecie
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
-                        <input type="text" name="glassesImage" placeholder="link" class="form-control">
+                        <input type="text" name="glassesImage" th:value="@{${p.getGlassesImage()}}" placeholder="link" class="form-control">
                     </div>
                 </div>
                 Typ
@@ -82,13 +84,13 @@
                 Szerokość
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
-                        <input type="number" name="widthOfTheLens" placeholder="Szerokość" class="form-control">
+                        <input type="number" name="widthOfTheLens" th:value="${#numbers.formatInteger(p.getWidthOfTheLens(), 1)}" placeholder="Szerokość" class="form-control">
                     </div>
                 </div>
                 Cena
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
-                        <input type="number" name="price" placeholder="Cena" class="form-control">
+                        <input type="number" name="price" th:value="${#numbers.formatDecimal(p.getPrice(), 1,2, 'POINT')}" placeholder="Cena" class="form-control">
                     </div>
                 </div>
                 <div class="form-row">
@@ -101,7 +103,7 @@
 
             </form>
         </div>
-
+        </tr>
     </div>
 
 </div>

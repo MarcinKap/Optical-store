@@ -15,24 +15,106 @@
 <!--<div th:replace="document/content :: content_section_title"></div>-->
 
 <div class="row">
-<div class="col-sm-15 col-md-2 form-group">
-    Wyszukaj po numerze Id
-    <br/>
-    <span> <a href="/advanced-search">Szukanie zaawansowane</a> </span>
+    <div class="col-sm-15 col-md-2 form-group">
+        Wyszukaj po numerze Id
+        <br/>
 
 
-    <form th:action="@{/search}" action="/search" method="get">
-        <input type="number" required name="glassesNumber" placeholder="Numer id" class="form-control">
-        <button type="submit" class="btn btn-success btn-sm form-control">
-            <i> Szukaj</i>
-        </button>
-    </form>
-</div>
+        <form th:action="@{/search}" action="/search" method="get">
+            <input type="number" name="glassesNumber" placeholder="Numer id" class="form-control">
+            <button type="submit" class="btn btn-success btn-sm form-control">
+                <i> Szukaj</i>
+            </button>
+        </form>
+
+        <br/>
+
+        Szukanie zaawansowane
+        <form th:action="@{/advanced-search}" action="/advanced-search" method="get">
+
+            Typ
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 form-group">
+                    <input type="radio" name="glassesType" value="Przeciwsłoneczne">Przeciwsłoneczne<br>
+                    <input type="radio"  name="glassesType" value="Korekcyjne">Korekcyjne<br>
+                </div>
+            </div>
+            Marka
+            <div class="form-row" th:if="${glasses != null}">
+                <div class="col-sm-12 col-md-12 form-group">
+
+<!--                    <td>Wybierz Markę:</td>-->
+                    <td>
+                        <select type="text" name="glassesMarks">
+                            <option value="">--</option>
+                            <option th:each="m : ${marks}"
+                                    th:value="${m.getMark()}"
+                                    th:text="${m.getMark()}">
+                            </option>
+                        </select>
+                    </td>
+                </div>
+            </div>
+            Kształt
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 form-group">
+
+<!--                    <td>Wybierz Kształt:</td>-->
+                    <td>
+                        <select type="text" name="form">
+                            <option value="">--</option>
+                            <option th:each="m : ${forms}"
+                                    th:value="${m.getForm()}"
+                                    th:text="${m.getForm()}">
+                            </option>
+                        </select>
+                    </td>
+                </div>
+            </div>
+
+            Płeć
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 form-group">
+                    <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
+                    <input type="radio"  name="glassesGender" value="Mężczyzna">Mężczyzna<br>
+                    <input type="radio"  name="glassesGender" value="Kobieta">Kobieta<br>
+
+                </div>
+            </div>
+            Polaryzacja
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 form-group">
+                    <input type="checkbox" name="polarization" th:checked="${flag}">
+                </div>
+            </div>
+            Szerokość
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 form-group">
+                    <input type="number"  name="widthOfTheLens" placeholder="Szerokość" class="form-control">
+                </div>
+            </div>
+            Cena
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 form-group">
+                    <input type="number" name="price" placeholder="Cena" class="form-control">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 form-group">
+                    <button type="submit" class="btn btn-success btn-sm form-control">
+                        <i> Szukaj</i>
+                    </button>
+                </div>
+            </div>
+        </form>
 
 
-<div class="col-sm-15 col-md-15 form-group">
-    <div th:replace="document/tables/user_table :: user_table"></div>
-</div>
+    </div>
+
+
+    <div class="col-sm-15 col-md-8 form-group">
+        <div th:replace="document/tables/user_table :: user_table"></div>
+    </div>
 </div>
 
 </body>

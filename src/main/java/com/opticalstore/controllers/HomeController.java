@@ -12,7 +12,10 @@ import com.opticalstore.services.GlassesService;
 import com.opticalstore.services.MarksService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -37,6 +40,8 @@ public class HomeController {
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
         return "index";
     }
 
@@ -55,6 +60,7 @@ public class HomeController {
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         return "add-marks";
     }
+
     @GetMapping("/add-forms")
     public String addForm(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
@@ -62,7 +68,7 @@ public class HomeController {
         return "add-forms";
     }
 
-//    @GetMapping("/update-glasses")
+    //    @GetMapping("/update-glasses")
 //    public String updateGlasses(@RequestParam(value = "glasses") int glassesNumber, Model model) {
 //        // todo do zrobienia update planet
 //        model.addAttribute("glasses", glassesService.getGlassesDto());
@@ -70,21 +76,47 @@ public class HomeController {
 //    }
 //@RequestBody() GlassesDto glasses, Model model
     //todo dokonczyc update
-@GetMapping("/update-glasses")
-public String updateGlasses(Model model) {
-    model.addAttribute("glasses", glassesService.getGlassesDto());
-    model.addAttribute("forms", formService.getFormDto());
-    return "update-glasses";
-}
+    @GetMapping("/update-glasses")
+    public String updateGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
+        model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
+        return "update-glasses";
+    }
+
     @GetMapping("/search")
-    public String searchGlasses(@RequestParam(value = "glassesNumber") int glassesNumber123, Model model) {
+    public String searchGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
 
-            glassesService.getGlassesByNumber(glassesNumber123);
+        glassesService.getGlassesByNumber(glassesNumber);
 
-            model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber123));
-            model.addAttribute("marks", marksService.getGlassesMarkDto());
-            model.addAttribute("forms", formService.getFormDto());
-            return "find-glasses-by-param";
+        model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
+        return "find-glasses-by-param";
+    }
+
+    @GetMapping("/advanced-search")
+    public String advancedSearchGlasses(@RequestParam(value = "glassesType") String glassesType,
+                                        @RequestParam(value = "glassesGender") String glassesGender,
+                                        @RequestParam(value = "form") String form,
+                                        @RequestParam(value = "price") double price,
+                                        @RequestParam(value = "polarization") boolean polarization,
+                                        @RequestParam(value = "widthOfTheLens") int widthOfTheLens,
+                                        @RequestParam(value = "glassesMarks") String glassesMarks,
+                                        Model model) {
+
+        glassesService.getGlassesByParam(
+                glassesType,
+                glassesGender,
+                form,
+                price,
+                polarization,
+                widthOfTheLens,
+                glassesMarks);
+//        model.addAttribute("glasses", glassesService.getGlassesByParam(glassesNumber123));
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
+        return "find-glasses-by-param";
     }
 
 
@@ -101,6 +133,7 @@ public String updateGlasses(Model model) {
 
         return "redirect:/";
     }
+
     @PostMapping("/addmarks")
     public String addMarks(@ModelAttribute GlassesMarkDto glassesMarkDto) {
         System.out.println(glassesMarkDto);

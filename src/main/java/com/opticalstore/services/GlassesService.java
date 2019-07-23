@@ -29,6 +29,29 @@ private GlassesMapper glassesMapper;
                 .orElse(null);
     }
 
+    public List<Glasses> getGlassesByParam(String glassesType,
+                                           String glassesGender,
+                                           String form,
+                                           double price,
+                                           boolean polarization,
+                                           int widthOfTheLens,
+                                           String glassesMarks) {
+        return Optional
+                .ofNullable(glassRepository.findGlassesByParam(glassesType,
+                        glassesGender,
+                        form,
+                        price,
+                        polarization,
+                        widthOfTheLens,
+                        glassesMarks))
+                .orElse(null);
+    }
+
+
+
+
+
+
     public List<Glasses> getGlasses() {
         return glassRepository.findAll();
     }
