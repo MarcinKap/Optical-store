@@ -36,7 +36,7 @@
 
                 </tr>
                 <tr th:each="p : ${glasses}">
-                    <td><img th:src="@{${p.getGlassesImage()}}" style="height: 40%; width: 40%"></td>
+                    <td><img th:src="@{${p.getGlassesImage()}}" style="width: 100px"></td>
                     <td th:text="${#numbers.formatInteger(p.getGlassesNumber(), 1)}"></td>
                     <td th:text="${p.getGlassesType()}"></td>
                     <td th:text="${p.getGlassesMarks()}"></td>
@@ -55,7 +55,7 @@
                     <td th:text="${#numbers.formatDecimal(p.getPrice(), 1,2, 'POINT')} + zl">
                     <td>
 <!--                    a href="/add-marks"-->
-                        <form action="/add-marks" method="get">
+                        <form action="/update-glasses" method="post">
 <!--                            <input type="hidden" th:value="${p.getGlassesNumber()}" name="glasses">-->
                             <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         </form>

@@ -23,7 +23,7 @@ private GlassesMapper glassesMapper;
         this.glassesMapper = glassesMapper;
     }
 
-    public Glasses getGlassesByNumber(String glassNumber) {
+    public Glasses getGlassesByNumber(int glassNumber) {
         return Optional
                 .ofNullable(glassRepository.findGlassesByNumber(glassNumber))
                 .orElse(null);
@@ -49,7 +49,13 @@ private GlassesMapper glassesMapper;
         return glassRepository.save(glasses);
     }
 
-    public Glasses updateGlasses(String glassesNumber, Glasses glasses) {
+//    public Glasses searchGlasses(Glasses glasses) {
+//        return glassRepository.get(glasses);
+//    }
+
+
+
+    public Glasses updateGlasses(int glassesNumber, Glasses glasses) {
         return Optional
                 .ofNullable(glassRepository.findGlassesByNumber(glassesNumber))
                 .map(p -> {
@@ -70,7 +76,7 @@ private GlassesMapper glassesMapper;
     }
 
     //inne podejscie do update obiektu w bazie badych z void
-    public void updateGlassesVoid(String glassesNumber, Glasses glasses) {
+    public void updateGlassesVoid(int glassesNumber, Glasses glasses) {
         Optional.ofNullable(glassRepository.findGlassesByNumber(glassesNumber))
                 .ifPresent(p -> {
                     p.setForm(glasses.getForm());

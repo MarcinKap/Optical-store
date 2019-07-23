@@ -20,20 +20,20 @@
                 Numer id
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
-                        <input type="number" name="glassesNumber"  placeholder="Numer id" class="form-control">
+                        <input type="number" required name="glassesNumber"  placeholder="Numer id" class="form-control">
                     </div>
                 </div>
                 Zdjecie
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
-                        <input type="text"  name="glassesImage" text="sdfsdf" placeholder="link" class="form-control">
+                        <input type="text" required name="glassesImage" placeholder="link" class="form-control">
                     </div>
                 </div>
                 Typ
                 <div class="form-row">
                     <div class="col-sm-12 col-md-6 form-group">
-                        <input type="radio" name="glassesType" value="Przeciwsłoneczne">Przeciwsłoneczne<br>
-                        <input type="radio" name="glassesType" value="Korekcyjne">Korekcyjne<br>
+                        <input type="radio" required name="glassesType" value="Przeciwsłoneczne">Przeciwsłoneczne<br>
+                        <input type="radio" required name="glassesType" value="Korekcyjne">Korekcyjne<br>
                     </div>
                 </div>
                 Marka
@@ -42,7 +42,7 @@
 
                         <td>Wybierz Markę:</td>
                         <td>
-                            <select type="text" name="glassesMarks">
+                            <select type="text" name="glassesMarks" required>
                                 <option value="">--</option>
                                 <option th:each="m : ${marks}"
                                         th:value="${m.getMark()}"
@@ -59,7 +59,7 @@
 
                         <td>Wybierz Kształt:</td>
                         <td>
-                            <select type="text" name="form">
+                            <select type="text" name="form" required>
                                 <option value="">--</option>
                                 <option th:each="m : ${forms}"
                                         th:value="${m.getForm()}"
@@ -76,8 +76,8 @@
                 <div class="form-row">
                     <div class="col-sm-12 col-md-6 form-group">
                         <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
-                        <input type="radio" name="glassesGender" value="Mężczyzna">Mężczyzna<br>
-                        <input type="radio" name="glassesGender" value="Kobieta">Kobieta<br>
+                        <input type="radio" required  name="glassesGender" value="Mężczyzna">Mężczyzna<br>
+                        <input type="radio" required name="glassesGender" value="Kobieta">Kobieta<br>
 
                     </div>
                 </div>
@@ -90,13 +90,13 @@
                 Szerokość
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
-                        <input type="number" name="widthOfTheLens" placeholder="Szerokość" class="form-control">
+                        <input type="number" required name="widthOfTheLens" placeholder="Szerokość" class="form-control">
                     </div>
                 </div>
                 Cena
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
-                        <input type="number" name="price" placeholder="Cena" class="form-control">
+                        <input type="number" required name="price" placeholder="Cena" class="form-control">
                     </div>
                 </div>
                 <div class="form-row">

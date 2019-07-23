@@ -62,13 +62,30 @@ public class HomeController {
         return "add-forms";
     }
 
-//    @PostMapping("/update")
-//    public String updatePlanet(@RequestBody() GlassesDto glasses, Model model) {
+//    @GetMapping("/update-glasses")
+//    public String updateGlasses(@RequestParam(value = "glasses") int glassesNumber, Model model) {
 //        // todo do zrobienia update planet
 //        model.addAttribute("glasses", glassesService.getGlassesDto());
-//        return "redirect:/";
+//        return "add-forms";
 //    }
+//@RequestBody() GlassesDto glasses, Model model
+    //todo dokonczyc update
+@GetMapping("/update-glasses")
+public String updateGlasses(Model model) {
+    model.addAttribute("glasses", glassesService.getGlassesDto());
+    model.addAttribute("forms", formService.getFormDto());
+    return "update-glasses";
+}
+    @GetMapping("/search")
+    public String searchGlasses(@RequestParam(value = "glassesNumber") int glassesNumber123, Model model) {
 
+            glassesService.getGlassesByNumber(glassesNumber123);
+
+            model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber123));
+            model.addAttribute("marks", marksService.getGlassesMarkDto());
+            model.addAttribute("forms", formService.getFormDto());
+            return "find-glasses-by-param";
+    }
 
 
     @GetMapping("/delete")

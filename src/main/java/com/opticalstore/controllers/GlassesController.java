@@ -30,7 +30,7 @@ public class GlassesController {
     }
 
     @GetMapping("/api/v1/glasses")
-    public ResponseEntity<Glasses> getGlassesByNumber(@RequestParam(value = "number") String glassesNumber) {
+    public ResponseEntity<Glasses> getGlassesByNumber(@RequestParam(value = "number") int glassesNumber) {
         Glasses result = glassesService.getGlassesByNumber(glassesNumber); //option null
         if (result != null) {
             return new ResponseEntity<>(glassesService.getGlassesByNumber(glassesNumber), HttpStatus.OK);
@@ -63,7 +63,7 @@ public class GlassesController {
     }
 
     @PutMapping( value = "/api/v1/glasses", produces = "application/json")
-    public ResponseEntity<Glasses> updateGlasses(@RequestParam(value = "number")String glassesNumber, @RequestBody Glasses glasses) {
+    public ResponseEntity<Glasses> updateGlasses(@RequestParam(value = "number")int glassesNumber, @RequestBody Glasses glasses) {
         Glasses result = glassesService.updateGlasses(glassesNumber, glasses);
         if (result != null) {
             return ResponseEntity
