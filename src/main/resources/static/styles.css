@@ -10,13 +10,13 @@ body, html {
 }
 
 .content {
-   color: white;
+   color: black;
    font-size: 2em;
 }
 
 .content-enjoy {
     font-family: 'Oleo Script', cursive;
-    color: white;
+    color: black;
     font-size: 2em;
 }
 

@@ -3,106 +3,122 @@
 <head th:replace="document/head :: head_section"></head>
 
 <body>
+<div th:replace="document/content :: content_section_title"></div>
+<div th:replace="document/menu :: menu_section"></div>
+
 <div class="container">
     <div class="row">
         <tr th:each="p : ${glasses}">
 
-        <div class="col-6 col-md-12 col-sm-12">
-            <form th:action="@{/update}" action="/update" method="post">
+            <div class="col-6 col-md-12 col-sm-12">
+                <form th:action="@{/update}" action="/update" method="post">
 
 
-                Numer id
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-8 form-group">
-                        <input  type="number" name="glassesNumber" th:value="${#numbers.formatInteger(p.getGlassesNumber(), 1)}" placeholder="Numer id" class="form-control">
+
+                    Numer id
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-8 form-group">
+
+                            <input readonly type="text" name="glassesNumber"
+                                   th:value="${#numbers.formatInteger(p.getGlassesNumber(), 1)}" placeholder="Numer id"
+                                   class="form-control">
+                        </div>
                     </div>
-                </div>
-                Zdjecie
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-8 form-group">
-                        <input type="text" name="glassesImage" th:value="@{${p.getGlassesImage()}}" placeholder="link" class="form-control">
+<!--                    glassesNumber="${#numbers.formatInteger(p.getGlassesNumber(), 1)}"-->
+
+                    Zdjecie
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-8 form-group">
+                            <input type="text" name="glassesImage" th:value="@{${p.getGlassesImage()}}"
+                                   placeholder="link" class="form-control">
+                        </div>
                     </div>
-                </div>
-                Typ
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-6 form-group">
-                        <input type="radio" name="glassesType" value="Przeciwsłoneczne">Przeciwsłoneczne<br>
-                        <input type="radio" name="glassesType" value="Korekcyjne">Korekcyjne<br>
+                    Typ
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6 form-group">
+                            <input th:checked="${p.getGlassesType()} == Przeciwsłoneczne" type="radio" name="glassesType" value="Przeciwsłoneczne">Przeciwsłoneczne<br>
+                            <input th:checked="${p.getGlassesType()} == Korekcyjne" type="radio" name="glassesType" value="Korekcyjne">Korekcyjne<br>
+                        </div>
                     </div>
-                </div>
-                Marka
-                <div class="form-row" th:if="${glasses != null}">
+                    Marka
                     <div class="col-sm-12 col-md-6 form-group">
 
                         <td>Wybierz Markę:</td>
                         <td>
                             <select type="text" name="glassesMarks">
-                                <option value="">--</option>
+<!--                                <option th:value="${p.getGlassesMarks()}"-->
+<!--                                        th:text="${p.getGlassesMarks()}"-->
+<!--                                ></option>-->
                                 <option th:each="m : ${marks}"
                                         th:value="${m.getMark()}"
-                                        th:text="${m.getMark()}">
+                                        th:text="${m.getMark()}"
+                                        th:selected="(${m.getMark()} == *{p.getGlassesMarks()})">
                                 </option>
+
                             </select>
                         </td>
-                        <td> <a href="/add-marks">zarządzaj bazą marek</a></td>
+                        <td><a href="/add-marks">zarządzaj bazą marek</a></td>
                     </div>
-                </div>
-                Kształt
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-6 form-group">
+                    Kształt
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6 form-group">
 
-                        <td>Wybierz Kształt:</td>
-                        <td>
-                            <select type="text" name="form">
-                                <option value="">--</option>
-                                <option th:each="m : ${forms}"
-                                        th:value="${m.getForm()}"
-                                        th:text="${m.getForm()}">
-                                </option>
-                            </select>
-                        </td>
-                        <td> <a href="/add-forms">zarządzaj bazą kształtów</a></td>
+                            <td>Wybierz Kształt:</td>
+                            <td>
+                                <select type="text" name="form">
+                                    <option th:each="m : ${forms}"
+                                            th:value="${m.getForm()}"
+                                            th:text="${m.getForm()}"
+                                            th:selected="(${m.getForm()} == *{p.getForm()})">
+                                    </option>
+                                </select>
+                            </td>
+                            <td><a href="/add-forms">zarządzaj bazą kształtów</a></td>
+                        </div>
                     </div>
-                </div>
 
 
-                Płeć
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-6 form-group">
-                        <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
-                        <input type="radio" name="glassesGender" value="Mężczyzna">Mężczyzna<br>
-                        <input type="radio" name="glassesGender" value="Kobieta">Kobieta<br>
+                    Płeć
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6 form-group">
+                            <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
+                            <input type="radio" th:checked="${p.getGlassesGender()} == Mężczyzna" name="glassesGender" value="Mężczyzna">Mężczyzna<br>
+                            <input type="radio" th:checked="${p.getGlassesGender()} == Kobieta" name="glassesGender" value="Kobieta">Kobieta<br>
 
+                        </div>
                     </div>
-                </div>
-                Polaryzacja
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-6 form-group">
-                        <input type="checkbox" name="polarization" th:checked="${flag}">
+                    Polaryzacja
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6 form-group">
+                            <input type="checkbox" name="polarization" th:checked="${p.isPolarization()} == TRUE">
+                        </div>
                     </div>
-                </div>
-                Szerokość
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-8 form-group">
-                        <input type="number" name="widthOfTheLens" th:value="${#numbers.formatInteger(p.getWidthOfTheLens(), 1)}" placeholder="Szerokość" class="form-control">
+                    Szerokość
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-8 form-group">
+                            <input type="number" name="widthOfTheLens"
+                                   th:value="${#numbers.formatInteger(p.getWidthOfTheLens(), 1)}"
+                                   placeholder="Szerokość" class="form-control">
+                        </div>
                     </div>
-                </div>
-                Cena
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-8 form-group">
-                        <input type="number" name="price" th:value="${#numbers.formatDecimal(p.getPrice(), 1,2, 'POINT')}" placeholder="Cena" class="form-control">
+                    Cena
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-8 form-group">
+                            <input type="number" name="price"
+                                   th:value="${#numbers.formatDecimal(p.getPrice(), 1,2, 'POINT')}" placeholder="Cena"
+                                   class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-sm-12 col-md-12 form-group">
-                        <button type="submit" class="btn btn-success btn-sm form-control">
-                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                        </button>
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-12 form-group">
+                            <button type="submit" class="btn btn-success btn-sm form-control">
+                                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-            </form>
-        </div>
+                </form>
+            </div>
         </tr>
     </div>
 

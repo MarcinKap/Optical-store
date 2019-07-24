@@ -75,6 +75,7 @@ public class HomeController {
 //        return "add-forms";
 //    }
 //@RequestBody() GlassesDto glasses, Model model
+
     //todo dokonczyc update
     @GetMapping("/update-glasses")
     public String updateGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
@@ -126,11 +127,31 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/deletemark")
+    public String deleteMarks(@RequestParam(value = "marks") String markName) {
+        marksService.deleteMarksByName(markName);
+        return "redirect:/add-marks";
+    }
+
+    @GetMapping("/deleteform")
+    public String deleteForms(@RequestParam(value = "forms") String formName) {
+        formService.deleteFormsByName(formName);
+        return "redirect:/add-forms";
+    }
+
     @PostMapping("/add")
     public String addGlasses(@ModelAttribute GlassesDto glassesDto) {
         System.out.println(glassesDto);
         glassesService.saveGlasses(glassesMapper.reverseMap(glassesDto));
+        return "redirect:/";
+    }
 
+    @PostMapping("/update")
+    public String updateGlasses(@ModelAttribute GlassesDto glassesDto) {
+        System.out.println(glassesDto);
+
+        System.out.println(glassesDto.getGlassesNumber());
+        glassesService.updateGlasses(glassesDto.getGlassesNumber(), glassesMapper.reverseMap(glassesDto));
         return "redirect:/";
     }
 
@@ -142,12 +163,6 @@ public class HomeController {
         return "redirect:/add-marks";
     }
 
-    @GetMapping("/deletemark")
-    public String deleteMarks(@RequestParam(value = "marks") String markName) {
-        marksService.deleteMarksByName(markName);
-        return "redirect:/add-marks";
-    }
-
     @PostMapping("/addforms")
     public String addForms(@ModelAttribute FormDto formDto) {
         System.out.println(formDto);
@@ -156,11 +171,10 @@ public class HomeController {
         return "redirect:/add-forms";
     }
 
-    @GetMapping("/deleteform")
-    public String deleteForms(@RequestParam(value = "forms") String formName) {
-        formService.deleteFormsByName(formName);
-        return "redirect:/add-forms";
-    }
+
+
+
+
 
 
 }

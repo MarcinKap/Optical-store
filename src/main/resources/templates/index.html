@@ -3,21 +3,16 @@
 <head th:replace="document/head :: head_section"></head>
 
 <body>
+<!--<a href="swagger-ui.html">swagger documentation</a> |-->
 
-<span><a href="swagger-ui.html">swagger documentation</a> |
-    <a href="/">home</a> | <a href="/add-page">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>add glasses
-    </a> | <a href="/logout">logout</a> | <a href="/file/xls">get XLS</a>
-    | <a href="/api/v1/planets/download/file/xls/planets.xls">get file</a>
-</span>
-<hr>
+<div th:replace="document/content :: content_section_title"></div>
 
-<!--<div th:replace="document/content :: content_section_title"></div>-->
+<div th:replace="document/menu :: menu_section"></div>
 
 <div class="row">
     <div class="col-sm-15 col-md-2 form-group">
         Wyszukaj po numerze Id
-        <br/>
+        <hr>
 
 
         <form th:action="@{/search}" action="/search" method="get">
@@ -30,20 +25,21 @@
         <br/>
 
         Szukanie zaawansowane
+        <hr>
         <form th:action="@{/advanced-search}" action="/advanced-search" method="get">
 
             Typ
             <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
                     <input type="radio" name="glassesType" value="Przeciwsłoneczne">Przeciwsłoneczne<br>
-                    <input type="radio"  name="glassesType" value="Korekcyjne">Korekcyjne<br>
+                    <input type="radio" name="glassesType" value="Korekcyjne">Korekcyjne<br>
                 </div>
             </div>
             Marka
             <div class="form-row" th:if="${glasses != null}">
                 <div class="col-sm-12 col-md-12 form-group">
 
-<!--                    <td>Wybierz Markę:</td>-->
+                    <!--                    <td>Wybierz Markę:</td>-->
                     <td>
                         <select type="text" name="glassesMarks">
                             <option value="">--</option>
@@ -59,7 +55,7 @@
             <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
 
-<!--                    <td>Wybierz Kształt:</td>-->
+                    <!--                    <td>Wybierz Kształt:</td>-->
                     <td>
                         <select type="text" name="form">
                             <option value="">--</option>
@@ -76,8 +72,8 @@
             <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
                     <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
-                    <input type="radio"  name="glassesGender" value="Mężczyzna">Mężczyzna<br>
-                    <input type="radio"  name="glassesGender" value="Kobieta">Kobieta<br>
+                    <input type="radio" name="glassesGender" value="Mężczyzna">Mężczyzna<br>
+                    <input type="radio" name="glassesGender" value="Kobieta">Kobieta<br>
 
                 </div>
             </div>
@@ -90,7 +86,7 @@
             Szerokość
             <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
-                    <input type="number"  name="widthOfTheLens" placeholder="Szerokość" class="form-control">
+                    <input type="number" name="widthOfTheLens" placeholder="Szerokość" class="form-control">
                 </div>
             </div>
             Cena
@@ -112,7 +108,7 @@
     </div>
 
 
-    <div class="col-sm-15 col-md-8 form-group">
+    <div class="col-sm-15 col-md-15 form-group">
         <div th:replace="document/tables/user_table :: user_table"></div>
     </div>
 </div>

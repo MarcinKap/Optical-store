@@ -79,21 +79,24 @@ private GlassesMapper glassesMapper;
 
 
     public Glasses updateGlasses(int glassesNumber, Glasses glasses) {
+        System.out.println("czy to sie zapisuje czy nie");
+        //glassRepository.findGlassesByNumber(glassesNumber).setGlassesMarks(glasses.getGlassesMarks());
+       // System.out.println(glassRepository.findGlassesByNumber(glassesNumber).getGlassesGender());
         return Optional
                 .ofNullable(glassRepository.findGlassesByNumber(glassesNumber))
                 .map(p -> {
+                    p.setGlassesNumber(glasses.getGlassesNumber());
                     p.setForm(glasses.getForm());
                     p.setGlassesGender(glasses.getGlassesGender());
                     p.setGlassesImage(glasses.getGlassesImage());
-                    p.setGlassesNumber(glasses.getGlassesNumber());
                     p.setPolarization(glasses.isPolarization());
                     p.setPrice(glasses.getPrice());
                     p.setWidthOfTheLens(glasses.getWidthOfTheLens());
                     p.setGlassesType(glasses.getGlassesType());
                     p.setGlassesMarks(glasses.getGlassesMarks());
 
-                    return saveGlasses(p);//uzycie wlasnej metody z servisu
-                    //   return planetRepository.save(p); zapis bezposrednio z repository
+                  //  return saveGlasses(p);//uzycie wlasnej metody z servisu
+                       return glassRepository.save(p); //zapis bezposrednio z repository
                 })
                 .orElse(null);
     }
