@@ -32,21 +32,33 @@ private GlassesMapper glassesMapper;
     public List<Glasses> getGlassesByParam(String glassesType,
                                            String glassesGender,
                                            String form,
-                                           double price,
+                                           double priceLowerLimit,
+                                           double priceUpperLimit,
                                            Boolean polarization,
-                                           int widthOfTheLens,
+                                           int widthOfTheLensLowerLimit,
+                                           int widthOfTheLensUpperLimit,
                                            String glassesMarks) {
 
-        System.out.println(polarization);
+        System.out.println(glassesType);
+//        System.out.println(glassesGender);
+//        System.out.println(form);
+//        System.out.println(priceLowerLimit);
+//        System.out.println(priceUpperLimit);
+//        System.out.println(polarization);
+//        System.out.println(widthOfTheLensLowerLimit);
+//        System.out.println(widthOfTheLensUpperLimit);
+//        System.out.println(glassesMarks);
 
         return Optional
                 .ofNullable(glassRepository.findGlassesByParam(
                         glassesType,
                         glassesGender,
                         form,
-                        price,
+                        priceLowerLimit,
+                        priceUpperLimit,
                         polarization,
-                        widthOfTheLens,
+                        widthOfTheLensLowerLimit,
+                        widthOfTheLensUpperLimit,
                         glassesMarks))
                 .orElse(null);
     }

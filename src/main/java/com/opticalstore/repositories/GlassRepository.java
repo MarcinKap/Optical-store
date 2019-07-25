@@ -20,7 +20,7 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
 
     @Query
             ("select g from Glasses g where " +
-                    "(g.glassesType= ?1 or ?1 is null )" +
+                    "(g.glassesType= ?1 or ?1 = '' )" +
                     "and " +
                     "(?2 is null or g.glassesGender = ?2) "
                     +
@@ -28,19 +28,25 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
                     "(?3 = '' or g.form = ?3) "
                     +
                     "AND " +
-                    "(?4 = 0.0 or g.price = ?4) "
+                    "(?4 = 0.0 or g.price >= ?4) "
                     +
                     "AND " +
-                    "(?5 is null or g.polarization = ?5) "
+                    "(?5 = 0.0 or g.price <= ?5) "
                     +
                     "AND " +
-                    "(?6 = 0 or g.widthOfTheLens = ?6) "
-//                    +
-//                    "AND " +
-//                    "(?7 = '' or g.glassesMarks = ?7)"
+                    "(?6 is null or g.polarization = ?6) "
+                    +
+                    "AND " +
+                    "(?7 = 0 or g.widthOfTheLens >= ?7) "
+                    +
+                    "AND " +
+                    "(?8 = 0 or g.widthOfTheLens <= ?8) "
+                    +
+                    "AND " +
+                    "(?9 = '' or g.glassesMarks = ?9)"
             )
         //JPQL
-    List<Glasses> findGlassesByParam(String glassesType, String glassesGender, String form, double price, Boolean polarization, int widthOfTheLens, String glassesMarks);
+    List<Glasses> findGlassesByParam(String glassesType, String glassesGender, String form, double priceLowerLimit, double priceUpperLimit, Boolean polarization, int widthOfTheLensLowerLimit, int widthOfTheLensUpperLimit, String glassesMarks);
 
 
 //    List<Glasses> findGlassesByParam(

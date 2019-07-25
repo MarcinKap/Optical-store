@@ -105,7 +105,7 @@ public class HomeController {
 //                                        @RequestParam(value = "glassesMarks") String glassesMarks,
 //                                        Model model)
 
-//                glassesType,
+    //                glassesType,
 //                glassesGender,
 //                form,
 //                price,
@@ -114,7 +114,18 @@ public class HomeController {
 //                glassesMarks);
 //        model.addAttribute("glasses", glassesService.getGlassesByParam(glassesNumber123));
     @GetMapping("/advanced-search")
-    public String advancedSearchGlasses(@ModelAttribute GlassesDto glassesDto, Model model) {
+    public String advancedSearchGlasses(
+            @ModelAttribute GlassesDto glassesDto,
+//            @RequestParam(value = "glassesType") String glassesType,
+//            @RequestParam(value = "glassesGender") String glassesGender,
+//            @RequestParam(value = "form") String form,
+            @RequestParam(value = "priceLowerLimit") double priceLowerLimit,
+            @RequestParam(value = "priceUpperLimit") double priceUpperLimit,
+//            @RequestParam(value = "polarization") Boolean polarization,
+            @RequestParam(value = "widthOfTheLensLowerLimit") int widthOfTheLensLowerLimit,
+            @RequestParam(value = "widthOfTheLensUpperLimit") int widthOfTheLensUpperLimit,
+//            @RequestParam(value = "glassesMarks") String glassesMarks,
+            Model model) {
 
 //        glassesService.getGlassesByParam(
 //                glassesMapper.reverseMap(glassesDto).getGlassesType(),
@@ -125,13 +136,26 @@ public class HomeController {
 //                glassesMapper.reverseMap(glassesDto).getWidthOfTheLens(),
 //                glassesMapper.reverseMap(glassesDto).getGlassesMarks());
 
-        model.addAttribute("glasses", glassesService.getGlassesByParam(glassesMapper.reverseMap(glassesDto).getGlassesType(),
-                glassesMapper.reverseMap(glassesDto).getGlassesGender(),
-                glassesMapper.reverseMap(glassesDto).getForm(),
-                glassesMapper.reverseMap(glassesDto).getPrice(),
-                glassesMapper.reverseMap(glassesDto).getPolarization(),
-                glassesMapper.reverseMap(glassesDto).getWidthOfTheLens(),
-                glassesMapper.reverseMap(glassesDto).getGlassesMarks()));
+        model.addAttribute("glasses",
+                glassesService.getGlassesByParam(glassesMapper.reverseMap(glassesDto).getGlassesType(),
+                        glassesMapper.reverseMap(glassesDto).getGlassesGender(),
+                        glassesMapper.reverseMap(glassesDto).getForm(),
+                        priceLowerLimit,
+                        priceUpperLimit,
+                        glassesMapper.reverseMap(glassesDto).getPolarization(),
+                        widthOfTheLensLowerLimit,
+                        widthOfTheLensUpperLimit,
+                        glassesMapper.reverseMap(glassesDto).getGlassesMarks()
+                ));
+//                glassesService.getGlassesByParam(glassesMapper.reverseMap(glassesDto).getGlassesType(),
+//                glassesMapper.reverseMap(glassesDto).getGlassesGender(),
+//                glassesMapper.reverseMap(glassesDto).getForm(),
+//                glassesMapper.reverseMap(glassesDto).getPrice(),
+//                glassesMapper.reverseMap(glassesDto).getPolarization(),
+//                glassesMapper.reverseMap(glassesDto).getWidthOfTheLens(),
+//                glassesMapper.reverseMap(glassesDto).getGlassesMarks())
+
+
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
         return "find-glasses-by-param";
