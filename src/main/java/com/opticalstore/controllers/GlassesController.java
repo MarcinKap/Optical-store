@@ -82,20 +82,6 @@ public class GlassesController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-//
-//    @RequestMapping(value = { "/selectOptionExample1" }, method = RequestMethod.GET)
-//    public String selectOptionExample1Page(Model model) {
-//
-//        Glasses glasses_model = new Glasses();
-//        model.addAttribute("glasses_model", glasses_model);
-//
-//        List<String> list = glasses_model.getGlassesMarks();
-//        model.addAttribute("countries", list);
-//
-//        return "selectOptionExample1";
-//    }
-
-
 
 
 }

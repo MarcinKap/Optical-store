@@ -24,6 +24,7 @@ private GlassesMapper glassesMapper;
     }
 
     public Glasses getGlassesByNumber(int glassNumber) {
+        System.out.println(glassNumber);
         return Optional
                 .ofNullable(glassRepository.findGlassesByNumber(glassNumber))
                 .orElse(null);
@@ -39,7 +40,7 @@ private GlassesMapper glassesMapper;
                                            int widthOfTheLensUpperLimit,
                                            String glassesMarks) {
 
-        System.out.println(glassesType);
+        System.out.println(glassesGender);
 //        System.out.println(glassesGender);
 //        System.out.println(form);
 //        System.out.println(priceLowerLimit);
