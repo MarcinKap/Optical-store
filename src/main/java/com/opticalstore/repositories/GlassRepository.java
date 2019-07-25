@@ -5,6 +5,7 @@ import com.opticalstore.models.Glasses;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,21 +20,43 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
 
     @Query
             ("select g from Glasses g where " +
-                    "g.glassesType = ?1 " +
-                    "or " +
-                    "g.glassesGender = ?1 " +
-                    "or " +
-                    "g.form = ?1 " +
-                    "or " +
-                    "g.price = ?1 " +
-                    "or " +
-                    "g.polarization = ?1 " +
-                    "or " +
-                    "g.widthOfTheLens = ?1 " +
-                    "or " +
-                    "g.glassesMarks = ?1")
+                    "(g.glassesType= ?1 or ?1 is null )" +
+                    "and " +
+                    "(?2 is null or g.glassesGender = ?2) "
+                    +
+                    "AND " +
+                    "(?3 = '' or g.form = ?3) "
+                    +
+                    "AND " +
+                    "(?4 = 0.0 or g.price = ?4) "
+                    +
+                    "AND " +
+                    "(?5 is null or g.polarization = ?5) "
+                    +
+                    "AND " +
+                    "(?6 = 0 or g.widthOfTheLens = ?6) "
+//                    +
+//                    "AND " +
+//                    "(?7 = '' or g.glassesMarks = ?7)"
+            )
         //JPQL
-    List<Glasses> findGlassesByParam(String glassesType, String glassesGender, String form, double price, boolean polarization, int widthOfTheLens, String glassesMarks);
+    List<Glasses> findGlassesByParam(String glassesType, String glassesGender, String form, double price, Boolean polarization, int widthOfTheLens, String glassesMarks);
+
+
+//    List<Glasses> findGlassesByParam(
+//            @Param("glassesType") String glassesType,
+//            @Param("glassesGender") String glassesGender,
+//            @Param("form") String form,
+//            @Param("price") double price,
+//            @Param("polarization") boolean polarization,
+//            @Param("widthOfTheLens") int widthOfTheLens,
+//            @Param("glassesMarks") String glassesMarks);
+
+//    @Query("select g from Glasses g where g.glassesType = ?1")
+//    List<Glasses> findGlassesByParam(String glassesType);
+
+
+
 
 
     @Transactional //spring

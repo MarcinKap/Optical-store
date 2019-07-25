@@ -23,7 +23,7 @@
 
                     <td th:text="${p.getForm()}"></td>
                     <td th:text="${p.getGlassesGender()}"></td>
-                    <td th:text="${p.isPolarization()} ? 'Tak' : 'Nie'"></td>
+                    <td th:text="${p.getPolarization()} ? 'Tak' : 'Nie'"></td>
                     <td th:text="${#numbers.formatInteger(p.getWidthOfTheLens(), 1)} + mm"></td>
                     <td th:text="${#numbers.formatDecimal(p.getPrice(), 1,2, 'POINT')} + zl">
                     <td>

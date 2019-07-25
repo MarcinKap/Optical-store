@@ -21,7 +21,7 @@ public class GlassesDto {
     private String glassesGender;
     private String form;
     private double price;
-    private boolean polarization;
+    private Boolean polarization;
     private int widthOfTheLens;
     private String glassesImage;
     private String glassesMarks;

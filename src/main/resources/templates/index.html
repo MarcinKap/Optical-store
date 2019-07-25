@@ -4,13 +4,12 @@
 
 <body>
 <!--<a href="swagger-ui.html">swagger documentation</a> |-->
-
 <div th:replace="document/content :: content_section_title"></div>
 
 <div th:replace="document/menu :: menu_section"></div>
 
 <div class="row">
-    <div class="col-sm-15 col-md-2 form-group">
+    <div class="searching col-sm-15 col-md-2 form-group">
         Wyszukaj po numerze Id
         <hr>
 
@@ -80,19 +79,20 @@
             Polaryzacja
             <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
-                    <input type="checkbox" name="polarization" th:checked="${flag}">
+                    <input type="checkbox" name="polarization" value="TRUE"> Tak<br>
+                    <input type="checkbox" name="polarization" value="FALSE"> Nie<br>
                 </div>
             </div>
             Szerokość
             <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
-                    <input type="number" name="widthOfTheLens" placeholder="Szerokość" class="form-control">
+                    <input type="number" name="widthOfTheLens" placeholder="Szerokość" value="0" class="form-control">
                 </div>
             </div>
             Cena
             <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
-                    <input type="number" name="price" placeholder="Cena" class="form-control">
+                    <input type="number" name="price" placeholder="Cena" value="0" class="form-control">
                 </div>
             </div>
             <div class="form-row">
@@ -103,7 +103,6 @@
                 </div>
             </div>
         </form>
-
 
     </div>
 

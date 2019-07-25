@@ -96,25 +96,42 @@ public class HomeController {
         return "find-glasses-by-param";
     }
 
-    @GetMapping("/advanced-search")
-    public String advancedSearchGlasses(@RequestParam(value = "glassesType") String glassesType,
-                                        @RequestParam(value = "glassesGender") String glassesGender,
-                                        @RequestParam(value = "form") String form,
-                                        @RequestParam(value = "price") double price,
-                                        @RequestParam(value = "polarization") boolean polarization,
-                                        @RequestParam(value = "widthOfTheLens") int widthOfTheLens,
-                                        @RequestParam(value = "glassesMarks") String glassesMarks,
-                                        Model model) {
+    //            (@RequestParam(value = "glassesType") String glassesType,
+//                                        @RequestParam(value = "glassesGender") String glassesGender,
+//                                        @RequestParam(value = "form") String form,
+//                                        @RequestParam(value = "price") double price,
+//                                        @RequestParam(value = "polarization") boolean polarization,
+//                                        @RequestParam(value = "widthOfTheLens") int widthOfTheLens,
+//                                        @RequestParam(value = "glassesMarks") String glassesMarks,
+//                                        Model model)
 
-        glassesService.getGlassesByParam(
-                glassesType,
-                glassesGender,
-                form,
-                price,
-                polarization,
-                widthOfTheLens,
-                glassesMarks);
+//                glassesType,
+//                glassesGender,
+//                form,
+//                price,
+//                polarization,
+//                widthOfTheLens,
+//                glassesMarks);
 //        model.addAttribute("glasses", glassesService.getGlassesByParam(glassesNumber123));
+    @GetMapping("/advanced-search")
+    public String advancedSearchGlasses(@ModelAttribute GlassesDto glassesDto, Model model) {
+
+//        glassesService.getGlassesByParam(
+//                glassesMapper.reverseMap(glassesDto).getGlassesType(),
+//                glassesMapper.reverseMap(glassesDto).getGlassesGender(),
+//                glassesMapper.reverseMap(glassesDto).getForm(),
+//                glassesMapper.reverseMap(glassesDto).getPrice(),
+//                glassesMapper.reverseMap(glassesDto).isPolarization(),
+//                glassesMapper.reverseMap(glassesDto).getWidthOfTheLens(),
+//                glassesMapper.reverseMap(glassesDto).getGlassesMarks());
+
+        model.addAttribute("glasses", glassesService.getGlassesByParam(glassesMapper.reverseMap(glassesDto).getGlassesType(),
+                glassesMapper.reverseMap(glassesDto).getGlassesGender(),
+                glassesMapper.reverseMap(glassesDto).getForm(),
+                glassesMapper.reverseMap(glassesDto).getPrice(),
+                glassesMapper.reverseMap(glassesDto).getPolarization(),
+                glassesMapper.reverseMap(glassesDto).getWidthOfTheLens(),
+                glassesMapper.reverseMap(glassesDto).getGlassesMarks()));
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
         return "find-glasses-by-param";
@@ -170,11 +187,6 @@ public class HomeController {
 
         return "redirect:/add-forms";
     }
-
-
-
-
-
 
 
 }

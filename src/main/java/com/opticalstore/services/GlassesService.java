@@ -33,11 +33,15 @@ private GlassesMapper glassesMapper;
                                            String glassesGender,
                                            String form,
                                            double price,
-                                           boolean polarization,
+                                           Boolean polarization,
                                            int widthOfTheLens,
                                            String glassesMarks) {
+
+        System.out.println(polarization);
+
         return Optional
-                .ofNullable(glassRepository.findGlassesByParam(glassesType,
+                .ofNullable(glassRepository.findGlassesByParam(
+                        glassesType,
                         glassesGender,
                         form,
                         price,
@@ -47,7 +51,17 @@ private GlassesMapper glassesMapper;
                 .orElse(null);
     }
 
-
+//    public List<Glasses> getGlassesByParam(String glassesType,
+//                                           String glassesGender,
+//                                           String form,
+//                                           double price,
+//                                           boolean polarization,
+//                                           int widthOfTheLens,
+//                                           String glassesMarks) {
+//        return Optional
+//                .ofNullable(glassRepository.findGlassesByParam(glassesType))
+//                .orElse(null);
+//    }
 
 
 
@@ -89,7 +103,7 @@ private GlassesMapper glassesMapper;
                     p.setForm(glasses.getForm());
                     p.setGlassesGender(glasses.getGlassesGender());
                     p.setGlassesImage(glasses.getGlassesImage());
-                    p.setPolarization(glasses.isPolarization());
+                    p.setPolarization(glasses.getPolarization());
                     p.setPrice(glasses.getPrice());
                     p.setWidthOfTheLens(glasses.getWidthOfTheLens());
                     p.setGlassesType(glasses.getGlassesType());
@@ -109,7 +123,7 @@ private GlassesMapper glassesMapper;
                     p.setGlassesGender(glasses.getGlassesGender());
                     p.setGlassesImage(glasses.getGlassesImage());
                     p.setGlassesNumber(glasses.getGlassesNumber());
-                    p.setPolarization(glasses.isPolarization());
+                    p.setPolarization(glasses.getPolarization());
                     p.setPrice(glasses.getPrice());
                     p.setWidthOfTheLens(glasses.getWidthOfTheLens());
                     p.setGlassesType(glasses.getGlassesType());

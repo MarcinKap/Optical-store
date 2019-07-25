@@ -37,7 +37,7 @@ public class Glasses {
     private double price;
 
     @Column(name = "polarization")
-    private boolean polarization;
+    private Boolean polarization;
 
     @Column(name = "width_of_the_lens")
     private int widthOfTheLens;
