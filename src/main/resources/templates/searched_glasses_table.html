@@ -4,22 +4,10 @@
 
 <body>
 
-<span><a href="swagger-ui.html">swagger documentation</a> |
-    <a href="/">home</a> | <a href="/add-page">
-        <i class="fa fa-plus-square" aria-hidden="true"></i>add glasses
-    </a> | <a href="/logout">logout</a> | <a href="/file/xls">get XLS</a>
-    | <a href="/api/v1/planets/download/file/xls/planets.xls">get file</a>
-</span>
-<hr>
-Wyszukaj okulary po numerze Id
-<form th:action="@{/search}" action="/search" method="get">
-    <input type="number" required name="glassesNumber"  placeholder="Numer id" class="form-control">
-    <button type="submit" class="btn btn-success btn-sm form-control">
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>
-    </button>
-</form>
+
 
 <div th:replace="document/content :: content_section_title"></div>
+
 <div th:replace="document/tables/user_table :: user_table"></div>
 
 </body>

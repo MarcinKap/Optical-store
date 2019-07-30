@@ -10,6 +10,7 @@ import com.opticalstore.models.GlassesMarkDto;
 import com.opticalstore.services.FormService;
 import com.opticalstore.services.GlassesService;
 import com.opticalstore.services.MarksService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,8 @@ public class HomeController {
         this.formService = formService;
     }
 
+
+//    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'GUEST')")
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
@@ -67,6 +70,9 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "add-forms";
     }
+
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/update-glasses")
     public String updateGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
         model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
@@ -111,24 +117,29 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "find-glasses-by-param";
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/delete")
     public String deleteGlasses(@RequestParam(value = "glasses") int glassesNumber) {
         glassesService.deleteGlassesByNumber(glassesNumber);
         return "redirect:/";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/deletemark")
     public String deleteMarks(@RequestParam(value = "marks") String markName) {
         marksService.deleteMarksByName(markName);
         return "redirect:/add-marks";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/deleteform")
     public String deleteForms(@RequestParam(value = "forms") String formName) {
         formService.deleteFormsByName(formName);
         return "redirect:/add-forms";
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/add")
     public String addGlasses(@ModelAttribute GlassesDto glassesDto) {
         System.out.println(glassesDto);
@@ -136,6 +147,7 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")
     public String updateGlasses(@ModelAttribute GlassesDto glassesDto) {
         System.out.println(glassesDto);
@@ -145,6 +157,7 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addmarks")
     public String addMarks(@ModelAttribute GlassesMarkDto glassesMarkDto) {
         System.out.println(glassesMarkDto);
@@ -153,6 +166,7 @@ public class HomeController {
         return "redirect:/add-marks";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addforms")
     public String addForms(@ModelAttribute FormDto formDto) {
         System.out.println(formDto);

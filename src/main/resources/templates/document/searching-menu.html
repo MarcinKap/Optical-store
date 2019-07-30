@@ -1,6 +1,6 @@
 <div class="searching-menu" xmlns:th="http://www.thymeleaf.org" th:fragment="searching_menu_section">
 
-    <div class="searching col-sm-15 col-md-10 form-group">
+
         Wyszukaj po numerze Id
         <hr>
 
@@ -25,7 +25,7 @@
             <!--                    <input type="checkbox" name="glassesType" value="Korekcyjne">Korekcyjne<br>-->
             <!--                </div>-->
             <!--            </div>-->
-            <div class="form-row" th:if="${glasses != null}">
+            <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
 
                     <!--                    <td>Wybierz Markę:</td>-->
@@ -39,7 +39,7 @@
                 </div>
             </div>
             Marka
-            <div class="form-row" th:if="${glasses != null}">
+            <div class="form-row">
                 <div class="col-sm-12 col-md-12 form-group">
 
                     <!--                    <td>Wybierz Markę:</td>-->
@@ -121,6 +121,5 @@
 
         </form>
 
-    </div>
 
 </div>

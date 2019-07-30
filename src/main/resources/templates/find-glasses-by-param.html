@@ -8,22 +8,12 @@
 
 
 <div class="row">
-    <div class="col-sm-15 col-md-2 form-group">
-        Wyszukaj po numerze Id
-        <br/>
-        <span> <a href="/advanced-search">Szukanie zaawansowane</a> </span>
 
-
-        <form th:action="@{/search}" action="/search" method="get">
-            <input type="number" required name="glassesNumber" placeholder="Numer id" class="form-control">
-            <button type="submit" class="btn btn-success btn-sm form-control">
-                <i> Szukaj</i>
-            </button>
-        </form>
+    <div class="col-sm-12 col-md-2 form-group">
+        <div th:replace="document/searching-menu :: searching_menu_section"></div>
     </div>
 
-
-    <div class="col-sm-15 col-md-15 form-group">
+    <div class="col-sm-12 col-md-8 form-group">
         <div th:replace="document/tables/user_table :: user_table"></div>
     </div>
 </div>
