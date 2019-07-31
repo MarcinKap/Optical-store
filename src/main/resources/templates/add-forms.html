@@ -6,15 +6,12 @@
 
 <div th:replace="document/content :: content_section_title"></div>
 <div th:replace="document/menu :: menu_section"></div>
-
 <div th:replace="document/tables/forms_table :: forms_table"></div>
-
 
 <div class="container">
     <div class="row">
         <div class="col-6 col-md-12 col-sm-12">
             <form th:action="@{/addforms}" action="/addforms" th:object="${FormDto}" method="post">
-
                 <div class="form-row">
                     <div class="col-sm-12 col-md-12 form-group">
                         <input type="text" name="form" placeholder="nazwa kształtu" class="form-control">

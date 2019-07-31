@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,7 +39,16 @@ public class CustomUserService implements UserDetailsService {
 
         //TODO uzupelnic przypisywanie ról do użytkowników.
 
-//        List<String > roles =  loginUser.get
+//        Set<String> roles =  userApp.getRoles()
+//                .stream()
+//                .map(RolesToStringsSet.INSTANCE)
+//                .collect(Collectors.toSet());
+
+//        Set<Role> roles = userApp.getRoles()
+//                .stream()
+//                .map()
+//
+
 //
 //        Role role = Role
 //                .builder()
@@ -54,11 +64,6 @@ public class CustomUserService implements UserDetailsService {
                 .active(1)
                 .roles(new HashSet<>())
                 .build();
-
-
-
-
-
         userAppRepository.save(result);
 
     }
@@ -78,6 +83,17 @@ public class CustomUserService implements UserDetailsService {
 //    }
 //
 
+    private enum RolesToStringsSet implements Function<Role, String> {
+        INSTANCE;
+
+        @Override
+        public String apply(Role role)
+        {
+            return role.getRole();
+        }
+    }
 
 
 }
+
+

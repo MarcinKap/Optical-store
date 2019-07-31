@@ -10,8 +10,6 @@
     <div class="row">
         <div class="col-6 col-md-12 col-sm-12">
             <form th:action="@{/add}" action="/add" method="post">
-
-
                 Numer id
                 <div class="form-row">
                     <div class="col-sm-12 col-md-8 form-group">
@@ -32,7 +30,7 @@
                     </div>
                 </div>
                 Marka
-                <div class="form-row" th:if="${glasses != null}">
+                <div class="form-row">
                     <div class="col-sm-12 col-md-6 form-group">
 
                         <td>Wybierz Markę:</td>
@@ -65,8 +63,6 @@
                         <td> <a href="/add-forms">zarządzaj bazą kształtów</a></td>
                     </div>
                 </div>
-
-
                 Płeć
                 <div class="form-row">
                     <div class="col-sm-12 col-md-6 form-group">

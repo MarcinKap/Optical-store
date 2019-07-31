@@ -17,7 +17,7 @@ public class SwaggerConfig {
     public Docket config() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.opticalstore.controllers"))
                 .paths(regex("/api/v1/.*"))
                 .build();
     }

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
 @Controller
 public class HomeController {
 
@@ -173,6 +176,13 @@ public class HomeController {
         formService.saveForm(formMapper.reverseMap(formDto));
 
         return "redirect:/add-forms";
+    }
+
+
+    @GetMapping("/file/xls")
+    public String getFileXls() throws NoSuchMethodException, IOException, IllegalAccessException, InvocationTargetException {
+        glassesService.getFile("glasses");
+        return "redirect:/";
     }
 
 

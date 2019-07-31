@@ -17,7 +17,6 @@ public class FormMapper implements Mapper<Form, FormDto> {
                 .form(from.getForm())
                 .build();
     }
-
     @Override
     public Form reverseMap(FormDto to) {
         return Form
@@ -25,7 +24,4 @@ public class FormMapper implements Mapper<Form, FormDto> {
                 .form(to.getForm())
                 .build();
     }
-
-
-
 }

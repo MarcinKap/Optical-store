@@ -3,34 +3,21 @@
 
 
     <div>
-
-
         <a href="/">
-            <button class="w3-button w3-hover-black" href="/">Strona domowa</button>
+            <button class="w3-button w3-hover-black">Strona domowa</button>
         </a>
-
-
-        <!--        sec:authorize="isAuthenticated()"-->
-        <!--        <div th:if="${#request.isUserInRole('ADMIN')}">-->
-        <!--            <a th:href="@{/login}">Sign in</a>-->
-        <!--        </div>-->
-        <!--        <div sec:authorize="isAuthenticated()">-->
-
-        <!--            <li><a th:href="@{/logout}">Logout</a></li>-->
-        <!--        </div>-->
-
         <a href="/add-page" th:if="${#request.isUserInRole('ADMIN')}">
             <button class="w3-button w3-hover-black">Dodaj okulary</button>
         </a>
+<!--        Sciaganie pliku wprost do konkretnego plik-->
+<!--        <a href="/file/xls"  th:if="${#request.isUserInRole('ADMIN')}">-->
+<!--            <button class="w3-button w3-hover-black">get XLS</button>-->
+<!--        </a>-->
 
-        <a href="/api/v1/planets/download/file/xls/planets.xls"  th:if="${#request.isUserInRole('ADMIN')}">
-            <button class="w3-button w3-hover-black">get XLS</button>
+<!--        Sciaganie do przegladarki-->
+        <a href="/api/v1/glasses/download/file/xls/glasses.xls"  th:if="${#request.isUserInRole('ADMIN')}">
+            <button class="w3-button w3-hover-black">Ściągnij bazę okularów</button>
         </a>
-
-        <a href="/file/xls"  th:if="${#request.isUserInRole('ADMIN')}">
-            <button class="w3-button w3-hover-black">get file</button>
-        </a>
-
         <a href="/logout" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}">
             <button class="w3-button w3-hover-black">Wylogowanie</button>
         </a>

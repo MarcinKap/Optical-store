@@ -46,24 +46,15 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
                     "(?9 = '' or g.glassesMarks = ?9)"
             )
         //JPQL
-    List<Glasses> findGlassesByParam(String glassesType, String glassesGender, String form, double priceLowerLimit, double priceUpperLimit, Boolean polarization, int widthOfTheLensLowerLimit, int widthOfTheLensUpperLimit, String glassesMarks);
-
-
-//    List<Glasses> findGlassesByParam(
-//            @Param("glassesType") String glassesType,
-//            @Param("glassesGender") String glassesGender,
-//            @Param("form") String form,
-//            @Param("price") double price,
-//            @Param("polarization") boolean polarization,
-//            @Param("widthOfTheLens") int widthOfTheLens,
-//            @Param("glassesMarks") String glassesMarks);
-
-//    @Query("select g from Glasses g where g.glassesType = ?1")
-//    List<Glasses> findGlassesByParam(String glassesType);
-
-
-
-
+    List<Glasses> findGlassesByParam(String glassesType,
+                                     String glassesGender,
+                                     String form,
+                                     double priceLowerLimit,
+                                     double priceUpperLimit,
+                                     Boolean polarization,
+                                     int widthOfTheLensLowerLimit,
+                                     int widthOfTheLensUpperLimit,
+                                     String glassesMarks);
 
     @Transactional //spring
     @Modifying //spring

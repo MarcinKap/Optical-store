@@ -21,8 +21,6 @@
                                    class="form-control">
                         </div>
                     </div>
-<!--                    glassesNumber="${#numbers.formatInteger(p.getGlassesNumber(), 1)}"-->
-
                     Zdjecie
                     <div class="form-row">
                         <div class="col-sm-12 col-md-8 form-group">
@@ -43,9 +41,6 @@
                         <td>Wybierz Markę:</td>
                         <td>
                             <select type="text" name="glassesMarks">
-<!--                                <option th:value="${p.getGlassesMarks()}"-->
-<!--                                        th:text="${p.getGlassesMarks()}"-->
-<!--                                ></option>-->
                                 <option th:each="m : ${marks}"
                                         th:value="${m.getMark()}"
                                         th:text="${m.getMark()}"

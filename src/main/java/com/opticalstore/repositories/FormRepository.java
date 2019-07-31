@@ -15,7 +15,4 @@ public interface FormRepository extends JpaRepository<Form, Long> {
     @Modifying //spring
     @Query("delete from Form f where f.form = ?1")
     int deleteFormByName(String form);
-
-
-
 }

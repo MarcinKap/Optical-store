@@ -21,9 +21,4 @@ public class Form {
 
     @Column(name = "form")
     private String form;
-
-
-
-
-
 }

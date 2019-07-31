@@ -13,5 +13,4 @@ import lombok.NoArgsConstructor;
 public class FormDto {
 
     private String form;
-
 }

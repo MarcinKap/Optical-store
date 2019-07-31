@@ -1,10 +1,12 @@
 package com.opticalstore.controllers;
 
 
+import com.opticalstore.commons.extras.CreatorXLS;
 import com.opticalstore.models.Glasses;
 import com.opticalstore.models.GlassesDto;
 import com.opticalstore.models.GlassesMark;
 import com.opticalstore.services.GlassesService;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -14,9 +16,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Paths;
 import java.util.List;
+
+import static com.opticalstore.commons.Naming.LOCAL_PATH;
 
 //@CrossOrigin
 @RestController
@@ -81,6 +87,23 @@ public class GlassesController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/api/v1/glasses/download/file/xls/{filename}")
+    public ResponseEntity<Resource> downloadXls(@PathVariable String filename) throws InvocationTargetException,
+            NoSuchMethodException, IllegalAccessException, IOException {
+
+        CreatorXLS<Glasses> glassesFile = new CreatorXLS<>(Glasses.class);
+//        Resource resource = new UrlResource(Paths.get(LOCAL_PATH + filename).toUri());
+
+        Resource resource = new FileSystemResource(glassesFile.createFile(filename, glassesService.getGlasses()));
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/excel"))
+                .header("Content-Disposition","attachment; filename=")
+                .contentLength(resource.getFile().length())
+                .body(resource);
+    }
+
 
 
 

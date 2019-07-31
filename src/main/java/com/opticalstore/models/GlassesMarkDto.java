@@ -16,8 +16,4 @@ import java.util.Set;
 public class GlassesMarkDto {
 
     private String mark;
-
-
-
-
 }

@@ -47,14 +47,4 @@ public class Glasses {
 
     @Column(name = "glasses_marks")
     private String glassesMarks;
-
-
-//    @ManyToMany( cascade = {
-//            CascadeType.ALL})
-//    @JoinTable(name = "marks_of_glasses",
-//            joinColumns = @JoinColumn(name = "glasses_id"),
-//            inverseJoinColumns = @JoinColumn(name = "glassesMark_id"))
-//    private Set<GlassesMark> glassesMarks = new HashSet<>();
-
-
 }
