@@ -31,4 +31,7 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Set<UserApp> users = new HashSet<>();
 
+    public Role(String role) {
+        this.role = role;
+    }
 }

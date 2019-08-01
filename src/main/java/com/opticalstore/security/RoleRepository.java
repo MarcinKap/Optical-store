@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
     @Query(value = "select r from Role r where r.role = ?1")
-    Optional<UserApp> findUserAppByName(String role);
+    Role findRoleByName(String role);
 
 
 }

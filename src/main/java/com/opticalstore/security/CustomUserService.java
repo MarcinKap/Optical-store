@@ -34,51 +34,19 @@ public class CustomUserService implements UserDetailsService {
 
     public void saveUserApp(LoginUser loginUser) {
 
-        //TODO uzupelnic przypisywanie ról do użytkowników.
-
-
-
-
+        Role role = roleRepository.findRoleByName("ADMIN");
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
 
         UserApp result = UserApp
                 .builder()
                 .username(loginUser.getUsername())
                 .password(passwordEncoder.encode(loginUser.getPassword())) //haslo  w stanie nieczytelnym
                 .active(1)
-                .roles(new HashSet<>())
+                .roles(roles)
                 .build();
-
-//        Set<Role> roles = new HashSet<>();
-//
-//        roles.add(Role
-//                .builder()
-//                .role("")
-//                .roleId(result.getId())
-//                .users()
-//                .build());
-//
-//        result.setRoles(roles);
-
-
         userAppRepository.save(result);
     }
-
-//    public void saveUserRole(LoginUser loginUser) {
-//
-//
-
-//        Role result = Role
-//                .builder()
-////                .username(loginUser.getUsername())
-////                .password(passwordEncoder.encode(loginUser.getPassword())) //haslo  w stanie nieczytelnym
-////                .active(1)
-////                .roles(new HashSet<>())
-//                .build();
-//        saveUserRole().save(result);
-//    }
-//
-
-
 }
 
 
