@@ -51,7 +51,7 @@ public class HomeController {
         return "index";
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add-page")
     public String addPage(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
@@ -60,6 +60,7 @@ public class HomeController {
         return "add-glasses";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add-marks")
     public String addMark(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
@@ -67,6 +68,7 @@ public class HomeController {
         return "add-marks";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add-forms")
     public String addForm(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
@@ -184,6 +186,14 @@ public class HomeController {
         glassesService.getFile("glasses");
         return "redirect:/";
     }
+
+
+
+
+
+
+
+
 
 
 }

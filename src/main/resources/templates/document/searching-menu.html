@@ -1,119 +1,117 @@
 <div class="searching-menu" xmlns:th="http://www.thymeleaf.org" th:fragment="searching_menu_section">
 
 
-        Wyszukaj po numerze Id
-        <hr>
+    Wyszukaj po numerze Id
+    <hr>
+    <form th:action="@{/search}" action="/search" method="get">
+        <input type="number" required number name="glassesNumber" placeholder="Numer id" class="form-control">
+        <button type="submit" class="btn btn-success btn-sm form-control">
+            <i> Szukaj</i>
+        </button>
+    </form>
+    <br/>
 
+    Szukanie zaawansowane
+    <hr>
+    <form th:action="@{/advanced-search}" action="/advanced-search" method="get">
+        Typ
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
 
-        <form th:action="@{/search}" action="/search" method="get">
-            <input type="number" name="glassesNumber" placeholder="Numer id" value="0" class="form-control">
-            <button type="submit" class="btn btn-success btn-sm form-control">
-                <i> Szukaj</i>
-            </button>
-        </form>
-
-        <br/>
-
-        Szukanie zaawansowane
-        <hr>
-        <form th:action="@{/advanced-search}" action="/advanced-search" method="get">
-
-            Typ
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
-
-                    <!--                    <td>Wybierz Markę:</td>-->
-                    <td>
-                        <select type="text" name="glassesType">
-                            <option value="">--</option>
-                            <option value="Przeciwsłoneczne">Przeciwsłoneczne</option>
-                            <option value="Korekcyjne">Korekcyjne</option>
-                        </select>
-                    </td>
-                </div>
+                <!--                    <td>Wybierz Markę:</td>-->
+                <td>
+                    <select type="text" name="glassesType">
+                        <option value="">--</option>
+                        <option value="Przeciwsłoneczne">Przeciwsłoneczne</option>
+                        <option value="Korekcyjne">Korekcyjne</option>
+                    </select>
+                </td>
             </div>
-            Marka
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
+        </div>
+        Marka
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
 
-                    <!--                    <td>Wybierz Markę:</td>-->
-                    <td>
-                        <select type="text" name="glassesMarks">
-                            <option value="">--</option>
-                            <option th:each="m : ${marks}"
-                                    th:value="${m.getMark()}"
-                                    th:text="${m.getMark()}">
-                            </option>
-                        </select>
-                    </td>
-                </div>
+                <!--                    <td>Wybierz Markę:</td>-->
+                <td>
+                    <select type="text" name="glassesMarks">
+                        <option value="">--</option>
+                        <option th:each="m : ${marks}"
+                                th:value="${m.getMark()}"
+                                th:text="${m.getMark()}">
+                        </option>
+                    </select>
+                </td>
             </div>
-            Kształt
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
+        </div>
+        Kształt
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
 
-                    <!--                    <td>Wybierz Kształt:</td>-->
-                    <td>
-                        <select type="text" name="form">
-                            <option value="">--</option>
-                            <option th:each="m : ${forms}"
-                                    th:value="${m.getForm()}"
-                                    th:text="${m.getForm()}">
-                            </option>
-                        </select>
-                    </td>
-                </div>
+                <!--                    <td>Wybierz Kształt:</td>-->
+                <td>
+                    <select type="text" name="form">
+                        <option value="">--</option>
+                        <option th:each="m : ${forms}"
+                                th:value="${m.getForm()}"
+                                th:text="${m.getForm()}">
+                        </option>
+                    </select>
+                </td>
             </div>
+        </div>
 
-            Płeć
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
-                    <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
-                    <input type="radio" name="glassesGender" value="Mężczyzna"> Mężczyzna<br>
-                    <input type="radio" name="glassesGender" value="Kobieta"> Kobieta<br>
+        Płeć
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
+                <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
+                <input type="radio" name="glassesGender" value="Mężczyzna"> Mężczyzna<br>
+                <input type="radio" name="glassesGender" value="Kobieta"> Kobieta<br>
 
-                </div>
             </div>
-            Polaryzacja
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
-                    <input type="checkbox" name="polarization" value="TRUE"> Tak<br>
-                    <input type="checkbox" name="polarization" value="FALSE"> Nie<br>
-                </div>
+        </div>
+        Polaryzacja
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
+                <input type="checkbox" name="polarization" value="TRUE"> Tak<br>
+                <input type="checkbox" name="polarization" value="FALSE"> Nie<br>
             </div>
-            Szerokość minimalna
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
-                    <input type="number" name="widthOfTheLensLowerLimit" placeholder="Min" value="0" class="form-control">
-                </div>
+        </div>
+        Szerokość minimalna
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
+                <input type="number" required name="widthOfTheLensLowerLimit" placeholder="Min" value="0"
+                       class="form-control">
             </div>
-            Szerokość maksymalna
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
-                    <input type="number" name="widthOfTheLensUpperLimit" placeholder="Max" value="0" class="form-control">
-                </div>
+        </div>
+        Szerokość maksymalna
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
+                <input type="number" required name="widthOfTheLensUpperLimit" placeholder="Max" value="0"
+                       class="form-control">
             </div>
-            Cena minimalna
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
-                    <input type="number" name="priceLowerLimit" placeholder="Min" value="0" class="form-control">
-                </div>
+        </div>
+        Cena minimalna
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
+                <input type="number" required name="priceLowerLimit" placeholder="Min" value="0" class="form-control">
             </div>
-            Cena maksymalna
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
-                    <input type="number" name="priceUpperLimit" placeholder="Max" value="0" class="form-control">
-                </div>
+        </div>
+        Cena maksymalna
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
+                <input type="number" required name="priceUpperLimit" placeholder="Max" value="0" class="form-control">
             </div>
-            <div class="form-row">
-                <div class="col-sm-12 col-md-12 form-group">
-                    <button type="submit" class="btn btn-success btn-sm form-control">
-                        <i> Szukaj</i>
-                    </button>
-                </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 form-group">
+                <button type="submit" class="btn btn-success btn-sm form-control">
+                    <i> Szukaj</i>
+                </button>
             </div>
+        </div>
 
-        </form>
+    </form>
 
 
 </div>

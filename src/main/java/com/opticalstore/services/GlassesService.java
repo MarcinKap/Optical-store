@@ -27,7 +27,7 @@ private GlassesMapper glassesMapper;
     }
 
     public Glasses getGlassesByNumber(int glassNumber) {
-        System.out.println(glassNumber);
+
         return Optional
                 .ofNullable(glassRepository.findGlassesByNumber(glassNumber))
                 .orElse(null);

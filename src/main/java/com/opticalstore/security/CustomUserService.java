@@ -12,11 +12,9 @@ import java.util.Set;
 @Service
 public class CustomUserService implements UserDetailsService {
 
-
     private UserAppRepository userAppRepository;
     private PasswordEncoder passwordEncoder;
     private RoleRepository roleRepository;
-
 
     public CustomUserService(UserAppRepository userAppRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userAppRepository = userAppRepository;

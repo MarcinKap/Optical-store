@@ -3,6 +3,8 @@ package com.opticalstore.security;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +27,11 @@ public class UserApp {
     private String password;
     private int active;
 
+    //nowe
+
+
+
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns =
@@ -32,7 +39,6 @@ public class UserApp {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
-
     public UserApp(UserApp userApp) {
         this.username = userApp.getUsername();
         this.password = userApp.getPassword();
