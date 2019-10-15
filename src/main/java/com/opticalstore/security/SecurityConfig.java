@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         System.out.println(authority.getAuthority());
                     }
                     System.out.println(auth.getName());
-                    res.sendRedirect("/"); //home page url
+                    res.sendRedirect("/accountindex"); //home page url
                 })
                 .failureHandler((req, res, exp) -> {
                     //obsluga przypadku blednego logowania

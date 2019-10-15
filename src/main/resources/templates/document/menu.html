@@ -24,6 +24,13 @@
         <a href="/login" th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
             <button class="w3-button w3-hover-black">Logowanie</button>
         </a>
+        <a href="/register" th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
+            <button class="w3-button w3-hover-black">Rejestracja</button>
+        </a>
+        <a href="/accountindex" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}">
+            <button class="w3-button w3-hover-black">Moje konto</button>
+        </a>
+
     </div>
     <hr>
 

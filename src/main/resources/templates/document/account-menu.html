@@ -1,0 +1,160 @@
+<div class="searching-menu" xmlns:th="http://www.thymeleaf.org" th:fragment="account_menu">
+
+    <li>
+        <a href="/accountindex">
+         <button class="btn btn-success btn-sm form-control">
+            <i> Moje zamówienia</i>
+        </button>
+        </a>
+    </li>
+
+    <li>
+        <a href="/account-adresses">
+            <button class="btn btn-success btn-sm form-control">
+                <i> Adresy dostaw</i>
+            </button>
+        </a>
+    </li>
+    <li>
+        <a href="/account-invoice-data">
+            <button class="btn btn-success btn-sm form-control">
+                <i> Dane do faktur</i>
+            </button>
+        </a>
+    </li>
+    <li>
+        <a href="/account-data">
+            <button class="btn btn-success btn-sm form-control">
+                <i> Moje dane</i>
+            </button>
+        </a>
+    </li>
+
+
+<!--    <li>-->
+<!--        <a href="/account/adresses">-->
+<!--            <button class="btn btn-success btn-sm form-control">-->
+<!--                <i> Usuń konto</i>-->
+<!--            </button>-->
+<!--        </a>-->
+<!--    </li>-->
+
+
+    <li>
+        <a href="/logout">
+            <button class="btn btn-success btn-sm form-control">
+                <i> Wylogowanie</i>
+            </button>
+        </a>
+    </li>
+
+
+
+
+
+
+
+<!--    -->
+<!--    <hr>-->
+<!--    <form th:action="@{/advanced-search}" action="/advanced-search" method="get">-->
+<!--        Typ-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+
+<!--                &lt;!&ndash;                    <td>Wybierz Markę:</td>&ndash;&gt;-->
+<!--                <td>-->
+<!--                    <select type="text" name="glassesType">-->
+<!--                        <option value="">&#45;&#45;</option>-->
+<!--                        <option value="Przeciwsłoneczne">Przeciwsłoneczne</option>-->
+<!--                        <option value="Korekcyjne">Korekcyjne</option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        Marka-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+
+<!--                &lt;!&ndash;                    <td>Wybierz Markę:</td>&ndash;&gt;-->
+<!--                <td>-->
+<!--                    <select type="text" name="glassesMarks">-->
+<!--                        <option value="">&#45;&#45;</option>-->
+<!--                        <option th:each="m : ${marks}"-->
+<!--                                th:value="${m.getMark()}"-->
+<!--                                th:text="${m.getMark()}">-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        Kształt-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+
+<!--                &lt;!&ndash;                    <td>Wybierz Kształt:</td>&ndash;&gt;-->
+<!--                <td>-->
+<!--                    <select type="text" name="form">-->
+<!--                        <option value="">&#45;&#45;</option>-->
+<!--                        <option th:each="m : ${forms}"-->
+<!--                                th:value="${m.getForm()}"-->
+<!--                                th:text="${m.getForm()}">-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        Płeć-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+<!--                &lt;!&ndash;                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">&ndash;&gt;-->
+<!--                <input type="radio" name="glassesGender" value="Mężczyzna"> Mężczyzna<br>-->
+<!--                <input type="radio" name="glassesGender" value="Kobieta"> Kobieta<br>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--        Polaryzacja-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+<!--                <input type="checkbox" name="polarization" value="TRUE"> Tak<br>-->
+<!--                <input type="checkbox" name="polarization" value="FALSE"> Nie<br>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        Szerokość minimalna-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+<!--                <input type="number" required name="widthOfTheLensLowerLimit" placeholder="Min" value="0"-->
+<!--                       class="form-control">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        Szerokość maksymalna-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+<!--                <input type="number" required name="widthOfTheLensUpperLimit" placeholder="Max" value="0"-->
+<!--                       class="form-control">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        Cena minimalna-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+<!--                <input type="number" required name="priceLowerLimit" placeholder="Min" value="0" class="form-control">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        Cena maksymalna-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+<!--                <input type="number" required name="priceUpperLimit" placeholder="Max" value="0" class="form-control">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-row">-->
+<!--            <div class="col-sm-12 col-md-12 form-group">-->
+<!--                <button type="submit" class="btn btn-success btn-sm form-control">-->
+<!--                    <i> Szukaj</i>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </form>-->
+
+
+</div>

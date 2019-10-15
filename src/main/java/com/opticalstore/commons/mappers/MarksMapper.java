@@ -24,6 +24,5 @@ public class MarksMapper implements Mapper<GlassesMark, GlassesMarkDto> {
                 .mark(to.getMark())
                 .build();
     }
-
-
+    
 }

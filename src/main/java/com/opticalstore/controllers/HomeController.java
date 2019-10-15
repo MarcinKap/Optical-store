@@ -1,12 +1,14 @@
 package com.opticalstore.controllers;
 
 
+import com.opticalstore.commons.mappers.AdressesMapper;
 import com.opticalstore.commons.mappers.FormMapper;
 import com.opticalstore.commons.mappers.GlassesMapper;
 import com.opticalstore.commons.mappers.MarksMapper;
-import com.opticalstore.models.FormDto;
-import com.opticalstore.models.GlassesDto;
-import com.opticalstore.models.GlassesMarkDto;
+import com.opticalstore.models.*;
+import com.opticalstore.security.CustomUserService;
+import com.opticalstore.security.UserAppRepository;
+import com.opticalstore.services.AdressesService;
 import com.opticalstore.services.FormService;
 import com.opticalstore.services.GlassesService;
 import com.opticalstore.services.MarksService;
@@ -26,23 +28,46 @@ public class HomeController {
 
     private GlassesService glassesService;
     private GlassesMapper glassesMapper;
-    private MarksMapper marksMapper;
-    private FormMapper formMapper;
-    private MarksService marksService;
+
     private FormService formService;
+    private FormMapper formMapper;
+
+    private MarksMapper marksMapper;
+    private MarksService marksService;
 
 
-    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, MarksMapper marksMapper, FormMapper formMapper, MarksService marksService, FormService formService) {
+    public AdressesMapper adressesMapper;
+    public AdressesService adressesService;
+
+    private CustomUserService customUserService;
+    private UserAppRepository userAppRepository;
+
+//    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, MarksMapper marksMapper, FormMapper formMapper, MarksService marksService, FormService formService) {
+//        this.glassesService = glassesService;
+//        this.glassesMapper = glassesMapper;
+//        this.marksMapper = marksMapper;
+//        this.formMapper = formMapper;
+//        this.marksService = marksService;
+//        this.formService = formService;
+//
+//
+//
+//
+//    }
+
+
+    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, FormService formService, FormMapper formMapper, MarksMapper marksMapper, MarksService marksService, AdressesMapper adressesMapper, AdressesService adressesService) {
         this.glassesService = glassesService;
         this.glassesMapper = glassesMapper;
-        this.marksMapper = marksMapper;
-        this.formMapper = formMapper;
-        this.marksService = marksService;
         this.formService = formService;
+        this.formMapper = formMapper;
+        this.marksMapper = marksMapper;
+        this.marksService = marksService;
+        this.adressesMapper = adressesMapper;
+        this.adressesService = adressesService;
     }
 
-
-//    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'GUEST')")
+    //    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'GUEST')")
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
@@ -51,12 +76,14 @@ public class HomeController {
         return "index";
     }
 
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add-page")
     public String addPage(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
+
         return "add-glasses";
     }
 
@@ -96,6 +123,7 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "find-glasses-by-param";
     }
+
     @GetMapping("/advanced-search")
     public String advancedSearchGlasses(
             @ModelAttribute GlassesDto glassesDto,
@@ -144,10 +172,78 @@ public class HomeController {
         return "redirect:/add-forms";
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+
+    @GetMapping("/accountindex")
+    public String accountIndex(Model model) {
+
+        model.addAttribute("glasses", glassesService.getGlassesDto());
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
+
+        return "account-index";
+    }
+
+    @GetMapping("/account-adresses")
+    public String accountAdresses(Model model) {
+
+        model.addAttribute("adresses", adressesService.getAdressesDto());
+        model.addAttribute("glasses", glassesService.getGlassesDto());
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
+
+        return "account-adresses";
+    }
+
+    @GetMapping("/account-invoice-data")
+    public String accountInvoiceData(Model model) {
+
+//        model.addAttribute("glasses", glassesService.getGlassesDto());
+//        model.addAttribute("marks", marksService.getGlassesMarkDto());
+//        model.addAttribute("forms", formService.getFormDto());
+
+        return "account-invoice-data";
+    }
+
+    @GetMapping("/account-data")
+    public String accountData(Model model) {
+
+        model.addAttribute("glasses", glassesService.getGlassesDto());
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
+
+        return "account-data";
+    }
+
+    //    @PreAuthorize("hasAnyRole")
+    @GetMapping("/add-adress")
+    public String addAdress(Model model) {
+        model.addAttribute("glasses", glassesService.getGlassesDto());
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
+
+        return "add-adress";
+    }
+
+
+//    @PreAuthorize("hasAnyRole")
+//    @PostMapping("/add-adresses")
+//    public String addAdresses(@ModelAttribute GlassesDto glassesDto) {
+//        glassesService.saveGlasses(glassesMapper.reverseMap(glassesDto));
+//        return "redirect:/";
+//    }
+
+
+    @PostMapping("/addadresses")
+    public String addAdressesByUser(@ModelAttribute AdressesDto adressesDto) {
+
+
+        adressesService.saveAdresses(adressesMapper.reverseMap(adressesDto));
+        return "redirect:/";
+    }
+
+
     @PostMapping("/add")
     public String addGlasses(@ModelAttribute GlassesDto glassesDto) {
-        System.out.println(glassesDto);
         glassesService.saveGlasses(glassesMapper.reverseMap(glassesDto));
         return "redirect:/";
     }
@@ -155,9 +251,6 @@ public class HomeController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")
     public String updateGlasses(@ModelAttribute GlassesDto glassesDto) {
-        System.out.println(glassesDto);
-
-        System.out.println(glassesDto.getGlassesNumber());
         glassesService.updateGlasses(glassesDto.getGlassesNumber(), glassesMapper.reverseMap(glassesDto));
         return "redirect:/";
     }
@@ -174,7 +267,6 @@ public class HomeController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addforms")
     public String addForms(@ModelAttribute FormDto formDto) {
-        System.out.println(formDto);
         formService.saveForm(formMapper.reverseMap(formDto));
 
         return "redirect:/add-forms";
@@ -186,14 +278,6 @@ public class HomeController {
         glassesService.getFile("glasses");
         return "redirect:/";
     }
-
-
-
-
-
-
-
-
 
 
 }

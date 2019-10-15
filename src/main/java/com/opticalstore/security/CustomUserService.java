@@ -1,11 +1,15 @@
 package com.opticalstore.security;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +19,8 @@ public class CustomUserService implements UserDetailsService {
     private UserAppRepository userAppRepository;
     private PasswordEncoder passwordEncoder;
     private RoleRepository roleRepository;
+
+
 
     public CustomUserService(UserAppRepository userAppRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userAppRepository = userAppRepository;
@@ -33,6 +39,8 @@ public class CustomUserService implements UserDetailsService {
     public void saveUserApp(LoginUser loginUser) {
 
         Role role = roleRepository.findRoleByName("ADMIN");
+        System.out.println(role);
+        System.out.println("odczytujemy role");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
 
@@ -44,6 +52,12 @@ public class CustomUserService implements UserDetailsService {
                 .roles(roles)
                 .build();
         userAppRepository.save(result);
+
+//                .name(loginUser.getName())
+//                .surname(loginUser.getSurname())
+////                .adress(loginUser.getAdressesCollection())
+//                .birthDate(loginUser.getBirthDate())
+//                .telephoneNumber(loginUser.getTelephoneNumber())
     }
 }
 

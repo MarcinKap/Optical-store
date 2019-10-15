@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="document/head :: head_section"></head>
+
+<body>
+
+<div th:replace="document/content :: content_section_title"></div>
+<div th:replace="document/menu :: menu_section"></div>
+
+
+
+
+
+
+
+    <div class="col-sm-2 col-md-2 form-group">
+        <div th:replace="document/account-menu :: account_menu"></div>
+    </div>
+<div class="row">
+
+<!--    <div class="container">-->
+
+<!--&lt;!&ndash;        this.surname = surname;&ndash;&gt;-->
+<!--&lt;!&ndash;        this.deliveryToTheCompany = deliveryToTheCompany;&ndash;&gt;-->
+<!--&lt;!&ndash;        this.firmName = firmName;&ndash;&gt;-->
+<!--&lt;!&ndash;        this.country = country;&ndash;&gt;-->
+<!--&lt;!&ndash;        this.town = town;&ndash;&gt;-->
+<!--&lt;!&ndash;        this.street = street;&ndash;&gt;-->
+<!--&lt;!&ndash;        this.apartmentNumber = apartmentNumber;&ndash;&gt;-->
+<!--&lt;!&ndash;        this.zipCode = zipCode;&ndash;&gt;-->
+
+<!--        ADRESY DOSTAW-->
+<!--        <div class="row">-->
+<!--            <div class="col-6 col-md-10 col-sm-10">-->
+<!--                <form th:action="@{/addadressesbyuser}" action="/add-adresses-by-user" th:object="${AdressesDto}" method="post">>-->
+<!--                    <div class="form-row">-->
+<!--                        <div class="col-sm-6 col-md-6 form-group">-->
+<!--                            <input type="text" required name="name" placeholder="Imię" class="form-control">-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-6 col-md-6 form-group">-->
+<!--                            <input type="text" required name="surname" placeholder="Nazwisko" class="form-control">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--&lt;!&ndash;                    Przycisk&ndash;&gt;-->
+<!--                    <div class="form-row">-->
+<!--                        <div class="col-sm-12 col-md-12 form-group">-->
+<!--                            <button type="submit" class="btn btn-success btn-sm form-control">-->
+<!--                                <i class="fa fa-floppy-o" aria-hidden="true"></i>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </form>-->
+
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-md-12 col-sm-12">
+            <form th:action="@{/addadresses}" action="/add" method="post">
+                Numer id
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-8 form-group">
+                        <input type="text" required name="name"  placeholder="Numer id" class="form-control">
+                    </div>
+                </div>
+                Zdjecie
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-8 form-group">
+                        <input type="text" required name="surname" placeholder="link" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-sm-12 col-md-12 form-group">
+                        <button type="submit" class="btn btn-success btn-sm form-control">
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+<!--                    <div class="form-row">-->
+<!--                        Dostawa do firmy-->
+<!--                        <div class="col-sm-1 col-md-1 form-group">-->
+<!--                            <input type="checkbox" name="deliveryToTheCompany" th:checked="${flag}">-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-9 col-md-9 form-group">-->
+<!--                            <input type="text" required name="firmName" placeholder="Nazwa firmy" class="form-control">-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    Kraj dostawy-->
+<!--                    <div class="form-row">-->
+<!--                        <div class="col-sm-4 col-md-4 form-group">-->
+<!--                            <td>Wybierz kraj:</td>-->
+<!--                            <td>-->
+<!--                                <select type="text" name="country" required>-->
+<!--                                    <option value="">Polska</option>-->
+<!--                                    <option th:each="m : ${forms}"-->
+<!--                                            th:value="${m.getForm()}"-->
+<!--                                            th:text="${m.getForm()}">-->
+<!--                                    </option>-->
+<!--                                </select>-->
+<!--                            </td>-->
+<!--                        </div>-->
+
+
+<!--                        <div class="col-sm-4 col-md-4 form-group">-->
+<!--                            <input type="text" required name="town" placeholder="Miasto" class="form-control">-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-4 col-md-4 form-group">-->
+<!--                            <input type="text" required name="zipCode" placeholder="Kod-pocztowy" class="form-control">-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+
+<!--                    Ulica-->
+<!--                    <div class="form-row">-->
+<!--                        <div class="col-sm-8 col-md-8 form-group">-->
+<!--                            <input type="text" required name="street" placeholder="Ulica:"-->
+<!--                                   class="form-control">-->
+<!--                        </div>-->
+
+<!--                        <div class="col-sm-4 col-md-4 form-group">-->
+<!--                            <input type="text" required name="apartmentNumber" placeholder="Nr domu/nr lokalu"-->
+<!--                                   class="form-control">-->
+<!--                        </div>-->
+
+<!--                    </div>-->
+
+
+
