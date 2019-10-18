@@ -66,7 +66,6 @@ public class HomeController {
         this.adressesMapper = adressesMapper;
         this.adressesService = adressesService;
     }
-
     //    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'GUEST')")
     @GetMapping("/")
     public String homePage(Model model) {
@@ -75,8 +74,6 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "index";
     }
-
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add-page")
     public String addPage(Model model) {
@@ -86,7 +83,6 @@ public class HomeController {
 
         return "add-glasses";
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add-marks")
     public String addMark(Model model) {
@@ -94,7 +90,6 @@ public class HomeController {
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         return "add-marks";
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add-forms")
     public String addForm(Model model) {
@@ -102,8 +97,13 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "add-forms";
     }
-
-
+    @GetMapping("/add-adress")
+    public String addAdress(Model model) {
+        model.addAttribute("glasses", glassesService.getGlassesDto());
+        model.addAttribute("marks", marksService.getGlassesMarkDto());
+        model.addAttribute("forms", formService.getFormDto());
+        return "add-adress";
+    }
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/update-glasses")
     public String updateGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
@@ -112,10 +112,13 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "update-glasses";
     }
-
+    @GetMapping("/update-adresses")
+    public String updateAdresses(@RequestParam(value = "adressId") Long adressId, Model model) {
+        model.addAttribute("addresses", adressesService.getAdressesById(adressId));
+        return "update-glasses";
+    }
     @GetMapping("/search")
     public String searchGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
-
         glassesService.getGlassesByNumber(glassesNumber);
 
         model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
@@ -123,7 +126,6 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "find-glasses-by-param";
     }
-
     @GetMapping("/advanced-search")
     public String advancedSearchGlasses(
             @ModelAttribute GlassesDto glassesDto,
@@ -133,7 +135,6 @@ public class HomeController {
             @RequestParam(value = "widthOfTheLensLowerLimit") int widthOfTheLensLowerLimit,
             @RequestParam(value = "widthOfTheLensUpperLimit") int widthOfTheLensUpperLimit,
             Model model) {
-
         model.addAttribute("glasses",
                 glassesService.getGlassesByParam(
                         glassesMapper.reverseMap(glassesDto).getGlassesType(),
@@ -150,7 +151,6 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "find-glasses-by-param";
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/delete")
     public String deleteGlasses(@RequestParam(value = "glasses") int glassesNumber) {
@@ -159,19 +159,23 @@ public class HomeController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/deleteadress")
+    public String deleteAdresses(@RequestParam(value = "adressId") Long id) {
+        adressesService.deleteAdressesById(id);
+        return "redirect:/account-adresses";
+    }
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/deletemark")
     public String deleteMarks(@RequestParam(value = "marks") String markName) {
         marksService.deleteMarksByName(markName);
         return "redirect:/add-marks";
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/deleteform")
     public String deleteForms(@RequestParam(value = "forms") String formName) {
         formService.deleteFormsByName(formName);
         return "redirect:/add-forms";
     }
-
 
     @GetMapping("/accountindex")
     public String accountIndex(Model model) {
@@ -185,44 +189,26 @@ public class HomeController {
 
     @GetMapping("/account-adresses")
     public String accountAdresses(Model model) {
-
         model.addAttribute("adresses", adressesService.getAdressesDto());
-        model.addAttribute("glasses", glassesService.getGlassesDto());
-        model.addAttribute("marks", marksService.getGlassesMarkDto());
-        model.addAttribute("forms", formService.getFormDto());
-
         return "account-adresses";
     }
 
     @GetMapping("/account-invoice-data")
     public String accountInvoiceData(Model model) {
 
-//        model.addAttribute("glasses", glassesService.getGlassesDto());
-//        model.addAttribute("marks", marksService.getGlassesMarkDto());
-//        model.addAttribute("forms", formService.getFormDto());
-
         return "account-invoice-data";
     }
 
     @GetMapping("/account-data")
     public String accountData(Model model) {
-
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
-
         return "account-data";
     }
 
     //    @PreAuthorize("hasAnyRole")
-    @GetMapping("/add-adress")
-    public String addAdress(Model model) {
-        model.addAttribute("glasses", glassesService.getGlassesDto());
-        model.addAttribute("marks", marksService.getGlassesMarkDto());
-        model.addAttribute("forms", formService.getFormDto());
 
-        return "add-adress";
-    }
 
 
 //    @PreAuthorize("hasAnyRole")
@@ -233,13 +219,7 @@ public class HomeController {
 //    }
 
 
-    @PostMapping("/addadresses")
-    public String addAdressesByUser(@ModelAttribute AdressesDto adressesDto) {
 
-
-        adressesService.saveAdresses(adressesMapper.reverseMap(adressesDto));
-        return "redirect:/";
-    }
 
 
     @PostMapping("/add")
@@ -271,6 +251,13 @@ public class HomeController {
 
         return "redirect:/add-forms";
     }
+
+    @PostMapping("/addadresses")
+    public String addAdressesByUser(@ModelAttribute AdressesDto adressesDto) {
+        adressesService.saveAdresses(adressesMapper.reverseMap(adressesDto));
+        return "redirect:/account-adresses";
+    }
+
 
 
     @GetMapping("/file/xls")

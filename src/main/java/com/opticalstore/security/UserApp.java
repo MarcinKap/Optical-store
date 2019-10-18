@@ -48,7 +48,7 @@ public class UserApp {
 
     //tutaj one to many - adresy
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userApp123")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userApp")
     private Set<Adresses> adresses = new HashSet<>();
 
 

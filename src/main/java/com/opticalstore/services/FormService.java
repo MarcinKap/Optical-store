@@ -19,7 +19,6 @@ public class FormService {
         this.formRepository = formRepository;
         this.formMapper = formMapper;
     }
-
     public List<FormDto> getFormDto() {
         return formRepository
                 .findAll()
@@ -27,7 +26,6 @@ public class FormService {
                 .map(formMapper::map)
                 .collect(Collectors.toList());
     }
-
     public Form saveForm(Form form) {
         return formRepository.save(form);
     }

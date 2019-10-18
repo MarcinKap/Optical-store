@@ -25,14 +25,11 @@ private GlassesMapper glassesMapper;
         this.glassRepository = glassRepository;
         this.glassesMapper = glassesMapper;
     }
-
     public Glasses getGlassesByNumber(int glassNumber) {
-
         return Optional
                 .ofNullable(glassRepository.findGlassesByNumber(glassNumber))
                 .orElse(null);
     }
-
     public List<Glasses> getGlassesByParam(String glassesType,
                                            String glassesGender,
                                            String form,
@@ -55,11 +52,9 @@ private GlassesMapper glassesMapper;
                         glassesMarks))
                 .orElse(null);
     }
-
     public List<Glasses> getGlasses() {
         return glassRepository.findAll();
     }
-
     public List<GlassesDto> getGlassesDto() {
         return glassRepository
                 .findAll()
@@ -67,15 +62,9 @@ private GlassesMapper glassesMapper;
                 .map(glassesMapper::map)
                 .collect(Collectors.toList());
     }
-
-
     public Glasses saveGlasses(Glasses glasses) {
         return glassRepository.save(glasses);
     }
-
-
-
-
     public Glasses updateGlasses(int glassesNumber, Glasses glasses) {
         System.out.println("czy to sie zapisuje czy nie");
         //glassRepository.findGlassesByNumber(glassesNumber).setGlassesMarks(glasses.getGlassesMarks());

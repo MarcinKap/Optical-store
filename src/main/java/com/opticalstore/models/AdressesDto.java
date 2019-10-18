@@ -15,18 +15,16 @@ import javax.persistence.ManyToOne;
 @Builder
 public class AdressesDto {
 
-
+    private Long id;
     private String name;
     private String surname;
-//    private boolean deliveryToTheCompany;
-//    private String firmName;
-//    private String country;
-//    private String town;
-//    private String street;
-//    private int apartmentNumber;
-//    private String zipCode;
-//    @ManyToOne
-//    private UserApp user;
+    private boolean deliveryToTheCompany;
+    private String firmName;
+    private String country;
+    private String town;
+    private String street;
+    private int apartmentNumber;
+    private String zipCode;
 
 
 }

@@ -8,10 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FormMapper implements Mapper<Form, FormDto> {
-
     @Override
     public FormDto map(Form from) {
-
         return FormDto
                 .builder()
                 .form(from.getForm())

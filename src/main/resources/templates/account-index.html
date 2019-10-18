@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head th:replace="document/head :: head_section">
-
 </head>
-
 <body>
-
 <div th:replace="document/content :: content_section_title"></div>
-
 <div th:replace="document/menu :: menu_section"></div>
-
 <div class="row">
-
     <div class="col-sm-2 col-md-2 form-group">
-        <!--        TUTAJ MENU UZYTKOWNIKA WSTAWIC-->
         <div th:replace="document/account-menu :: account_menu"></div>
     </div>
-    <!-- TUTAJ WSTAWIC TRESC -->
     <div class="col-sm-10 col-md-10 form-group">
-        <div th:replace="document/tables/user_table :: user_table"></div>
+        <div class="title-font">
+        Moje zamówienia
+        </div>
+        <hr>
+        Jeszcze nic nie kupiłeś w naszym sklepie. Zapraszamy na zakupy!
     </div>
 </div>
 

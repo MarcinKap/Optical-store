@@ -7,16 +7,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MarksMapper implements Mapper<GlassesMark, GlassesMarkDto> {
-
     @Override
     public GlassesMarkDto map(GlassesMark from) {
-
         return GlassesMarkDto
                 .builder()
                 .mark(from.getMark())
                 .build();
     }
-
     @Override
     public GlassesMark reverseMap(GlassesMarkDto to) {
         return GlassesMark
@@ -24,5 +21,4 @@ public class MarksMapper implements Mapper<GlassesMark, GlassesMarkDto> {
                 .mark(to.getMark())
                 .build();
     }
-    
 }

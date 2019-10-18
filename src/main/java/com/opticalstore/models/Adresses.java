@@ -31,14 +31,13 @@ public class Adresses {
     @Column(name = "surname")
     private String surname;
 
-
-//    private boolean deliveryToTheCompany;
-//    private String firmName;
-//    private String country;
-//    private String town;
-//    private String street;
-//    private int apartmentNumber;
-//    private String zipCode;
+    private boolean deliveryToTheCompany;
+    private String firmName;
+    private String country;
+    private String town;
+    private String street;
+    private int apartmentNumber;
+    private String zipCode;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,8 +46,5 @@ public class Adresses {
             @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "adress_id")
     )
-    private UserApp userApp123;
-//            (mappedBy = "adress")
-
-
+    private UserApp userApp;
 }

@@ -1,7 +1,8 @@
 <div class="searching-menu" xmlns:th="http://www.thymeleaf.org" th:fragment="searching_menu_section">
 
-
+    <div class="title-searching-menu">
     Wyszukaj po numerze Id
+    </div>
     <hr>
     <form th:action="@{/search}" action="/search" method="get">
         <input type="number" required number name="glassesNumber" placeholder="Numer id" class="form-control">
@@ -10,8 +11,9 @@
         </button>
     </form>
     <br/>
-
+    <div class="title-searching-menu">
     Szukanie zaawansowane
+    </div>
     <hr>
     <form th:action="@{/advanced-search}" action="/advanced-search" method="get">
         Typ

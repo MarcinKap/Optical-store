@@ -1,24 +1,37 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="adresses_table">
     <div class="row">
-        <div class="col-sm">
+        <div class="col-sm-12 col-md-12 form-group adress-table">
 
-            <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.7">
-                <tr class="active">
-                    <th>Zdjęcie</th>
-                    <th>Numer id</th>
-<!--                    <th>Typ</th>-->
-<!--                    <th>Marka</th>-->
-<!--                    <th>Kształt</th>-->
-<!--                    <th>Płeć</th>-->
-<!--                    <th>Polaryzacja</th>-->
-<!--                    <th>Szerokość</th>-->
-<!--                    <th>Cena</th>-->
-                </tr>
-                <tr th:each="p : ${adresses}">
-                    <td th:text="${p.getName()}"></td>
-                    <td th:text="${p.getSurname()}"></td>
-                </tr>
-            </table>
+            <!--            <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.7">-->
+            <tr th:each="a : ${adresses}">
+                <td th:text="${a.getFirmName()}" th:if="${a.isDeliveryToTheCompany() == TRUE}"></td>
+                <td th:text="${a.getName()}"></td>
+                <td th:text="${a.getSurname()}"></td>
+                <td th:text="${a.getZipCode()}"></td>
+                <td th:text="${a.getTown()}"></td>
+                ul.
+                <td th:text="${a.getStreet()}"></td>
+                <td th:text="${a.getApartmentNumber()}"></td>
+
+                <!--                    <form action="/update-glasses" method="get" >-->
+                <!--                        <input type="hidden" th:value="${a.getGlassesNumber()}" name="glassesNumber">-->
+                <!--                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>-->
+                <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.7">
+                <form action="/update-adresses" method="get">
+                    <input type="hidden" th:value="${a.getId()}" name="adressId">
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                </form>
+                    &nbsp;
+                <form action="/deleteadress" method="get">
+                    <input type="hidden" th:value="${a.getId()}" name="adressId">
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </form>
+                </table>
+                <!--                    <br>-->
+                <br>
+            </tr>
+
         </div>
     </div>
 </div>

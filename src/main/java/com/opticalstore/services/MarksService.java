@@ -22,7 +22,6 @@ public class MarksService {
         this.marksRepository = marksRepository;
         this.marksMapper = marksMapper;
     }
-
     public List<GlassesMarkDto> getGlassesMarkDto() {
         return marksRepository
                 .findAll()
@@ -30,12 +29,10 @@ public class MarksService {
                 .map(marksMapper::map)
                 .collect(Collectors.toList());
     }
-
     public GlassesMark saveGlassesMark(GlassesMark glassesMark) {
         return marksRepository.save(glassesMark);
     }
     public boolean deleteMarksByName(String markName) {
         return marksRepository.deleteMarkByName(markName) == 1; // 1 if success.
     }
-
 }
