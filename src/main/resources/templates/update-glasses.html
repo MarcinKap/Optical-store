@@ -6,15 +6,15 @@
 <div th:replace="document/content :: content_section_title"></div>
 <div th:replace="document/menu :: menu_section"></div>
 
-<div class="container">
+<div class="container" style="position: center">
     <div class="row">
         <tr th:each="p : ${glasses}">
 
-            <div class="col-6 col-md-12 col-sm-12">
+            <div class="col-8 col-md-8 col-sm-8">
                 <form th:action="@{/update}" action="/update" method="post">
                     Numer id
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-8 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
 
                             <input readonly type="text" name="glassesNumber"
                                    th:value="${#numbers.formatInteger(p.getGlassesNumber(), 1)}" placeholder="Numer id"
@@ -23,20 +23,20 @@
                     </div>
                     Zdjecie
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-8 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
                             <input type="text" name="glassesImage" th:value="@{${p.getGlassesImage()}}"
                                    placeholder="link" class="form-control">
                         </div>
                     </div>
                     Typ
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-6 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
                             <input th:checked="${p.getGlassesType()} == Przeciwsłoneczne" type="radio" name="glassesType" value="Przeciwsłoneczne">Przeciwsłoneczne<br>
                             <input th:checked="${p.getGlassesType()} == Korekcyjne" type="radio" name="glassesType" value="Korekcyjne">Korekcyjne<br>
                         </div>
                     </div>
                     Marka
-                    <div class="col-sm-12 col-md-6 form-group">
+                    <div class="col-sm-8 col-md-8 form-group">
 
                         <td>Wybierz Markę:</td>
                         <td>
@@ -53,7 +53,7 @@
                     </div>
                     Kształt
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-6 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
 
                             <td>Wybierz Kształt:</td>
                             <td>
@@ -72,7 +72,7 @@
 
                     Płeć
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-6 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
                             <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
                             <input type="radio" th:checked="${p.getGlassesGender()} == Mężczyzna" name="glassesGender" value="Mężczyzna">Mężczyzna<br>
                             <input type="radio" th:checked="${p.getGlassesGender()} == Kobieta" name="glassesGender" value="Kobieta">Kobieta<br>
@@ -81,13 +81,13 @@
                     </div>
                     Polaryzacja
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-6 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
                             <input type="checkbox" name="polarization" th:checked="${p.getPolarization()} == TRUE">
                         </div>
                     </div>
                     Szerokość
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-8 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
                             <input type="number" name="widthOfTheLens"
                                    th:value="${#numbers.formatInteger(p.getWidthOfTheLens(), 1)}"
                                    placeholder="Szerokość" class="form-control">
@@ -95,20 +95,19 @@
                     </div>
                     Cena
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-8 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
                             <input type="number" name="price"
                                    th:value="${#numbers.formatDecimal(p.getPrice(), 1,2, 'POINT')}" placeholder="Cena"
                                    class="form-control">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-sm-12 col-md-12 form-group">
+                        <div class="col-sm-8 col-md-8 form-group">
                             <button type="submit" class="btn btn-success btn-sm form-control">
                                 <i class="fa fa-floppy-o" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </tr>

@@ -10,9 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface MarksRepository extends JpaRepository<GlassesMark, Long> {
-
-    @Transactional //spring
-    @Modifying //spring
+    @Transactional
+    @Modifying
     @Query("delete from GlassesMark m where m.mark = ?1")
     int deleteMarkByName(String mark);
 }

@@ -16,13 +16,9 @@ import java.util.Set;
 @Entity
 @Table(name = "Marks")
 public class GlassesMark {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
-
     @Column(name = "mark")
     private String mark;
 }

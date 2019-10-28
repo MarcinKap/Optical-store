@@ -23,7 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.customUserService = customUserService;
         this.passwordEncoder = passwordEncoder;
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -89,10 +88,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //obsluga filtrowania i akceptacji naglowkow html
                 .cors().disable();
     }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth
                 .userDetailsService(customUserService)
                 .passwordEncoder(passwordEncoder);

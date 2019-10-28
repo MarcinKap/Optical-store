@@ -23,14 +23,10 @@ public class Adresses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
     @Column(name = "name")
     private String name;
-
     @Column(name = "surname")
     private String surname;
-
     private boolean deliveryToTheCompany;
     private String firmName;
     private String country;
@@ -38,8 +34,6 @@ public class Adresses {
     private String street;
     private int apartmentNumber;
     private String zipCode;
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "user_adresses",
             joinColumns =

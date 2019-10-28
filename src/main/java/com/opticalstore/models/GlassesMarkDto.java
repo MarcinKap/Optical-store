@@ -14,6 +14,5 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class GlassesMarkDto {
-
     private String mark;
 }

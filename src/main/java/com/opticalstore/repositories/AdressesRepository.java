@@ -14,15 +14,12 @@ import java.util.List;
 
 @Repository
 public interface AdressesRepository extends JpaRepository<Adresses, Long> {
-
     @Transactional //spring
     @Modifying //spring
     @Query("delete from Adresses a where a.id = ?1")
     int deleteAdressesById(Long id);
 
-    @Query("select a from Adresses a where a.adressId = ?1")
-        //JPQL
-    Adresses findAdressById(Long adressId);
-
+    @Query("select a from Adresses a where a.id = ?1")
+    Adresses findAdressById(Long id);
 
 }

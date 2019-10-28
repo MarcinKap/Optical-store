@@ -32,5 +32,4 @@ public class FormService {
     public boolean deleteFormsByName(String formName) {
         return formRepository.deleteFormByName(formName) == 1; // 1 if success.
     }
-
 }

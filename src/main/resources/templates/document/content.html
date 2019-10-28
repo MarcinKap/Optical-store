@@ -1,12 +1,22 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="content_section_title">
+
+
+
+    <div class="content-menu">
+        <a  href="/login" th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
+            <button class="rounded-buttons btn-success" style="background-color: #5f5f5f" th:classappend="${#httpServletRequest.getRequestURI() == '/login' ? 'active-2nd-option':''}"> Logowanie</button>
+        </a>
+        <a class=""  href="/register" th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
+            <button class="rounded-buttons btn-success" style="background-color: #5f5f5f"  th:classappend="${#httpServletRequest.getRequestURI() == '/register' ? 'active-2nd-option':''}"> Rejestracja</button>
+        </a>
+        <a class="" href="/logout" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}">
+            <button class="rounded-buttons btn-success">Wylogowanie</button>
+        </a>
+    </div>
     <div class="col-sm text-center">
-
         <a href="/">
-
         <h3 class="font-weight-light content title-head">Sklep Optyczny
-<!--            <span class="content-enjoy"> Enjoy!</span>-->
         </h3>
         </a>
-
     </div>
 </div>

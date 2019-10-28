@@ -13,12 +13,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Forms")
 public class Form {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "form")
     private String form;
 }

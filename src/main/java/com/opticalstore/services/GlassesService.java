@@ -66,9 +66,6 @@ private GlassesMapper glassesMapper;
         return glassRepository.save(glasses);
     }
     public Glasses updateGlasses(int glassesNumber, Glasses glasses) {
-        System.out.println("czy to sie zapisuje czy nie");
-        //glassRepository.findGlassesByNumber(glassesNumber).setGlassesMarks(glasses.getGlassesMarks());
-       // System.out.println(glassRepository.findGlassesByNumber(glassesNumber).getGlassesGender());
         return Optional
                 .ofNullable(glassRepository.findGlassesByNumber(glassesNumber))
                 .map(p -> {
@@ -81,13 +78,10 @@ private GlassesMapper glassesMapper;
                     p.setWidthOfTheLens(glasses.getWidthOfTheLens());
                     p.setGlassesType(glasses.getGlassesType());
                     p.setGlassesMarks(glasses.getGlassesMarks());
-
-                  //  return saveGlasses(p);//uzycie wlasnej metody z servisu
                        return glassRepository.save(p); //zapis bezposrednio z repository
                 })
                 .orElse(null);
     }
-
     public void updateGlassesVoid(int glassesNumber, Glasses glasses) {
         Optional.ofNullable(glassRepository.findGlassesByNumber(glassesNumber))
                 .ifPresent(p -> {
@@ -100,20 +94,15 @@ private GlassesMapper glassesMapper;
                     p.setWidthOfTheLens(glasses.getWidthOfTheLens());
                     p.setGlassesType(glasses.getGlassesType());
                     p.setGlassesMarks(glasses.getGlassesMarks());
-
                     glassRepository.save(p);
                 });
     }
-
     public boolean deleteGlassesByNumber(int glassesNumber) {
         return glassRepository.deleteGlassesByNumber(glassesNumber) == 1; // 1 if success.
     }
-
-
     public void getFile(String filename) throws InvocationTargetException,
             NoSuchMethodException, IllegalAccessException, IOException {
         CreatorXLS<Glasses> glassesFile = new CreatorXLS<>(Glasses.class);
         glassesFile.createFile(filename, getGlasses());
     }
-
 }

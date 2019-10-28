@@ -15,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class GlassesDto {
-
     private int glassesNumber;
     private String glassesType;
     private String glassesGender;
@@ -25,5 +24,4 @@ public class GlassesDto {
     private int widthOfTheLens;
     private String glassesImage;
     private String glassesMarks;
-//    private List<String> glassesMarks = new ArrayList<>();
 }

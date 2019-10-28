@@ -1,37 +1,36 @@
 <div class="menu" xmlns:th="http://www.thymeleaf.org" th:fragment="menu_section"
 >
 
+    <div class='w3-card-2 topnav notranslate' id='topnav'>
+        <div style="overflow:auto;">
+            <div class="w3-bar w3-left" style="width:100%;overflow:hidden;height:40px">
+                <a class="w3-bar-item w3-button button"
+                   th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" href="/">
+                    Strona domowa
+                </a>
+                <a class="w3-bar-item w3-button button"
+                   th:classappend="${#httpServletRequest.getRequestURI() == '/add-page' ? 'active':''}" href="/add-page"
+                   th:if="${#request.isUserInRole('ADMIN')}">
+                    Dodaj okulary
+                </a>
+                <a class="w3-bar-item w3-button button" href="/accountindex"
+                   th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}"
+                   th:classappend="
+                   (${#httpServletRequest.getRequestURI() == '/accountindex' ? 'active':''}) +
+                   (${#httpServletRequest.getRequestURI() == '/account-adresses' ? 'active':''}) +
+                   (${#httpServletRequest.getRequestURI() == '/account-invoice-data' ? 'active':''}) +
+                   (${#httpServletRequest.getRequestURI() == '/account-data' ? 'active':''})">
+                    Moje konto
+                </a>
+                <a class="w3-bar-item w3-button button" href="/api/v1/glasses/download/file/xls/glasses.xls"
+                   th:if="${#request.isUserInRole('ADMIN')}">
+                    Ściągnij bazę okularów
+                </a>
 
-    <div>
-        <a href="/">
-            <button class="w3-button w3-hover-black">Strona domowa</button>
-        </a>
-        <a href="/add-page" th:if="${#request.isUserInRole('ADMIN')}">
-            <button class="w3-button w3-hover-black">Dodaj okulary</button>
-        </a>
-<!--        Sciaganie pliku wprost do konkretnego plik-->
-<!--        <a href="/file/xls"  th:if="${#request.isUserInRole('ADMIN')}">-->
-<!--            <button class="w3-button w3-hover-black">get XLS</button>-->
-<!--        </a>-->
-
-<!--        Sciaganie do przegladarki-->
-        <a href="/api/v1/glasses/download/file/xls/glasses.xls"  th:if="${#request.isUserInRole('ADMIN')}">
-            <button class="w3-button w3-hover-black">Ściągnij bazę okularów</button>
-        </a>
-        <a href="/logout" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}">
-            <button class="w3-button w3-hover-black">Wylogowanie</button>
-        </a>
-        <a href="/login" th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
-            <button class="w3-button w3-hover-black">Logowanie</button>
-        </a>
-        <a href="/register" th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
-            <button class="w3-button w3-hover-black">Rejestracja</button>
-        </a>
-        <a href="/accountindex" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}">
-            <button class="w3-button w3-hover-black">Moje konto</button>
-        </a>
-
+            </div>
+        </div>
     </div>
+
     <hr>
 
 </div>

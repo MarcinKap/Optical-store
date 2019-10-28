@@ -13,9 +13,7 @@ import java.util.List;
 
 @Repository
 public interface GlassRepository extends JpaRepository<Glasses, Long> {
-
     @Query("select g from Glasses g where g.glassesNumber = ?1")
-        //JPQL
     Glasses findGlassesByNumber(int glassesNumber);
 
     @Query
@@ -45,7 +43,6 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
                     "AND " +
                     "(?9 = '' or g.glassesMarks = ?9)"
             )
-        //JPQL
     List<Glasses> findGlassesByParam(String glassesType,
                                      String glassesGender,
                                      String form,
@@ -56,10 +53,8 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
                                      int widthOfTheLensUpperLimit,
                                      String glassesMarks);
 
-    @Transactional //spring
-    @Modifying //spring
+    @Transactional
+    @Modifying
     @Query("delete from Glasses g where g.glassesNumber = ?1")
     int deleteGlassesByNumber(int glassesNumber);
-
-
 }

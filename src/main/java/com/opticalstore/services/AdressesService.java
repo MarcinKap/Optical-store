@@ -30,7 +30,6 @@ public class AdressesService {
     public List<AdressesDto> getAdressesDto() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserApp userApp = (UserApp) authentication.getPrincipal();
-        System.out.println(userApp.getId());
         UserApp currentUser = userAppRepository.findUserAppById(userApp.getId());
         return currentUser
                 .getAdresses()
@@ -42,7 +41,6 @@ public class AdressesService {
     public Adresses saveAdresses(Adresses adresses) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserApp userApp = (UserApp) authentication.getPrincipal();
-        System.out.println(userApp.getId());
         UserApp currentUser = userAppRepository.findUserAppById(userApp.getId());
         Adresses adresses2= Adresses
                 .builder()
@@ -63,12 +61,24 @@ public class AdressesService {
         return adressesRepository.deleteAdressesById(id) == 1; // 1 if success.
     }
     public Adresses getAdressesById(Long adressId) {
+        return adressesRepository.findAdressById(adressId);
+    }
+    public Adresses updateAdresses(Long adressesId, Adresses adresses) {
         return Optional
-                .ofNullable(adressesRepository.findAdressById(adressId))
+                .ofNullable(adressesRepository.findAdressById(adressesId))
+                .map(a -> {
+                    a.setId(adresses.getId());
+                    a.setName(adresses.getName());
+                    a.setSurname(adresses.getSurname());
+                    a.setDeliveryToTheCompany(adresses.isDeliveryToTheCompany());
+                    a.setFirmName(adresses.getFirmName());
+                    a.setCountry(adresses.getCountry());
+                    a.setTown(adresses.getTown());
+                    a.setStreet(adresses.getStreet());
+                    a.setApartmentNumber(adresses.getApartmentNumber());
+                    a.setZipCode(adresses.getZipCode());
+                    return adressesRepository.save(a); //zapis bezposrednio z repository
+                })
                 .orElse(null);
     }
-
-
-
-
 }

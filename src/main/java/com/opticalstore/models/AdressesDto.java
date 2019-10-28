@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Builder
 public class AdressesDto {
-
     private Long id;
     private String name;
     private String surname;
@@ -25,6 +24,4 @@ public class AdressesDto {
     private String street;
     private int apartmentNumber;
     private String zipCode;
-
-
 }

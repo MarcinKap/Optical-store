@@ -21,28 +21,20 @@ public class RegisterController {
     private CustomUserService customUserService;
     private MarksService marksService;
     private FormService formService;
-
-
     public RegisterController(CustomUserService customUserService, MarksService marksService, FormService formService) {
         this.customUserService = customUserService;
         this.marksService = marksService;
         this.formService = formService;
     }
-
     @PostMapping("/signup")
     public String registerUser(@ModelAttribute LoginUser loginUser) {
-      //  Optional<UserApp> userApp = customUserService.findUser(loginUser.getUsername());
-
         customUserService.saveUserApp(loginUser);
             return "redirect:/login";
         }
-
     @GetMapping("/register")
     public String loginPage(Model model) {
-
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
-
         return "register";
     }
 

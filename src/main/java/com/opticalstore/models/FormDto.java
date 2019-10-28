@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class FormDto {
-
     private String form;
 }

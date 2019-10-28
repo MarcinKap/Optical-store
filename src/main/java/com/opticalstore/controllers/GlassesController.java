@@ -34,7 +34,6 @@ public class GlassesController {
     public GlassesController(GlassesService glassesService) {
         this.glassesService = glassesService;
     }
-
     @GetMapping("/api/v1/glasses")
     public ResponseEntity<Glasses> getGlassesByNumber(@RequestParam(value = "number") int glassesNumber) {
         Glasses result = glassesService.getGlassesByNumber(glassesNumber); //option null
@@ -44,28 +43,23 @@ public class GlassesController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
     @GetMapping(value = "/api/v1/glasses", produces = "application/json")
     public List<Glasses> getGlasses() {
         return glassesService.getGlasses();    }
-
     @GetMapping(value = "/api/v1/glasses/dto", produces = "application/json")
     public List<GlassesDto> getGlassesDto() {
         return glassesService.getGlassesDto();
     }
-
     @GetMapping(value = "/api/v1/glasses/dto/xml", produces = "application/xml")
     public List<GlassesDto> getGlassesDtoXml() {
         return glassesService.getGlassesDto();
     }
-
     @PostMapping( value = "/api/v1/glasses", produces = "application/json")
     public ResponseEntity<Glasses> addGlasses(@RequestBody Glasses glasses) {
         return ResponseEntity
                 .ok()
                 .header("example_header", "example_header_1")
                 .body(glassesService.saveGlasses(glasses));
-
     }
 
     @PutMapping( value = "/api/v1/glasses", produces = "application/json")
@@ -79,7 +73,6 @@ public class GlassesController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
     @DeleteMapping(value = "/api/v1/glasses", produces = "application/json")
     public ResponseEntity<?> deleteGlassesByNumber(@RequestParam(value = "number") int glassesNumber) {
         if (glassesService.deleteGlassesByNumber(glassesNumber)) {
@@ -87,24 +80,15 @@ public class GlassesController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
     @GetMapping("/api/v1/glasses/download/file/xls/{filename}")
     public ResponseEntity<Resource> downloadXls(@PathVariable String filename) throws InvocationTargetException,
             NoSuchMethodException, IllegalAccessException, IOException {
-
         CreatorXLS<Glasses> glassesFile = new CreatorXLS<>(Glasses.class);
-//        Resource resource = new UrlResource(Paths.get(LOCAL_PATH + filename).toUri());
-
         Resource resource = new FileSystemResource(glassesFile.createFile(filename, glassesService.getGlasses()));
-
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType("application/excel"))
                 .header("Content-Disposition","attachment; filename=")
                 .contentLength(resource.getFile().length())
                 .body(resource);
     }
-
-
-
-
 }

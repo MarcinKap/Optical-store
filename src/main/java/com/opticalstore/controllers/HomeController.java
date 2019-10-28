@@ -1,17 +1,11 @@
 package com.opticalstore.controllers;
 
 
-import com.opticalstore.commons.mappers.AdressesMapper;
-import com.opticalstore.commons.mappers.FormMapper;
-import com.opticalstore.commons.mappers.GlassesMapper;
-import com.opticalstore.commons.mappers.MarksMapper;
+import com.opticalstore.commons.mappers.*;
 import com.opticalstore.models.*;
 import com.opticalstore.security.CustomUserService;
 import com.opticalstore.security.UserAppRepository;
-import com.opticalstore.services.AdressesService;
-import com.opticalstore.services.FormService;
-import com.opticalstore.services.GlassesService;
-import com.opticalstore.services.MarksService;
+import com.opticalstore.services.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,35 +22,16 @@ public class HomeController {
 
     private GlassesService glassesService;
     private GlassesMapper glassesMapper;
-
     private FormService formService;
     private FormMapper formMapper;
-
     private MarksMapper marksMapper;
     private MarksService marksService;
-
-
     public AdressesMapper adressesMapper;
     public AdressesService adressesService;
+    public CountriesService countriesService;
+    public CountriesMapper countriesMapper;
 
-    private CustomUserService customUserService;
-    private UserAppRepository userAppRepository;
-
-//    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, MarksMapper marksMapper, FormMapper formMapper, MarksService marksService, FormService formService) {
-//        this.glassesService = glassesService;
-//        this.glassesMapper = glassesMapper;
-//        this.marksMapper = marksMapper;
-//        this.formMapper = formMapper;
-//        this.marksService = marksService;
-//        this.formService = formService;
-//
-//
-//
-//
-//    }
-
-
-    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, FormService formService, FormMapper formMapper, MarksMapper marksMapper, MarksService marksService, AdressesMapper adressesMapper, AdressesService adressesService) {
+    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, FormService formService, FormMapper formMapper, MarksMapper marksMapper, MarksService marksService, AdressesMapper adressesMapper, AdressesService adressesService, CountriesService countriesService, CountriesMapper countriesMapper) {
         this.glassesService = glassesService;
         this.glassesMapper = glassesMapper;
         this.formService = formService;
@@ -65,7 +40,10 @@ public class HomeController {
         this.marksService = marksService;
         this.adressesMapper = adressesMapper;
         this.adressesService = adressesService;
+        this.countriesService = countriesService;
+        this.countriesMapper = countriesMapper;
     }
+
     //    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'GUEST')")
     @GetMapping("/")
     public String homePage(Model model) {
@@ -102,7 +80,15 @@ public class HomeController {
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
+        model.addAttribute("countries", countriesService.getCountriesDto());
         return "add-adress";
+    }
+    @GetMapping("/update-adresses")
+    public String updateAdresses(@RequestParam(value = "adressId") Long adressId, Model model) {
+        model.addAttribute("adresses", adressesService.getAdressesById(adressId));
+       //tutaj id jest
+        model.addAttribute("countries", countriesService.getCountriesDto());
+        return "update-adress";
     }
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/update-glasses")
@@ -110,13 +96,10 @@ public class HomeController {
         model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
+
         return "update-glasses";
     }
-    @GetMapping("/update-adresses")
-    public String updateAdresses(@RequestParam(value = "adressId") Long adressId, Model model) {
-        model.addAttribute("addresses", adressesService.getAdressesById(adressId));
-        return "update-glasses";
-    }
+
     @GetMapping("/search")
     public String searchGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
         glassesService.getGlassesByNumber(glassesNumber);
@@ -186,19 +169,15 @@ public class HomeController {
 
         return "account-index";
     }
-
     @GetMapping("/account-adresses")
     public String accountAdresses(Model model) {
         model.addAttribute("adresses", adressesService.getAdressesDto());
         return "account-adresses";
     }
-
     @GetMapping("/account-invoice-data")
     public String accountInvoiceData(Model model) {
-
         return "account-invoice-data";
     }
-
     @GetMapping("/account-data")
     public String accountData(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
@@ -206,44 +185,24 @@ public class HomeController {
         model.addAttribute("forms", formService.getFormDto());
         return "account-data";
     }
-
-    //    @PreAuthorize("hasAnyRole")
-
-
-
-//    @PreAuthorize("hasAnyRole")
-//    @PostMapping("/add-adresses")
-//    public String addAdresses(@ModelAttribute GlassesDto glassesDto) {
-//        glassesService.saveGlasses(glassesMapper.reverseMap(glassesDto));
-//        return "redirect:/";
-//    }
-
-
-
-
-
     @PostMapping("/add")
     public String addGlasses(@ModelAttribute GlassesDto glassesDto) {
         glassesService.saveGlasses(glassesMapper.reverseMap(glassesDto));
         return "redirect:/";
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")
     public String updateGlasses(@ModelAttribute GlassesDto glassesDto) {
         glassesService.updateGlasses(glassesDto.getGlassesNumber(), glassesMapper.reverseMap(glassesDto));
         return "redirect:/";
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addmarks")
     public String addMarks(@ModelAttribute GlassesMarkDto glassesMarkDto) {
-        System.out.println(glassesMarkDto);
         marksService.saveGlassesMark(marksMapper.reverseMap(glassesMarkDto));
 
         return "redirect:/add-marks";
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addforms")
     public String addForms(@ModelAttribute FormDto formDto) {
@@ -251,22 +210,21 @@ public class HomeController {
 
         return "redirect:/add-forms";
     }
-
     @PostMapping("/addadresses")
     public String addAdressesByUser(@ModelAttribute AdressesDto adressesDto) {
         adressesService.saveAdresses(adressesMapper.reverseMap(adressesDto));
         return "redirect:/account-adresses";
     }
-
-
-
+    @PostMapping("/updateadresses")
+    public String updateAdresses(@ModelAttribute AdressesDto adressesDto) {
+        adressesService.updateAdresses(adressesDto.getId(), adressesMapper.reverseMap(adressesDto));
+        return "redirect:/account-adresses";
+    }
     @GetMapping("/file/xls")
     public String getFileXls() throws NoSuchMethodException, IOException, IllegalAccessException, InvocationTargetException {
         glassesService.getFile("glasses");
         return "redirect:/";
     }
-
-
 }
 
 
