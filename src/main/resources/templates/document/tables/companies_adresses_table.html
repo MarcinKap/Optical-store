@@ -1,0 +1,34 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="companies_adresses_table">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 form-group adress-table">
+
+            <!--            <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.7">-->
+
+<!--           POZMIENIAC!!-->
+            <tr th:each="a : ${companies_adresses}">
+                <td th:text="${a.getCompanyName()}"></td>
+                <td th:text="${a.getNipNumber()}"></td>
+                <td th:text="${a.getCity()}"></td>
+                <td th:text="${a.getZipCode()}"></td>
+                <td th:text="${a.getStreet()}"></td>
+                <td th:text="${a.getApartmentNumber()}"></td>
+
+                <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.7">
+                    <form action="/form-update-companies-adresses" method="get">
+                        <input type="hidden" th:value="${a.getId()}" name="adressId">
+                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                    </form>
+                    &nbsp;
+                    <form action="/delete-companies-adresses" method="get">
+                        <input type="hidden" th:value="${a.getId()}" name="adressId">
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </table>
+                <!--                    <br>-->
+                <br>
+            </tr>
+
+        </div>
+    </div>
+</div>

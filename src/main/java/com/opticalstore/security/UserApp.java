@@ -2,6 +2,7 @@ package com.opticalstore.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.opticalstore.models.Adresses;
+import com.opticalstore.models.CompaniesAdresses;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,6 +42,13 @@ public class UserApp {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userApp")
     private Set<Adresses> adresses = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userApp")
+    private Set<CompaniesAdresses> companies_adresses = new HashSet<>();
+
+
+
     public UserApp(UserApp userApp) {
         this.id=userApp.getId();
         this.username = userApp.getUsername();
@@ -49,6 +57,7 @@ public class UserApp {
 
         this.roles = userApp.getRoles();
         this.adresses = userApp.getAdresses();
+        this.companies_adresses = userApp.getCompanies_adresses();
     }
 
 

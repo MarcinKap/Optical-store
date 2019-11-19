@@ -30,6 +30,13 @@ private GlassesMapper glassesMapper;
                 .ofNullable(glassRepository.findGlassesByNumber(glassNumber))
                 .orElse(null);
     }
+    public Glasses getGlassesByType(String type) {
+        return Optional
+                .ofNullable(glassRepository.findGlassesByType(type))
+                .orElse(null);
+    }
+
+
     public List<Glasses> getGlassesByParam(String glassesType,
                                            String glassesGender,
                                            String form,

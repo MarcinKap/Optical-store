@@ -23,12 +23,13 @@
 
         <div th:replace="document/tables/adresses_table :: adresses_table"></div>
 
-
+        <div class="col-sm-2 col-md-2 form-group">
         <form th:action="@{/add-adress}" action="/add-adress" method="get">
             <button type="submit" class="btn btn-success btn-sm form-control">
                 <i> Dodaj nowy adres</i>
             </button>
         </form>
+        </div>
     </div>
 </div>
 

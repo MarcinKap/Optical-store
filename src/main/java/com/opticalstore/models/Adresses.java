@@ -41,4 +41,7 @@ public class Adresses {
             inverseJoinColumns = @JoinColumn(name = "adress_id")
     )
     private UserApp userApp;
+
+
+
 }

@@ -42,7 +42,7 @@ public class AdressesService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserApp userApp = (UserApp) authentication.getPrincipal();
         UserApp currentUser = userAppRepository.findUserAppById(userApp.getId());
-        Adresses adresses2= Adresses
+        Adresses newAdress= Adresses
                 .builder()
                 .name(adresses.getName())
                 .surname(adresses.getSurname())
@@ -55,7 +55,7 @@ public class AdressesService {
                 .zipCode(adresses.getZipCode())
                 .userApp(currentUser)
                 .build();
-        return adressesRepository.save(adresses2);
+        return adressesRepository.save(newAdress);
     }
     public boolean deleteAdressesById(Long id) {
         return adressesRepository.deleteAdressesById(id) == 1; // 1 if success.

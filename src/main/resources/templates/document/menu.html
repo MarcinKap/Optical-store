@@ -9,6 +9,16 @@
                     Strona domowa
                 </a>
                 <a class="w3-bar-item w3-button button"
+                   th:classappend="${#httpServletRequest.getRequestURI() == '/prescription-glasses' ? 'active':''}" href="/prescription-glasses">
+                    Okulary korekcyjne
+                </a>
+
+                <a class="w3-bar-item w3-button button"
+                   th:classappend="${#httpServletRequest.getRequestURI() == '/sunglasses' ? 'active':''}" href="sunglasses">
+                    Okulary Przeciwsłoneczne
+                </a>
+
+                <a class="w3-bar-item w3-button button"
                    th:classappend="${#httpServletRequest.getRequestURI() == '/add-page' ? 'active':''}" href="/add-page"
                    th:if="${#request.isUserInRole('ADMIN')}">
                     Dodaj okulary
