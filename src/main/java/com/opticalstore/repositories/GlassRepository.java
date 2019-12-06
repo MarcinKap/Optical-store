@@ -17,7 +17,7 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
     Glasses findGlassesByNumber(int glassesNumber);
 
     @Query("select g from Glasses g where g.glassesType = ?1")
-    Glasses findGlassesByType(String glassesType);
+    List<Glasses> findGlassesByType(String glassesType);
 
 
 
