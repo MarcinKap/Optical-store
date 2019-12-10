@@ -81,8 +81,6 @@ public class HomeController {
                         widthOfTheLensUpperLimit,
                         glassesMapper.reverseMap(glassesDto).getGlassesMarks()
                 ));
-        System.out.println("Pobrane okulary");
-        System.out.println(glassesDto);
 
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
