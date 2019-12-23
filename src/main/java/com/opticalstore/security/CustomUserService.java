@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.security.Principal;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
+@Transactional
 public class CustomUserService implements UserDetailsService {
 
     private UserAppRepository userAppRepository;
@@ -26,9 +28,9 @@ public class CustomUserService implements UserDetailsService {
         this.roleRepository = roleRepository;
     }
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userAppRepository
-                .findUserAppByName(username)
+                .findUserAppByName(email)
                 .map(CustomUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User not find!"));
     }
@@ -38,12 +40,16 @@ public class CustomUserService implements UserDetailsService {
         roles.add(role);
         UserApp result = UserApp
                 .builder()
-                .username(loginUser.getUsername())
+//                .username(loginUser.getUsername())
+                .email(loginUser.getEmail())
                 .password(passwordEncoder.encode(loginUser.getPassword())) //haslo  w stanie nieczytelnym
+                .name(loginUser.getName())
+                .lastName(loginUser.getLastName())
                 .active(1)
                 .roles(roles)
                 .build();
         userAppRepository.save(result);
+
     }
 }
 

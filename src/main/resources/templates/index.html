@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:s="http://jboss.org/xml/ns/javax/validation/mapping">
 <head th:replace="document/head :: head_section"></head>
 
 <body>
-
+<!--<div th:text="#{menu.mainPage}" value="UTF-8"></div>-->
 <div th:replace="document/content :: content_section_title"></div>
+
 
 <div th:replace="document/menu :: menu_section"></div>
 
 <div class="row">
 
     <div class="col-sm-2 col-md-2 form-group">
-    <div th:replace="document/searching-menu :: searching_menu_section"></div>
+        <div th:replace="document/searching-menu :: searching_menu_section"></div>
     </div>
 
     <div class="col-sm-8 col-md-8 form-group">
 
         <div>
-            <span th:if="${#request.isUserInRole('ADMIN')}" >trolol</span>
-            <span th:if="${#request.isUserInRole('ADMIN')}" sec:authentication="name"></span> <!-- No ".getUsername()"-->
+            <span th:if="${#request.isUserInRole('USER')}" sec:authentication="name"></span> <!-- No ".getUsername()"-->
         </div>
 
 

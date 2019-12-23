@@ -34,7 +34,7 @@ public class CustomUserDetails extends UserApp implements UserDetails {
     }
     @Override
     public String getUsername() {
-        return super.getUsername();
+        return super.getEmail();
     }
     @Override
     public boolean isAccountNonExpired() {

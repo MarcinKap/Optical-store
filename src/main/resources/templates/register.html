@@ -19,16 +19,16 @@
         <div class="row">
 
             <div class="login-form">
-                <form th:action="@{/signup}" action="/signup" th:object="${loginUser}" method="post">
 
+                <form th:action="@{/signup}" action="/signup" th:object="${loginUser}" method="post">
 
                     Tworzenie konta w sklepie optycznym
                     <hr>
 
-                    Podaj login jakim będziesz się logować do sklepu
+                    Podaj email
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" name="username" placeholder="login" required="required"/>
+                            <input type="text" name="email" placeholder="email" required="required"/>
                         </div>
                     </div>
                     <div class="row">
@@ -37,7 +37,20 @@
                                 <input type="password" name="password" placeholder="Hasło" required="required"/>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 col-md-6 form-group">
+                            <div class="input-group">
+                                <input type="text" name="name" placeholder="Imię" required="required"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 col-md-6 form-group">
+                            <div class="input-group">
+                                <input type="text" name="lastName" placeholder="Nazwisko" required="required"/>
+                            </div>
+                        </div>
                     </div>
                     Hasło powinno zawierać: jedną wielką literę, jedną małą literę, jedną cyfrę, minimum 8 znaków.
 

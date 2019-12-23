@@ -1,6 +1,7 @@
 package com.opticalstore.security;
 
 
+import com.opticalstore.security.CustomUserService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,13 +22,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public SecurityConfig(CustomUserService customUserService, PasswordEncoder passwordEncoder) {
         this.customUserService = customUserService;
-        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder  = passwordEncoder;
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-
                 .authorizeRequests()// włączenie autoryzacji zapytań http
                 .antMatchers("/login**") //linki ktore biora udział w autoryzacji
                 .permitAll() //zezwol na dostep bez autoryzacji na powyzsze linki
@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler((req, res, exp) -> {
                     //obsluga przypadku blednego logowania
                     String errorMessage;
+
                     if (exp.getClass().isAssignableFrom(BadCredentialsException.class)) {
                         errorMessage = "Invalid username or password";
                     } else {

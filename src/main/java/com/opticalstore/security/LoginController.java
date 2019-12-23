@@ -17,8 +17,6 @@ public class LoginController {
     @GetMapping("/login")
     public String loginPage(Model model)
     {
-        model.addAttribute("marks", marksService.getGlassesMarkDto());
-        model.addAttribute("forms", formService.getFormDto());
         return "login";
     }
 }

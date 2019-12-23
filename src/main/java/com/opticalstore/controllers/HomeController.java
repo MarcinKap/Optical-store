@@ -4,6 +4,8 @@ package com.opticalstore.controllers;
 import com.opticalstore.commons.mappers.*;
 import com.opticalstore.models.*;
 import com.opticalstore.services.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-
+//
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Controller
-public class HomeController {
+public class  HomeController {
+
 
     private GlassesService glassesService;
     private GlassesMapper glassesMapper;
@@ -31,7 +36,7 @@ public class HomeController {
 
     public CompaniesAdressesService companiesAdressesService;
     public CompaniesAdressesMapper companiesAdressesMapper;
-
+//
     public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, FormService formService, FormMapper formMapper, MarksMapper marksMapper, MarksService marksService, AdressesMapper adressesMapper, AdressesService adressesService, CountriesService countriesService, CountriesMapper countriesMapper, CompaniesAdressesService companiesAdressesService, CompaniesAdressesMapper companiesAdressesMapper) {
         this.glassesService = glassesService;
         this.glassesMapper = glassesMapper;
@@ -335,3 +340,4 @@ public class HomeController {
 
 
 
+// ^[a-zA-Z0-9]+(//._a-zA-Z0-9]*@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}[\\.a-zA-Z]*?

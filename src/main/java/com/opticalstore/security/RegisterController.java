@@ -28,6 +28,7 @@ public class RegisterController {
     }
     @PostMapping("/signup")
     public String registerUser(@ModelAttribute LoginUser loginUser) {
+
         customUserService.saveUserApp(loginUser);
             return "redirect:/login";
         }

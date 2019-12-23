@@ -21,6 +21,8 @@ import java.util.Set;
 @Setter
 @Data
 public class LoginUser {
-    private String username;
+    private String email;
     private String password;
+    private String name;
+    private String lastName;
 }
