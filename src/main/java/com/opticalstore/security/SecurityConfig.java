@@ -61,7 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     }
 
                     req.getSession().setAttribute("message", errorMessage);
-                    res.sendRedirect("/login");
+
+                    res.sendRedirect("/login-error.html");
                 })
                 .permitAll()
                 .and()

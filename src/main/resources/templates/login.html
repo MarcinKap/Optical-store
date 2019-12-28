@@ -18,11 +18,17 @@
         <div class="container">
             <div class="row">
                 <div class="login-form">
+
+
                     <form th:action="@{/signin}" method="post">
+
+                        <div th:text="${message}" th:class="success"></div>
+
 
                         <div class="form-group">
                             <div class="input-group">
                                 <input type="text" name="username" placeholder="login" required="required"/>
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -30,6 +36,9 @@
                                 <input type="password" name="password" placeholder="password" required="required"/>
                             </div>
                         </div>
+
+                        <div th:text="${loginErrorMessage}" class="error">>asdasd</div>
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-success btn-sm" style="color: white">login</button>
                         </div>

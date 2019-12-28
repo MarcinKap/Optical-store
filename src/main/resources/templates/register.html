@@ -18,41 +18,43 @@
     <div class="container">
         <div class="row">
 
-            <div class="login-form">
+            <div class="login-form col-sm-5 col-md-5 form-group">
 
-                <form th:action="@{/signup}" action="/signup" th:object="${loginUser}" method="post">
 
+                <form action="#" th:action="@{/signup}" th:object="${loginUser}" method="post">
                     Tworzenie konta w sklepie optycznym
                     <hr>
-
-                    Podaj email
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" name="email" placeholder="email" required="required"/>
+                            <input type="text" th:field="*{email}" placeholder="Email" required="required">
                         </div>
+
+                        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="error"></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-2 col-md-6 form-group">
                             <div class="input-group">
-                                <input type="password" name="password" placeholder="Hasło" required="required"/>
+                                <input type="password" th:field="*{password}" placeholder="Hasło" required="required"/>
                             </div>
+                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                  th:class="error"> </span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-2 col-md-6 form-group">
+                        <div class="col-sm-6 col-md-6 form-group">
                             <div class="input-group">
                                 <input type="text" name="name" placeholder="Imię" required="required"/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-2 col-md-6 form-group">
+                        <div class="col-sm-6 col-md-6 form-group">
                             <div class="input-group">
                                 <input type="text" name="lastName" placeholder="Nazwisko" required="required"/>
                             </div>
                         </div>
                     </div>
-                    Hasło powinno zawierać: jedną wielką literę, jedną małą literę, jedną cyfrę, minimum 8 znaków.
+
 
                     <br>
 

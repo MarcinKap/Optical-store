@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -28,12 +29,19 @@ public class CustomUserService implements UserDetailsService {
         this.roleRepository = roleRepository;
     }
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userAppRepository
-                .findUserAppByName(email)
+                .findUserAppByName(username)
                 .map(CustomUserDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User not find!"));
+                .orElseThrow(() -> new UsernameNotFoundException("Email not find!"));
     }
+    public UserApp findUserByEmail(String email){
+        return Optional
+                .ofNullable(userAppRepository.findUserAppByEmail(email))
+                .orElse(null);
+    }
+
+
     public void saveUserApp(LoginUser loginUser) {
         Role role = roleRepository.findRoleByName("ADMIN");
         Set<Role> roles = new HashSet<>();
@@ -49,7 +57,6 @@ public class CustomUserService implements UserDetailsService {
                 .roles(roles)
                 .build();
         userAppRepository.save(result);
-
     }
 }
 
