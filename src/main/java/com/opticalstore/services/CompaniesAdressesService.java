@@ -46,7 +46,6 @@ public class CompaniesAdressesService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserApp userApp = (UserApp) authentication.getPrincipal();
         UserApp currentUser = userAppRepository.findUserAppById(userApp.getId());
-        System.out.println(currentUser);
         CompaniesAdresses newAdress= CompaniesAdresses
                 .builder()
                 .companyName(companiesAdresses.getCompanyName())

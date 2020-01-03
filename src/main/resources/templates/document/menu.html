@@ -1,9 +1,11 @@
 <div class="menu" xmlns:th="http://www.thymeleaf.org" th:fragment="menu_section"
 >
 
+
     <div class='w3-card-2 topnav notranslate' id='topnav'>
         <div style="overflow:auto;">
             <div class="w3-bar w3-left" style="width:100%;overflow:hidden;height:40px">
+
                 <a class="w3-bar-item w3-button button"
                    th:text="#{menu.home_page}" th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" href="/" >
 
