@@ -33,10 +33,9 @@ import java.util.List;
 import static com.opticalstore.commons.Naming.LOCAL_PATH;
 
 //@CrossOrigin
-@RestController
+//@RestController
 @Controller
 @AllArgsConstructor
-@RequestMapping("/")
 public class GlassesController {
 
     private GlassesService glassesService;

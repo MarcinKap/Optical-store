@@ -46,6 +46,9 @@ public class UserMenuController {
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/account-invoice-data")
     public String accountInvoiceData(Model model) {
+
+
+
         model.addAttribute("companies_adresses", companiesAdressesService.getCompaniesAdressesDto());
         model.addAttribute("glasses", glassesService.getGlassesDto());
         return "account-invoice-data";
