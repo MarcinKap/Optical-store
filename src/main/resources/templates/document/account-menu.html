@@ -1,24 +1,28 @@
-
 <div class="searching-menu" xmlns:th="http://www.thymeleaf.org" th:fragment="account_menu">
 
-        <a href="/accountindex">
-         <button class="btn btn-success btn-sm form-control grey-color-of-button" th:classappend="${#httpServletRequest.getRequestURI() == '/accountindex' ? 'active-2nd-option':''}">
+    <a href="/accountindex">
+        <button class="btn btn-success btn-sm form-control grey-color-of-button"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/accountindex' ? 'active-2nd-option':''}">
             <i> Moje zamówienia</i>
         </button>
-        </a>
-        <a href="/account-adresses">
-            <button class="btn btn-success btn-sm form-control grey-color-of-button" th:classappend="${#httpServletRequest.getRequestURI() == '/account-adresses' ? 'active-2nd-option':''}">
-                <i> Adresy dostaw</i>
-            </button>
-        </a>
-        <a href="/account-invoice-data">
-            <button class="btn btn-success btn-sm form-control grey-color-of-button" th:classappend="${#httpServletRequest.getRequestURI() == '/account-invoice-data' ? 'active-2nd-option':''}">
-                <i> Dane do faktur</i>
-            </button>
-        </a>
-        <a href="/account-data">
-            <button class="btn btn-success btn-sm form-control grey-color-of-button"  th:classappend="${#httpServletRequest.getRequestURI() == '/account-data' ? 'active-2nd-option':''}">
-                <i> Moje dane</i>
-            </button>
-        </a>
+    </a>
+    <a href="/account-adresses">
+        <button class="btn btn-success btn-sm form-control grey-color-of-button"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/account-adresses' ? 'active-2nd-option':''}">
+            <i> Adresy dostaw</i>
+        </button>
+    </a>
+    <a href="/account-invoice-data">
+        <button class="btn btn-success btn-sm form-control grey-color-of-button"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/account-invoice-data' ? 'active-2nd-option':''}">
+            <i> Dane do faktur</i>
+        </button>
+    </a>
+    <a href="/account-data">
+        <button class="btn btn-success btn-sm form-control grey-color-of-button"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/account-data' ? 'active-2nd-option':''} +
+                               (${#httpServletRequest.getRequestURI() == '/signinoptions' ? 'active-2nd-option':''})">
+            <i> Moje dane</i>
+        </button>
+    </a>
 </div>

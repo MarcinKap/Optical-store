@@ -2,7 +2,7 @@
 >
 
 
-    <div class='w3-card-2 topnav notranslate' id='topnav'>
+    <div class='w3-card-2 topnav notranslate' id='topnav' >
         <div style="overflow:auto;">
             <div class="w3-bar w3-left" style="width:100%;overflow:hidden;height:40px">
 
@@ -28,7 +28,8 @@
                    (${#httpServletRequest.getRequestURI() == '/accountindex' ? 'active':''}) +
                    (${#httpServletRequest.getRequestURI() == '/account-adresses' ? 'active':''}) +
                    (${#httpServletRequest.getRequestURI() == '/account-invoice-data' ? 'active':''}) +
-                   (${#httpServletRequest.getRequestURI() == '/account-data' ? 'active':''})">
+                   (${#httpServletRequest.getRequestURI() == '/account-data' ? 'active':''}) +
+                   (${#httpServletRequest.getRequestURI() == '/signinoptions' ? 'active':''})">
                 </a>
                 <a class="w3-bar-item w3-button button" href="/api/v1/glasses/download/file/xls/glasses.xls"
                    th:text="#{menu.download_glasses_database}" th:if="${#request.isUserInRole('ADMIN')}">

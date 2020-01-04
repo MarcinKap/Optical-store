@@ -30,7 +30,6 @@ public class FormsController {
     @PostMapping("/addforms")
     public String addForms(@ModelAttribute FormDto formDto) {
         formService.saveForm(formMapper.reverseMap(formDto));
-
         return "redirect:/add-forms";
     }
     @PreAuthorize("hasRole('ADMIN')")

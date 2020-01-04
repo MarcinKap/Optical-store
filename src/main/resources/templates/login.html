@@ -10,43 +10,51 @@
 
     <div th:replace="document/menu :: menu_section"></div>
 
-    <div class="row">
-        <div class="col-sm-2 col-md-2 form-group">
+    <div class="row col-sm-10 col-md-10 form-group">
+        <div class="col-sm-2 col-md-2 form-group border-between-rows ">
             <div th:replace="document/searching-menu :: searching_menu_section"></div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="login-form">
+        <div class="col-sm-8 col-md-8 form-group border-between-rows ">
+            <form th:action="@{/signin}" method="post">
 
+                <div th:text="${message}" th:class="success"></div>
 
-                    <form th:action="@{/signin}" method="post">
-
-                        <div th:text="${message}" th:class="success"></div>
-
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="text" name="username" placeholder="login" required="required"/>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="password" name="password" placeholder="password" required="required"/>
-                            </div>
-                        </div>
-
-                        <div th:text="${loginErrorMessage}" class="error">>asdasd</div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-sm" style="color: white">login</button>
-                        </div>
-                    </form>
-                    | <a href="/register">sign up</a>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" name="username" placeholder="login" required="required"/>
+                    </div>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" name="password" placeholder="password" required="required"/>
+                    </div>
+                </div>
+
+                <div th:text="${loginErrorMessage}" class="error">>asdasd</div>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-sm" style="color: white">
+                        Logowanie
+                    </button>
+                </div>
+
+            </form>
+            Jeśli nie masz jeszcze konta, naduś przycisk na dole
+            <br/>
+            <a href="/register">
+                <button class="btn btn-success btn-sm"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/signinoptions' ? 'active-2nd-option':''}">
+                    <i> Rejestracja</i>
+                </button>
+            </a>
         </div>
+        <div class="col-sm-2 col-md-2 form-group  ">
+        </div>
+
+
     </div>
     </body>
 </http>

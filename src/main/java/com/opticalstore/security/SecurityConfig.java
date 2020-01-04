@@ -39,7 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 /** formularz - atrybut w <form action="/signin">*/
                 .loginProcessingUrl("/signin")
                 // w stronie html pod  /login
-
                 .usernameParameter("username") // parametry formularza
                 .passwordParameter("password")
                 .successHandler((req, res, auth) -> {
@@ -47,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     for (GrantedAuthority authority : auth.getAuthorities()) {
                         System.out.println(authority.getAuthority());
                     }
-                    System.out.println(auth.getName());
+
                     res.sendRedirect("/accountindex"); //home page url
                 })
                 .failureHandler((req, res, exp) -> {

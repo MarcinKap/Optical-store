@@ -56,9 +56,11 @@ public class RegisterController {
     @GetMapping("/register")
     public String loginPage(Model model) {
         LoginUser loginUser = new LoginUser();
+
         model.addAttribute("loginUser", loginUser);
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
+
         return "register";
     }
 

@@ -8,29 +8,27 @@
 
 <div th:replace="document/menu :: menu_section"></div>
 
-<div class="row">
+<div class="row col-sm-10 col-md-10 form-group">
 
-    <div class="col-sm-2 col-md-2 form-group">
-
-
-
+    <div class="col-sm-2 col-md-2 form-group border-between-rows">
         <div th:replace="document/account-menu :: account_menu"></div>
     </div>
-    <!-- TUTAJ WSTAWIC TRESC -->
+
     <div class="col-sm-8 col-md-8 form-group">
-<div class="title-font">
-        Adresy dostaw
-</div>
+        <div class="title-font">
+            Adresy dostaw
+        </div>
+
         <hr>
 
         <div th:replace="document/tables/adresses_table :: adresses_table"></div>
 
         <div class="col-sm-2 col-md-2 form-group">
-        <form th:action="@{/add-adress}" action="/add-adress" method="get">
-            <button type="submit" class="btn btn-success btn-sm form-control">
-                <i> Dodaj nowy adres</i>
-            </button>
-        </form>
+            <form th:action="@{/add-adress}" action="/add-adress" method="get">
+                <button type="submit" class="btn btn-success btn-sm form-control top-margin">
+                    <i> Dodaj nowy adres</i>
+                </button>
+            </form>
         </div>
     </div>
 </div>

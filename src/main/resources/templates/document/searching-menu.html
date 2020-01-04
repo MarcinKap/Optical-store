@@ -1,24 +1,25 @@
 <div class="searching-menu" xmlns:th="http://www.thymeleaf.org" th:fragment="searching_menu_section">
 
-    <div class="title-searching-menu">
-    Wyszukaj po numerze Id
+    <div>
+        Wyszukaj po numerze Id
     </div>
     <hr>
+
     <form th:action="@{/search}" action="/search" method="get">
         <input type="number" required number name="glassesNumber" placeholder="Numer id" class="form-control">
-        <button type="submit" class="btn btn-success btn-sm form-control grey-color-of-button">
+        <button type="submit" class="btn btn-success btn-sm form-control grey-color-of-button top-margin">
             <i> Szukaj</i>
         </button>
     </form>
     <br/>
     <div class="title-searching-menu">
-    Szukanie zaawansowane
+        Szukanie zaawansowane
     </div>
-    <hr>
+<!--    <hr>-->
     <form th:action="@{/advanced-search}" action="/advanced-search" method="get">
         Typ
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
 
                 <!--                    <td>Wybierz Markę:</td>-->
                 <td>
@@ -32,7 +33,7 @@
         </div>
         Marka
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
 
                 <!--                    <td>Wybierz Markę:</td>-->
                 <td>
@@ -48,7 +49,7 @@
         </div>
         Kształt
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
 
                 <!--                    <td>Wybierz Kształt:</td>-->
                 <td>
@@ -65,7 +66,7 @@
 
         Płeć
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
                 <!--                        <input type="text" name="glassesGender" placeholder="Płeć" class="form-control">-->
                 <input type="radio" name="glassesGender" value="Mężczyzna"> Mężczyzna<br>
                 <input type="radio" name="glassesGender" value="Kobieta"> Kobieta<br>
@@ -74,42 +75,45 @@
         </div>
         Polaryzacja
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
                 <input type="checkbox" name="polarization" value="TRUE"> Tak<br>
                 <input type="checkbox" name="polarization" value="FALSE"> Nie<br>
             </div>
         </div>
         Szerokość minimalna
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
                 <input type="number" required name="widthOfTheLensLowerLimit" placeholder="Min" value="0"
                        class="form-control">
             </div>
         </div>
         Szerokość maksymalna
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
                 <input type="number" required name="widthOfTheLensUpperLimit" placeholder="Max" value="0"
                        class="form-control">
             </div>
         </div>
         Cena minimalna
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
                 <input type="number" required name="priceLowerLimit" placeholder="Min" value="0" class="form-control">
             </div>
         </div>
         Cena maksymalna
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
+            <div class="">
                 <input type="number" required name="priceUpperLimit" placeholder="Max" value="0" class="form-control">
             </div>
         </div>
+
         <div class="form-row">
-            <div class="col-sm-12 col-md-12 form-group">
-                <button type="submit" class="btn btn-success btn-sm form-control grey-color-of-button">
+
+            <div class="">
+                <button type="submit" class="btn btn-success btn-sm form-control grey-color-of-button top-margin">
                     <i> Szukaj</i>
                 </button>
+
             </div>
         </div>
 

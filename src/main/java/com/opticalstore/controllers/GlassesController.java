@@ -72,7 +72,6 @@ public class GlassesController {
         model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
-
         return "update-glasses";
     }
     @PostMapping("/add")

@@ -47,15 +47,12 @@ public class CompaniesAdressesController {
     @PostMapping("/update-companies-adresses")
     public String updateCompaniesAdresses(@ModelAttribute CompaniesAdressesDto companiesAdressesDto) {
         companiesAdressesService.updateCompaniesAdresses(companiesAdressesDto.getId(), companiesAdressesMapper.reverseMap(companiesAdressesDto));
-        System.out.println(companiesAdressesDto);
         return "redirect:/account-invoice-data";
     }
 
     @GetMapping("/form-update-companies-adresses")
     public String updateCompaniesAdresses(@RequestParam(value = "adressId") Long id, Model model) {
         model.addAttribute("companies_adresses", companiesAdressesService.getCompaniesAdressesById(id));
-        System.out.println(id);
-        System.out.println(companiesAdressesService.getCompaniesAdressesById(id));
         model.addAttribute("glasses", glassesService.getGlassesDto());
         return "update-companies-adresses";
     }

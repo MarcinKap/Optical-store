@@ -31,7 +31,6 @@ public class UserApp {
     private Integer id;
 //    @Email
     private String email;
-
     private String password;
     private String name;
     private String lastName;

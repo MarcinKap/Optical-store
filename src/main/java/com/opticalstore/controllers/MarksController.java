@@ -29,7 +29,6 @@ public class MarksController {
     @PostMapping("/addmarks")
     public String addMarks(@ModelAttribute GlassesMarkDto glassesMarkDto) {
         marksService.saveGlassesMark(marksMapper.reverseMap(glassesMarkDto));
-
         return "redirect:/add-marks";
     }
     @PreAuthorize("hasRole('ADMIN')")

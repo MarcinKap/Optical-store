@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="document/head :: head_section"></head>
 
 <body>
@@ -8,10 +8,9 @@
 
 <div th:replace="document/menu :: menu_section"></div>
 
-<div class="row">
+<div class="row col-sm-10 col-md-10 form-group">
 
-    <div class="col-sm-2 col-md-2 form-group">
-        <!--        TUTAJ MENU UZYTKOWNIKA WSTAWIC-->
+    <div class="col-sm-2 col-md-2 form-group border-between-rows">
         <div th:replace="document/account-menu :: account_menu"></div>
     </div>
     <!-- TUTAJ WSTAWIC TRESC -->
@@ -21,13 +20,23 @@
         </div>
         <hr>
 
-        Zmień hasło
+        <b>Imie: </b>
+        <div th:text="${user.getName()}"></div>
 
-        Pozostałe dane
+        <b>Nazwisko:</b>
+        <div th:text="${user.getLastName()}"></div>
 
-        Telefon komórkowy
+        <b>Email:</b>
+        <div th:text="${user.getEmail()}"></div>
 
+        <br>
 
+            <a href="/signinoptions">
+                <button class="btn btn-success btn-sm grey-color-of-button top-margin"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/signinoptions' ? 'active-2nd-option':''}">
+                    <i> Zmiana hasła</i>
+                </button>
+            </a>
 
 
     </div>

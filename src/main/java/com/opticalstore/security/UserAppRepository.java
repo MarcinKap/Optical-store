@@ -17,4 +17,8 @@ public interface UserAppRepository extends JpaRepository<UserApp, Integer> {
 
     @Query(value = "select u from UserApp u where u.id = ?1")
     UserApp findUserAppById(Integer id);
+
+
+
+
 }
