@@ -18,11 +18,11 @@
 
     <div class="login-form col-sm-8 col-md-8 form-group">
 
-
+        <div class="title-font">
+            Rejestracja
+        </div>
+        <hr>
         <form action="#" th:action="@{/signup}" th:object="${loginUser}" method="post">
-            Tworzenie konta w sklepie optycznym
-            <hr>
-
             <div class="form-group">
                 <div class="input-group">
                     <input type="text" th:field="*{email}" placeholder="Email" required="required">
@@ -58,7 +58,7 @@
             <br>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-sm" style="color: white">sign up</button>
+                <button type="submit" class="btn btn-success btn-sm" style="color: white">zarejestruj</button>
             </div>
 
         </form>

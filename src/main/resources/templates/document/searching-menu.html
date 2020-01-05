@@ -1,6 +1,6 @@
 <div class="searching-menu" xmlns:th="http://www.thymeleaf.org" th:fragment="searching_menu_section">
 
-    <div>
+    <div class="searching-title-font">
         Wyszukaj po numerze Id
     </div>
     <hr>
@@ -12,10 +12,10 @@
         </button>
     </form>
     <br/>
-    <div class="title-searching-menu">
+    <div class="searching-title-font">
         Szukanie zaawansowane
     </div>
-<!--    <hr>-->
+    <hr>
     <form th:action="@{/advanced-search}" action="/advanced-search" method="get">
         Typ
         <div class="form-row">

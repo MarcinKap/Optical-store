@@ -16,6 +16,10 @@
         </div>
 
         <div class="col-sm-8 col-md-8 form-group border-between-rows ">
+            <div class="title-font">
+                Logowanie
+            </div>
+            <hr>
             <form th:action="@{/signin}" method="post">
 
                 <div th:text="${message}" th:class="success"></div>
