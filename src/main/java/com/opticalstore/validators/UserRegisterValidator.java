@@ -41,6 +41,8 @@ public class UserRegisterValidator implements Validator {
                 errors.rejectValue("password", "error.userPasswordIsNotMatch");
             }
         }
+
+
     }
 
 
