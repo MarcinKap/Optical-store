@@ -2,10 +2,10 @@ package com.opticalstore;
 
 import com.opticalstore.security.LoginUser;
 import com.opticalstore.validators.UserRegisterValidator;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.omg.CORBA.DynAnyPackage.Invalid;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
@@ -111,7 +111,7 @@ public class UserRegisterValidationTests {
     }
 
     @Test
-    public void TestAppUtilsCheckEmail() {
+    public void TestEmailPattern() {
 
 //        List of Valid Email Addresses
         assertTrue("email@example.com", appUtils.checkEmail("email@example.com"));
@@ -156,6 +156,30 @@ public class UserRegisterValidationTests {
         assertFalse("”(),:;<>[\\]@example.com", appUtils.checkEmail("”(),:;<>[\\]@example.com"));
         assertFalse("just”not”right@example.com", appUtils.checkEmail("just”not”right@example.com"));
         assertFalse("this\\ is\"really\"not\\allowed@example.com", appUtils.checkEmail("this\\ is\"really\"not\\allowed@example.com"));
+
+    }
+
+    @Test
+    public void TestPasswordPattern() {
+        Assert.assertTrue(appUtils.checkPassword("Password1!"));
+        Assert.assertTrue(appUtils.checkPassword("aPssword1!"));
+        Assert.assertTrue(appUtils.checkPassword("#aPssword1!"));
+
+        assertFalse(appUtils.checkPassword(""));
+        assertFalse(appUtils.checkPassword("1"));
+        assertFalse(appUtils.checkPassword("!"));
+        assertFalse(appUtils.checkPassword("P"));
+        assertFalse(appUtils.checkPassword("p"));
+        assertFalse(appUtils.checkPassword("pass"));
+        assertFalse(appUtils.checkPassword("123"));
+        assertFalse(appUtils.checkPassword("!@"));
+        assertFalse(appUtils.checkPassword("!1"));
+        assertFalse(appUtils.checkPassword("11@"));
+        assertFalse(appUtils.checkPassword("pP!1"));
+        assertFalse(appUtils.checkPassword("Pass word123!@#"));
+        assertFalse(appUtils.checkPassword("Password1&"));
+
+
 
     }
 
