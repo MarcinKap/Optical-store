@@ -1,4 +1,4 @@
-package utilities;
+package com.opticalstore.utilities;
 
 import com.opticalstore.constans.UserPatterns;
 

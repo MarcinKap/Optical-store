@@ -1,7 +1,7 @@
 package com.opticalstore.controllers;
 
-import com.opticalstore.commons.mappers.FormMapper;
-import com.opticalstore.commons.mappers.GlassesMapper;
+import com.opticalstore.mappers.FormMapper;
+import com.opticalstore.mappers.GlassesMapper;
 import com.opticalstore.models.FormDto;
 import com.opticalstore.services.FormService;
 import com.opticalstore.services.GlassesService;

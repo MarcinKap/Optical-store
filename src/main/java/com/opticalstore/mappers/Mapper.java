@@ -1,4 +1,4 @@
-package com.opticalstore.commons.mappers;
+package com.opticalstore.mappers;
 
 public interface Mapper<F, T> {
 

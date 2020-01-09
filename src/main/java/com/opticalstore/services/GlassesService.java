@@ -2,11 +2,12 @@ package com.opticalstore.services;
 
 
 import com.opticalstore.commons.extras.CreatorXLS;
-import com.opticalstore.commons.mappers.GlassesMapper;
+import com.opticalstore.mappers.GlassesMapper;
 import com.opticalstore.models.Glasses;
 import com.opticalstore.models.GlassesDto;
-import com.opticalstore.models.GlassesMark;
 import com.opticalstore.repositories.GlassRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -62,6 +63,8 @@ private GlassesMapper glassesMapper;
     public List<Glasses> getGlasses() {
         return glassRepository.findAll();
     }
+
+
     public List<GlassesDto> getGlassesDto() {
         return glassRepository
                 .findAll()
@@ -69,6 +72,13 @@ private GlassesMapper glassesMapper;
                 .map(glassesMapper::map)
                 .collect(Collectors.toList());
     }
+//    public Page<GlassesDto> findAll(Pageable pageable){
+//
+//    }
+
+
+
+
     public Glasses saveGlasses(Glasses glasses) {
         return glassRepository.save(glasses);
     }

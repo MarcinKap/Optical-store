@@ -1,6 +1,6 @@
 package com.opticalstore.services;
 
-import com.opticalstore.commons.mappers.FormMapper;
+import com.opticalstore.mappers.FormMapper;
 import com.opticalstore.models.Form;
 import com.opticalstore.models.FormDto;
 import com.opticalstore.repositories.FormRepository;

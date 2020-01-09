@@ -2,35 +2,29 @@ package com.opticalstore.controllers;
 
 
 import com.opticalstore.commons.extras.CreatorXLS;
-import com.opticalstore.commons.mappers.FormMapper;
-import com.opticalstore.commons.mappers.GlassesMapper;
-import com.opticalstore.commons.mappers.MarksMapper;
+import com.opticalstore.mappers.FormMapper;
+import com.opticalstore.mappers.GlassesMapper;
+import com.opticalstore.mappers.MarksMapper;
 import com.opticalstore.models.Glasses;
 import com.opticalstore.models.GlassesDto;
-import com.opticalstore.models.GlassesMark;
 import com.opticalstore.services.FormService;
 import com.opticalstore.services.GlassesService;
 import com.opticalstore.services.MarksService;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Paths;
 import java.util.List;
-
-import static com.opticalstore.commons.Naming.LOCAL_PATH;
 
 //@CrossOrigin
 //@RestController
@@ -44,7 +38,6 @@ public class GlassesController {
     private FormMapper formMapper;
     private MarksMapper marksMapper;
     private MarksService marksService;
-
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/add-page")

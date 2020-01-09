@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import utilities.AppUtils;
+import com.opticalstore.utilities.AppUtils;
 
 import javax.validation.Validator;
 import java.util.List;

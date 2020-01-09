@@ -1,9 +1,7 @@
-package com.opticalstore.commons.mappers;
+package com.opticalstore.mappers;
 
 import com.opticalstore.models.Form;
 import com.opticalstore.models.FormDto;
-import com.opticalstore.models.GlassesMark;
-import com.opticalstore.models.GlassesMarkDto;
 import org.springframework.stereotype.Component;
 
 @Component

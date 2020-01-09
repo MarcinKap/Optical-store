@@ -1,7 +1,7 @@
 package com.opticalstore.controllers;
 
-import com.opticalstore.commons.mappers.GlassesMapper;
-import com.opticalstore.commons.mappers.MarksMapper;
+import com.opticalstore.mappers.GlassesMapper;
+import com.opticalstore.mappers.MarksMapper;
 import com.opticalstore.models.GlassesMarkDto;
 import com.opticalstore.services.GlassesService;
 import com.opticalstore.services.MarksService;

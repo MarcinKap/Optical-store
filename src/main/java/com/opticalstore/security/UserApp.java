@@ -46,6 +46,10 @@ public class UserApp {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userApp")
     private Set<Adresses> adresses = new HashSet<>();
 
+    @Transient
+    private String mainRole;
+
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userApp")
     private Set<CompaniesAdresses> companies_adresses = new HashSet<>();
@@ -58,5 +62,6 @@ public class UserApp {
         this.roles = userApp.getRoles();
         this.adresses = userApp.getAdresses();
         this.companies_adresses = userApp.getCompanies_adresses();
+
     }
 }

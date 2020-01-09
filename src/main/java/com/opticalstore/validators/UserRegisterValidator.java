@@ -3,13 +3,10 @@ package com.opticalstore.validators;
 
 import com.opticalstore.security.LoginUser;
 import com.opticalstore.security.UserApp;
-import org.springframework.context.MessageSource;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import utilities.AppUtils;
-
-import java.util.Locale;
+import com.opticalstore.utilities.AppUtils;
 
 
 public class UserRegisterValidator implements Validator {

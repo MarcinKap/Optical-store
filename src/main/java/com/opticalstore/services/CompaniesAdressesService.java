@@ -1,9 +1,7 @@
 package com.opticalstore.services;
 
 
-import com.opticalstore.commons.mappers.CompaniesAdressesMapper;
-import com.opticalstore.models.Adresses;
-import com.opticalstore.models.AdressesDto;
+import com.opticalstore.mappers.CompaniesAdressesMapper;
 import com.opticalstore.models.CompaniesAdresses;
 import com.opticalstore.models.CompaniesAdressesDto;
 import com.opticalstore.repositories.CompaniesAdressesRepository;

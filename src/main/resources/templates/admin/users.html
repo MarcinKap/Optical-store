@@ -1,0 +1,35 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="users_table">
+    <div class="row">
+        <div class="col-sm">
+            <table class="table" style="color: white; background-color: black; opacity: 0.7; border-radius: 10px">
+                <tr class="active">
+
+                    <th th:text="#{users_table.id}"> Id</th>
+                    <th th:text="#{users_table.name}"></th>
+                    <th th:text="#{users_table.last_name}"></th>
+                    <th th:text="#{users_table.email}">Email</th>
+                    <th th:text="#{users_table.active}">Aktywny</th>
+                    <th th:text="#{users_table.role}">Rola</th>
+                </tr>
+
+                <tr th:each="p : ${userAppPage.content}">
+                    <td th:text="${p.getId()}"></td>
+                    <td th:text="${p.getName()}"></td>
+                    <td th:text="${p.getLastName()}"></td>
+                    <td th:text="${p.getEmail()}"></td>
+                    <td th:text="${p.getActive()}"></td>
+                    <td th:text="${p.getMainRole()}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <td th:if="${userAppPage.totalPages > 0}" class="pagination overflow:hidden"
+        th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/admin(size=${userAppPage.size}, page=${pageNumber})}"
+           th:text="${pageNumber}"
+           th:class="${pageNumber==userAppPage.number + 1} ? active"></a>
+    </td>
+
+
+</div>

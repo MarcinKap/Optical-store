@@ -1,14 +1,9 @@
-package com.opticalstore.commons.mappers;
+package com.opticalstore.mappers;
 
 
 import com.opticalstore.models.Glasses;
 import com.opticalstore.models.GlassesDto;
-import com.opticalstore.models.GlassesMark;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Component
 public class GlassesMapper implements Mapper<Glasses, GlassesDto> {

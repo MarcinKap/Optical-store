@@ -1,15 +1,10 @@
 package com.opticalstore.security;
 
-import com.opticalstore.commons.mappers.AdressesMapper;
-import com.opticalstore.models.Adresses;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
 import java.util.Collection;
-import java.util.Date;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 //Mapper

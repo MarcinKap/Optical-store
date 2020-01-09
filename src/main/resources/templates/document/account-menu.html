@@ -25,4 +25,15 @@
             <i> Moje dane</i>
         </button>
     </a>
+    <a href="/admin">
+        <button class="btn btn-success btn-sm form-control grey-color-of-button"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/account-data' ? 'active-2nd-option':''} +
+                               (${#httpServletRequest.getRequestURI() == '/signinoptions' ? 'active-2nd-option':''})">
+            <i> Panel administratora</i>
+        </button>
+    </a>
+
+
+
+
 </div>

@@ -1,6 +1,6 @@
 package com.opticalstore.controllers;
 
-import com.opticalstore.commons.mappers.*;
+import com.opticalstore.mappers.*;
 import com.opticalstore.models.CompaniesAdressesDto;
 import com.opticalstore.services.*;
 import lombok.AllArgsConstructor;
