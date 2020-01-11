@@ -8,54 +8,48 @@
 <div th:replace="document/menu :: menu_section"></div>
 
 
-<div class="row">
+<div class="row col-sm-10 col-md-10 form-group">
 
-    <div class="col-sm-2 col-md-2 form-group">
+    <div class="col-sm-2 col-md-2 form-group border-between-rows">
         <div th:replace="document/account-menu :: account_menu"></div>
     </div>
 
-
-    <div class="container">
+    <div class="container col-sm-8 col-md-8 form-group">
         <div class="row">
             <div class="col-10 col-md-10 col-sm-10">
-                <form th:action="@{/update-companies-adresses}" action="/add" method="post">
-
-                    Nazwa firmy
+                <form th:object="${companies_adresses}" th:action="@{${action}}" method="post" class="w3-container">
                     <div class="form-row col-sm-10 col-md-8 form-group">
-                        <input type="text" required name="companyName" th:value="${companies_adresses.getCompanyName()}"
+                        Nazwa firmy
+                        <input th:field="*{companyName}" type="text" required name="companyName"
+                               placeholder="Pełna nazwa firmy"
                                class="form-control w3-input">
                     </div>
-
-                    Nip
+                    Numer NIP
                     <div class="form-row col-sm-10 col-md-8 form-group">
-                        <input type="number" required name="nipNumber" th:value="${companies_adresses.getNipNumber()}" class="form-control w3-input" >
+                        <input th:field="*{nipNumber}" type="number" required name="nipNumber" placeholder="NIP"
+                               class="form-control w3-input">
                     </div>
-
-                    Miasto
                     <div class="form-row col-sm-5 col-md-5 form-group">
-                        <input type="text" required name="city" th:value="${companies_adresses.getCity()}"
+                        <input th:field="*{city}" type="text" required name="city" placeholder="Miasto"
                                class="form-control w3-input">
                     </div>
-
-                    Kod-pocztowy
+                    Kod pocztowy
                     <div class="form-row col-sm-2 col-md-2  form-group">
-                        <input type="text" required name="zipCode" th:value="${companies_adresses.getZipCode()}"
+                        <input th:field="*{zipCode}" type="text" required name="zipCode" placeholder="Kod-pocztowy"
                                class="form-control w3-input">
                     </div>
-
                     Ulica
                     <div class="form-row col-sm-8 col-md-8 form-group">
-                        <input type="text" required name="street" th:value="${companies_adresses.getStreet()}" class="form-control">
-                    </div>
-
-                    Numer mieszkania
-                    <div class="form-row col-sm-4 col-md-4 form-group">
-                        <input type="text" required name="apartmentNumber" th:value="${companies_adresses.getApartmentNumber()}"
+                        <input th:field="*{street}" type="text" required name="street" placeholder="Ulica:"
                                class="form-control">
                     </div>
-
-
-                    <input type="hidden" th:value="${companies_adresses.getId()}" name="id">
+                    Numer Domu
+                    <div class="form-row col-sm-4 col-md-4 form-group">
+                        <input th:field="*{apartmentNumber}" type="text" required name="apartmentNumber"
+                               placeholder="Nr domu/nr lokalu"
+                               class="form-control">
+                    </div>
+                    <input type="hidden" th:field="*{id}" name="id">
 
                     <div class="form-row">
                         <div class="col-sm-10 col-md-10 form-group">
@@ -68,6 +62,10 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-2 col-md-2 form-group border-between-rows">
+
+    </div>
+
 </div>
 </body>
 

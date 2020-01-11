@@ -16,7 +16,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,16 +39,24 @@ public class GlassesController {
     private MarksService marksService;
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/add-page")
+    @GetMapping("/add-glasses")
     public String addPage(Model model) {
+
+        String action = "add";
+        model.addAttribute("action", action);
+
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
-        return "add-glasses";
+
+        model.addAttribute("finded_glasses", new GlassesDto());
+
+        return "entieties/add-glasses";
     }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")
     public String updateGlasses(@ModelAttribute GlassesDto glassesDto) {
+        System.out.println(glassesDto);
         glassesService.updateGlasses(glassesDto.getGlassesNumber(), glassesMapper.reverseMap(glassesDto));
         return "redirect:/";
     }
@@ -62,10 +69,17 @@ public class GlassesController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/update-glasses")
     public String updateGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
-        model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
+//        model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
+        String action = "update";
+        model.addAttribute("action", action);
+        model.addAttribute("finded_glasses", glassesService.getGlassesByNumber(glassesNumber));
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
-        return "update-glasses";
+
+
+        return "entieties/add-glasses";
+
+//        return "entieties/update-glasses";
     }
     @PostMapping("/add")
     public String addGlasses(@ModelAttribute GlassesDto glassesDto) {

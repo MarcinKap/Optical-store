@@ -1,20 +1,15 @@
 package com.opticalstore.security;
 
 
-import com.opticalstore.validators.UserRegisterValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Locale;
 
 @Controller
 @AllArgsConstructor
@@ -24,9 +19,9 @@ public class UserController {
     private CustomUserService customUserService;
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/signinoptions")
+    @GetMapping("/account-menu/account-data/password-change")
     public String changePasswordPage(Model model) {
-        return "password-change";
+        return "account-menu/password-change";
     }
 
     @PostMapping("/password-change")
@@ -39,7 +34,7 @@ public class UserController {
         if (passwordEncoder.matches(oldPassword, currentUser.getPassword())==true && newPassword.equals(newPasswordConfirmation)){
                 customUserService.updateUserAppPassword(newPassword);
         }
-        return "redirect:/";
+        return "redirect:/account-menu/account-data";
     }
 
 }

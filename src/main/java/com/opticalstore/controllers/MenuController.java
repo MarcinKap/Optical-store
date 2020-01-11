@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
@@ -19,13 +20,8 @@ import java.lang.reflect.InvocationTargetException;
 @AllArgsConstructor
 public class MenuController {
     private GlassesService glassesService;
-    private GlassesMapper glassesMapper;
     private FormService formService;
-    private FormMapper formMapper;
-    private MarksMapper marksMapper;
     private MarksService marksService;
-
-
 
     @GetMapping("/sunglasses")
     public String sunglasses(Model model) {
@@ -39,6 +35,7 @@ public class MenuController {
         model.addAttribute("glasses", glassesService.getGlassesByType("Korekcyjne"));
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
+
         return "index";
     }
 

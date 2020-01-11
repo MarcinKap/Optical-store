@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         System.out.println(authority.getAuthority());
                     }
 
-                    res.sendRedirect("/accountindex"); //home page url
+                    res.sendRedirect("/account-menu/account-index"); //home page url
                 })
                 .failureHandler((req, res, exp) -> {
                     //obsluga przypadku blednego logowania

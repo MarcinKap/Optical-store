@@ -42,6 +42,6 @@ public class MarksController {
     public String addMark(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
-        return "add-marks";
+        return "entieties/add-marks";
     }
 }

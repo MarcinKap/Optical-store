@@ -1,17 +1,13 @@
 <div class="menu" xmlns:th="http://www.thymeleaf.org" th:fragment="menu_section"
 >
-
-
-    <div class='w3-card-2 topnav notranslate' id='topnav' >
+    <div class='w3-card-2 topnav notranslate'>
         <div style="overflow:auto;">
-            <div class="w3-bar w3-left" style="width:100%;overflow:hidden;height:40px">
-
+            <div class="  w3-bar w3-left" style="width:100%;overflow:hidden;height:40px">
                 <a class="w3-bar-item w3-button button"
                    th:text="#{menu.home_page}" th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" href="/" >
-
                 </a>
                 <a class="w3-bar-item w3-button button"
-                   th:text="#{menu.prescription_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/prescription-glasses' ? 'active':''}" href="/prescription-glasses">
+                   href="/prescription-glasses" th:text="#{menu.prescription_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/prescription-glasses' ? 'active':''}" >
                 </a>
 
                 <a class="w3-bar-item w3-button button"
@@ -19,17 +15,14 @@
                 </a>
 
                 <a class="w3-bar-item w3-button button"
-                   th:text="#{menu.add_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/add-page' ? 'active':''}" href="/add-page"
+                   th:text="#{menu.add_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/add-page' ? 'active':''}" href="/add-glasses"
                    th:if="${#request.isUserInRole('ADMIN')}">
                 </a>
-                <a class="w3-bar-item w3-button button" href="/accountindex"
+
+                <a class="w3-bar-item w3-button button" href="/account-menu/account-index"
                    th:text="#{menu.my_account}" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}"
                    th:classappend="
-                   (${#httpServletRequest.getRequestURI() == '/accountindex' ? 'active':''}) +
-                   (${#httpServletRequest.getRequestURI() == '/account-adresses' ? 'active':''}) +
-                   (${#httpServletRequest.getRequestURI() == '/account-invoice-data' ? 'active':''}) +
-                   (${#httpServletRequest.getRequestURI() == '/account-data' ? 'active':''}) +
-                   (${#httpServletRequest.getRequestURI() == '/signinoptions' ? 'active':''})">
+                   (${#httpServletRequest.getRequestURI().startsWith('/account-menu') ? 'active':''})">
                 </a>
                 <a class="w3-bar-item w3-button button" href="/api/v1/glasses/download/file/xls/glasses.xls"
                    th:text="#{menu.download_glasses_database}" th:if="${#request.isUserInRole('ADMIN')}">

@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserMenuController {
 
     private GlassesService glassesService;
-    private GlassesMapper glassesMapper;
     private FormService formService;
-    private FormMapper formMapper;
-    private MarksMapper marksMapper;
     private MarksService marksService;
     public AdressesMapper adressesMapper;
     public AdressesService adressesService;
@@ -34,28 +31,28 @@ public class UserMenuController {
     public CompaniesAdressesMapper companiesAdressesMapper;
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/accountindex")
+    @GetMapping("/account-menu/account-index")
     public String accountIndex(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
-        return "account-index";
+        return "account-menu/account-index";
     }
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/account-adresses")
+    @GetMapping("/account-menu/account-adresses")
     public String accountAdresses(Model model) {
         model.addAttribute("adresses", adressesService.getAdressesDto());
-        return "account-adresses";
+        return "account-menu/account-adresses";
     }
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/account-invoice-data")
+    @GetMapping("/account-menu/account-invoice-data")
     public String accountInvoiceData(Model model) {
         model.addAttribute("companies_adresses", companiesAdressesService.getCompaniesAdressesDto());
         model.addAttribute("glasses", glassesService.getGlassesDto());
-        return "account-invoice-data";
+        return "account-menu/account-invoice-data";
     }
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/account-data")
+    @GetMapping("/account-menu/account-data")
     public String accountData(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserApp userApp = (UserApp) authentication.getPrincipal();
@@ -66,7 +63,7 @@ public class UserMenuController {
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
-        return "account-data";
+        return "account-menu/account-data";
     }
 
 

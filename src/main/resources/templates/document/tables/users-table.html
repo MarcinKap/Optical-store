@@ -26,7 +26,7 @@
 
     <td th:if="${userAppPage.totalPages > 0}" class="pagination overflow:hidden"
         th:each="pageNumber : ${pageNumbers}">
-        <a th:href="@{/admin(size=${userAppPage.size}, page=${pageNumber})}"
+        <a th:href="@{account-menu/admin(size=${userAppPage.size}, page=${pageNumber})}"
            th:text="${pageNumber}"
            th:class="${pageNumber==userAppPage.number + 1} ? active"></a>
     </td>

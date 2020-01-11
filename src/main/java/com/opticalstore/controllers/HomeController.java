@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 //
 //@NoArgsConstructor
 //@AllArgsConstructor
 @Controller
 public class  HomeController {
+
 
 
     private GlassesService glassesService;
@@ -46,6 +49,8 @@ public class  HomeController {
     //    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'GUEST')")
     @GetMapping("/")
     public String homePage(Model model) {
+
+
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());

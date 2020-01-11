@@ -24,7 +24,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage(Model model) {
-        return "login";
+        return "security/login";
     }
 
     @RequestMapping("/login-error.html")
@@ -33,7 +33,7 @@ public class LoginController {
 //        model.addAttribute("loginError", true);
         model.addAttribute("loginErrorMessage", messageSource.getMessage("error.wrongLogin", null, locale));
 
-        return "login.html";
+        return "security/login";
     }
 
 

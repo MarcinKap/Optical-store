@@ -13,32 +13,24 @@
     <div class="col-sm-2 col-md-2 form-group border-between-rows">
         <div th:replace="document/account-menu :: account_menu"></div>
     </div>
-    <!-- TUTAJ WSTAWIC TRESC -->
     <div class="col-sm-8 col-md-8 form-group">
         <div class="title-font">
             Moje dane
         </div>
         <hr>
-
         <b>Imie: </b>
         <div th:text="${user.getName()}"></div>
-
         <b>Nazwisko:</b>
         <div th:text="${user.getLastName()}"></div>
-
         <b>Email:</b>
         <div th:text="${user.getEmail()}"></div>
-
         <br>
-
-            <a href="/signinoptions">
+            <a href="/account-menu/account-data/password-change">
                 <button class="btn btn-success btn-sm grey-color-of-button top-margin"
                         th:classappend="${#httpServletRequest.getRequestURI() == '/signinoptions' ? 'active-2nd-option':''}">
                     <i> Zmiana hasła</i>
                 </button>
             </a>
-
-
     </div>
 </div>
 

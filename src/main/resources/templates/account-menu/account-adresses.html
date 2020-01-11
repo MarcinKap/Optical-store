@@ -3,28 +3,20 @@
 <head th:replace="document/head :: head_section"></head>
 
 <body>
-
-<div th:replace="document/content :: content_section_title"></div>
-
+<div th:replace="document/content :: content_section_title" ></div>
 <div th:replace="document/menu :: menu_section"></div>
-
 <div class="row col-sm-10 col-md-10 form-group">
-
     <div class="col-sm-2 col-md-2 form-group border-between-rows">
         <div th:replace="document/account-menu :: account_menu"></div>
     </div>
-
     <div class="col-sm-8 col-md-8 form-group">
         <div class="title-font">
             Adresy dostaw
         </div>
-
         <hr>
-
         <div th:replace="document/tables/adresses_table :: adresses_table"></div>
-
         <div class="col-sm-2 col-md-2 form-group">
-            <form th:action="@{/add-adress}" action="/add-adress" method="get">
+            <form th:action="@{account-menu/account-adresses/add-adress}" action="/add-adress" method="get">
                 <button type="submit" class="btn btn-success btn-sm form-control top-margin">
                     <i> Dodaj nowy adres</i>
                 </button>
@@ -32,22 +24,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
-
-
-<!--<div th:replace="document/menu :: menu_section"></div>-->
-
-<!--<div class="row">-->
-
-<!--    <div class="col-sm-2 col-md-2 form-group">-->
-<!--        &lt;!&ndash;        TUTAJ MENU UZYTKOWNIKA WSTAWIC&ndash;&gt;-->
-<!--        <div th:replace="document/account-menu :: account_menu"></div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; TUTAJ WSTAWIC TRESC &ndash;&gt;-->
-<!--    <div class="col-sm-10 col-md-10 form-group">-->
-<!--        <div th:replace="document/tables/user_table :: user_table"></div>-->
-<!--    </div>-->
-<!--</div>-->

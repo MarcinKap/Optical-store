@@ -7,14 +7,17 @@
 <div th:replace="document/menu :: menu_section"></div>
 
 
-<div class="row">
+<div class="row col-sm-10 col-md-10 form-group">
 
-    <div class="col-sm-2 col-md-2 form-group">
+    <div class="col-sm-2 col-md-2 form-group border-between-rows">
         <div th:replace="document/searching-menu :: searching_menu_section"></div>
     </div>
 
     <div class="col-sm-8 col-md-8 form-group">
-        <div th:replace="document/tables/user_table :: user_table"></div>
+        <div th:replace="document/tables/glasses_table :: user_table"></div>
+    </div>
+    <div class="col-sm-2 col-md-2 form-group border-between-rows">
+
     </div>
 </div>
 </body>

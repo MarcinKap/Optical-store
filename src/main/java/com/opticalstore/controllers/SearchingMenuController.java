@@ -21,8 +21,6 @@ public class SearchingMenuController {
     private GlassesService glassesService;
     private GlassesMapper glassesMapper;
     private FormService formService;
-    private FormMapper formMapper;
-    private MarksMapper marksMapper;
     private MarksService marksService;
 
 

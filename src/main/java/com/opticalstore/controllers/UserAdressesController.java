@@ -1,6 +1,7 @@
 package com.opticalstore.controllers;
 
 import com.opticalstore.mappers.*;
+import com.opticalstore.models.Adresses;
 import com.opticalstore.models.AdressesDto;
 import com.opticalstore.services.*;
 import lombok.AllArgsConstructor;
@@ -29,37 +30,46 @@ public class UserAdressesController {
 
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @PostMapping("/addadresses")
+    @PostMapping("/add-adress")
     public String addAdressesByUser(@ModelAttribute AdressesDto adressesDto) {
         adressesService.saveAdresses(adressesMapper.reverseMap(adressesDto));
-        return "redirect:/account-adresses";
+        return "redirect:/account-menu/account-adresses";
     }
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/deleteadress")
     public String deleteAdresses(@RequestParam(value = "adressId") Long id) {
         adressesService.deleteAdressesById(id);
-        return "redirect:/account-adresses";
+        return "redirect:/account-menu/account-adresses";
     }
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @PostMapping("/updateadresses")
+    @PostMapping("/update-adress")
     public String updateAdresses(@ModelAttribute AdressesDto adressesDto) {
         adressesService.updateAdresses(adressesDto.getId(), adressesMapper.reverseMap(adressesDto));
-        return "redirect:/account-adresses";
+        return "redirect:/account-menu/account-adresses";
     }
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/add-adress")
+    @GetMapping("account-menu/account-adresses/add-adress")
     public String addAdress(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
         model.addAttribute("countries", countriesService.getCountriesDto());
-        return "add-adress";
+
+        String action = "add-adress";
+        model.addAttribute("action", action);
+        model.addAttribute("adresses", new Adresses());
+        return "entieties/add-adress";
     }
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/update-adresses")
+    @GetMapping("account-menu/account-adresses/update-adresses")
     public String updateAdresses(@RequestParam(value = "adressId") Long adressId, Model model) {
-        model.addAttribute("adresses", adressesService.getAdressesById(adressId));
+//        model.addAttribute("adresses", adressesService.getAdressesById(adressId));
         model.addAttribute("countries", countriesService.getCountriesDto());
-        return "update-adress";
+
+        String action = "update-adress";
+
+        model.addAttribute("action", action);
+        model.addAttribute("adresses", adressesService.getAdressesById(adressId));
+        return "entieties/add-adress";
     }
 }

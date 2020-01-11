@@ -2,38 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       >
 <head th:replace="document/head :: head_section"></head>
-
 <body>
-
 <div th:replace="document/content :: content_section_title"></div>
-
 <div th:replace="document/menu :: menu_section"></div>
-
 <div class="row col-sm-10 col-md-10 form-group">
-
     <div class="col-sm-2 col-md-2 form-group border-between-rows">
-        <!--        TUTAJ MENU UZYTKOWNIKA WSTAWIC-->
         <div th:replace="document/account-menu :: account_menu"></div>
     </div>
-    <!-- TUTAJ WSTAWIC TRESC -->
-
     <div class="col-sm-8 col-md-8 form-group">
         <div class="title-font">
-
             Dane do faktur VAT
         </div>
         <hr>
-
         <div th:replace="document/tables/companies_adresses_table :: companies_adresses_table"></div>
-
         <div class="col-sm-2 col-md-2 form-group">
-        <form th:action="@{/add-companies-adresses}" action="/add-companies-adresses" method="get">
+        <form th:action="@{account-menu/account-invoice-data/add-companies-adresses}" action="/add-companies-adresses" method="get">
             <button type="submit" class="btn btn-success btn-sm form-control top-margin">
                 <i> Dodaj nowy adres</i>
             </button>
         </form>
         </div>
-
     </div>
 </div>
 

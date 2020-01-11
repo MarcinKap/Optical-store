@@ -2,31 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 >
 <head th:replace="document/head :: head_section"></head>
-
 <body>
-<!--&lt;!&ndash;<div th:text="#{menu.mainPage}" value="UTF-8"></div>&ndash;&gt;-->
-
 <div th:replace="document/content :: content_section_title"></div>
-
-
 <div th:replace="document/menu :: menu_section"></div>
-
-<!--class="row"-->
 <div class="row col-sm-10 col-md-10 form-group">
 
     <div class="col-sm-2 col-md-2 form-group border-between-rows">
         <div th:replace="document/searching-menu :: searching_menu_section"></div>
     </div>
-
     <div class="col-sm-8 col-md-8 form-group">
-        <!--                <div>-->
-        <!--                    <span th:if="${#request.isUserInRole('USER')}" sec:authentication="name"></span> &lt;!&ndash; No ".getUsername()"&ndash;&gt;-->
-        <!--                </div>-->
-        <div th:replace="document/tables/user_table :: user_table"></div>
+        <div th:replace="document/tables/glasses_table :: user_table"></div>
     </div>
-
     <div class="col-sm-2 col-md-2 form-group">
-
     </div>
 </div>
 

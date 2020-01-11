@@ -43,6 +43,6 @@ public class FormsController {
     public String addForm(Model model) {
         model.addAttribute("glasses", glassesService.getGlassesDto());
         model.addAttribute("forms", formService.getFormDto());
-        return "add-forms";
+        return "entieties/add-forms";
     }
 }
