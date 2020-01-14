@@ -25,7 +25,7 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
     @Query("select g from Glasses g where g.glassesType = ?1")
     List<Glasses> findGlassesByTypeAndSort(String glassesType, Sort sort);
 
-    @Query("select g from Glasses g where g.glassesType = ?1 order by g.GlassesBuilder asc")
+    @Query("select g from Glasses g where g.glassesType = ?1 order by ?2 asc")
     List<Glasses> findGlassesByTypeAndSortAscending( String glassesType, String orderBy);
 
     @Query("select g from Glasses g where g.glassesType = ?1 order by ?2 desc ")
