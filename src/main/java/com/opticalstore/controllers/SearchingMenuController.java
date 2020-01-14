@@ -51,7 +51,10 @@ public class SearchingMenuController {
         return "find-glasses-by-param";
     }
     @GetMapping("/search")
-    public String searchGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
+    public String searchGlasses(@RequestParam(value = "glassesNumber") Long glassesNumber, Model model) {
+
+
+
         model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());

@@ -10,6 +10,10 @@ body, html {
 
 }
 
+.white-href-text {
+    color: white;
+}
+
 .content {
     color: black;
     font-size: 2em;

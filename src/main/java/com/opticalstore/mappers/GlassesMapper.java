@@ -20,6 +20,7 @@ public class GlassesMapper implements Mapper<Glasses, GlassesDto> {
                 .widthOfTheLens(from.getWidthOfTheLens())
                 .glassesImage(from.getGlassesImage())
                 .glassesMarks(from.getGlassesMarks())
+                .id(from.getId())
                 .build();
     }
     @Override
@@ -35,6 +36,7 @@ public class GlassesMapper implements Mapper<Glasses, GlassesDto> {
                 .widthOfTheLens(to.getWidthOfTheLens())
                 .glassesImage(to.getGlassesImage())
                 .glassesMarks(to.getGlassesMarks())
+                .id(to.getId())
                 .build();
     }
 }

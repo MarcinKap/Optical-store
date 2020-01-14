@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class GlassesDto {
-    private int glassesNumber;
+    private Long id;
+    private Long glassesNumber;
     private String glassesType;
     private String glassesGender;
     private String form;

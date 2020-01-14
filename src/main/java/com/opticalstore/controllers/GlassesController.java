@@ -57,29 +57,28 @@ public class GlassesController {
     @PostMapping("/update")
     public String updateGlasses(@ModelAttribute GlassesDto glassesDto) {
         System.out.println(glassesDto);
-        glassesService.updateGlasses(glassesDto.getGlassesNumber(), glassesMapper.reverseMap(glassesDto));
+        glassesService.updateGlasses(glassesDto.getId(), glassesMapper.reverseMap(glassesDto));
         return "redirect:/";
     }
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/delete")
-    public String deleteGlasses(@RequestParam(value = "glasses") int glassesNumber) {
-        glassesService.deleteGlassesByNumber(glassesNumber);
+    public String deleteGlasses(@RequestParam(value = "id") Long id) {
+
+        glassesService.deleteGlassesById(id);
         return "redirect:/";
     }
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/update-glasses")
-    public String updateGlasses(@RequestParam(value = "glassesNumber") int glassesNumber, Model model) {
+    public String updateGlasses(@RequestParam(value = "id") Long id, Model model) {
 //        model.addAttribute("glasses", glassesService.getGlassesByNumber(glassesNumber));
         String action = "update";
         model.addAttribute("action", action);
-        model.addAttribute("finded_glasses", glassesService.getGlassesByNumber(glassesNumber));
+        model.addAttribute("finded_glasses", glassesService.getGlassesById(id));
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
 
 
         return "entieties/add-glasses";
-
-//        return "entieties/update-glasses";
     }
     @PostMapping("/add")
     public String addGlasses(@ModelAttribute GlassesDto glassesDto) {
@@ -129,8 +128,8 @@ public class GlassesController {
     }
 
     @PutMapping( value = "/api/v1/glasses", produces = "application/json")
-    public ResponseEntity<Glasses> updateGlasses(@RequestParam(value = "number")int glassesNumber, @RequestBody Glasses glasses) {
-        Glasses result = glassesService.updateGlasses(glassesNumber, glasses);
+    public ResponseEntity<Glasses> updateGlasses(@RequestParam(value = "number")Long id, @RequestBody Glasses glasses) {
+        Glasses result = glassesService.updateGlasses(id, glasses);
         if (result != null) {
             return ResponseEntity
                     .ok()
@@ -140,8 +139,8 @@ public class GlassesController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @DeleteMapping(value = "/api/v1/glasses", produces = "application/json")
-    public ResponseEntity<?> deleteGlassesByNumber(@RequestParam(value = "number") int glassesNumber) {
-        if (glassesService.deleteGlassesByNumber(glassesNumber)) {
+    public ResponseEntity<?> deleteGlassesByNumber(@RequestParam(value = "id") Long id) {
+        if (glassesService.deleteGlassesById(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

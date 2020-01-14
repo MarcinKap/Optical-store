@@ -20,7 +20,7 @@ public class Glasses {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "glasses_number", nullable = false, unique = true)
-    private int glassesNumber;
+    private Long glassesNumber;
     @Column(name = "glasses_type")
     private String glassesType;
     @Column(name = "glasses_gender")

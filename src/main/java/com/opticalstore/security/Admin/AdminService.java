@@ -31,14 +31,12 @@ public class AdminService {
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
         List<UserApp> list;
-
         if (userApps.size() < startItem) {
             list = Collections.emptyList();
         } else {
             int toIndex = Math.min(startItem + pageSize, userApps.size());
             list = userApps.subList(startItem, toIndex);
         }
-
         Page<UserApp> userAppPage
                 = new PageImpl<UserApp>(list, PageRequest.of(currentPage, pageSize), userApps.size());
 

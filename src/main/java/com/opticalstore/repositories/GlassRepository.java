@@ -2,6 +2,7 @@ package com.opticalstore.repositories;
 
 
 import com.opticalstore.models.Glasses;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,11 +14,27 @@ import java.util.List;
 
 @Repository
 public interface GlassRepository extends JpaRepository<Glasses, Long> {
+
+
     @Query("select g from Glasses g where g.glassesNumber = ?1")
-    Glasses findGlassesByNumber(int glassesNumber);
+    Glasses findGlassesByNumber(Long glassesNumber);
 
     @Query("select g from Glasses g where g.glassesType = ?1")
     List<Glasses> findGlassesByType(String glassesType);
+
+    @Query("select g from Glasses g where g.glassesType = ?1")
+    List<Glasses> findGlassesByTypeAndSort(String glassesType, Sort sort);
+
+    @Query("select g from Glasses g where g.glassesType = ?1 order by g.GlassesBuilder asc")
+    List<Glasses> findGlassesByTypeAndSortAscending( String glassesType, String orderBy);
+
+    @Query("select g from Glasses g where g.glassesType = ?1 order by ?2 desc ")
+    List<Glasses> findGlassesByTypeAndSortDescending(String glassesType, String orderBy);
+
+    @Query("select g from Glasses g where g.id = ?1")
+    Glasses findGlassesById(Long id);
+
+
 
 
 
@@ -60,6 +77,12 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
 
     @Transactional
     @Modifying
-    @Query("delete from Glasses g where g.glassesNumber = ?1")
-    int deleteGlassesByNumber(int glassesNumber);
+    @Query("delete from Glasses g where g.id = ?1")
+    int deleteGlassesById(Long id);
+
+
+
+//    @Query("select g from g Glasses ORDER BY param ")
+//    List<Glasses> sortGlassesByParam(String param);
+
 }

@@ -62,8 +62,6 @@ public class CustomUserService implements UserDetailsService {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserApp userApp = (UserApp) authentication.getPrincipal();
-
-
         Optional
                 .ofNullable(userAppRepository.findUserAppById(userApp.getId()))
                 .map(c -> {
@@ -77,7 +75,7 @@ public class CustomUserService implements UserDetailsService {
 //                        c.setLastName(currentUser.getLastName());
 //                        c.setName(currentUser.getName());
 
-                    return userAppRepository.save(c); //zapis bezposrednio z repository
+                    return userAppRepository.save(c);
                 })
                 .orElse(null);
     }

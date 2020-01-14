@@ -3,19 +3,19 @@ package com.opticalstore.controllers;
 
 import com.opticalstore.mappers.*;
 import com.opticalstore.services.*;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 //
 //@NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @Controller
-public class  HomeController {
-
-
+public class HomeController {
 
     private GlassesService glassesService;
     private GlassesMapper glassesMapper;
@@ -27,37 +27,24 @@ public class  HomeController {
     public AdressesService adressesService;
     public CountriesService countriesService;
     public CountriesMapper countriesMapper;
-
     public CompaniesAdressesService companiesAdressesService;
     public CompaniesAdressesMapper companiesAdressesMapper;
-//
-    public HomeController(GlassesService glassesService, GlassesMapper glassesMapper, FormService formService, FormMapper formMapper, MarksMapper marksMapper, MarksService marksService, AdressesMapper adressesMapper, AdressesService adressesService, CountriesService countriesService, CountriesMapper countriesMapper, CompaniesAdressesService companiesAdressesService, CompaniesAdressesMapper companiesAdressesMapper) {
-        this.glassesService = glassesService;
-        this.glassesMapper = glassesMapper;
-        this.formService = formService;
-        this.formMapper = formMapper;
-        this.marksMapper = marksMapper;
-        this.marksService = marksService;
-        this.adressesMapper = adressesMapper;
-        this.adressesService = adressesService;
-        this.countriesService = countriesService;
-        this.countriesMapper = countriesMapper;
-        this.companiesAdressesService = companiesAdressesService;
-        this.companiesAdressesMapper = companiesAdressesMapper;
-    }
 
-    //    @PreAuthorize("hasAnyRole('ADMIN', 'USER', 'GUEST')")
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String homePage(Model model, @RequestParam(value = "searchingBy") Optional<String> searchingBy, @RequestParam(value = "ascending") Optional<Boolean> getAscending) {
 
 
-        model.addAttribute("glasses", glassesService.getGlassesDto());
+        if (!searchingBy.isPresent()) {
+            model.addAttribute("glasses", glassesService.getGlassesDto());
+        } else {
+            if (!getAscending.isPresent()) {
+                getAscending = Optional.of(true);
+            }
+            model.addAttribute("glasses", glassesService.sortGlassesbyParam(searchingBy.get(), getAscending.get()));
+            model.addAttribute("ascending", !getAscending.get());
+        }
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
         return "index";
     }
 }
-
-
-
-// ^[a-zA-Z0-9]+(//._a-zA-Z0-9]*@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}[\\.a-zA-Z]*?

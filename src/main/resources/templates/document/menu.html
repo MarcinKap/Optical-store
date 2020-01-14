@@ -15,7 +15,7 @@
                 </a>
 
                 <a class="w3-bar-item w3-button button"
-                   th:text="#{menu.add_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/add-page' ? 'active':''}" href="/add-glasses"
+                   th:text="#{menu.add_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/add-glasses' ? 'active':''}" href="/add-glasses"
                    th:if="${#request.isUserInRole('ADMIN')}">
                 </a>
 
