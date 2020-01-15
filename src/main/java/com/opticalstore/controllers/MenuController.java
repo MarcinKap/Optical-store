@@ -25,36 +25,6 @@ public class MenuController {
     private FormService formService;
     private MarksService marksService;
 
-    @GetMapping("/sunglasses")
-    public String sunglasses(Model model, @RequestParam(value = "searchingBy") Optional<String> searchingBy, @RequestParam(value = "ascending") Optional<Boolean> getAscending) {
-//todo WYSZUKIWANIE PO PARAMETRACH
-
-
-
-
-        model.addAttribute("glasses", glassesService.getGlassesWithParams(searchingBy, getAscending, Optional.of("Przeciwsłoneczne")));
-//        model.addAttribute("glasses", glassesService.getGlassesByType("Przeciwsłoneczne"));
-        model.addAttribute("marks", marksService.getGlassesMarkDto());
-        model.addAttribute("forms", formService.getFormDto());
-        return "index";
-    }
-    @GetMapping("/prescription-glasses")
-    public String prescriptionGlasses(Model model, @RequestParam(value = "searchingBy") Optional<String> searchingBy, @RequestParam(value = "ascending") Optional<Boolean> getAscending) {
-
-        if (!getAscending.isPresent()) {
-            getAscending = Optional.of(true);
-        }
-        model.addAttribute("ascending", !getAscending.get());
-
-
-        model.addAttribute("glasses", glassesService.getGlassesWithParams(searchingBy, getAscending, Optional.of("Korekcyjne")));
-//        model.addAttribute("glasses", glassesService.getGlassesByType("Korekcyjne"));
-        model.addAttribute("marks", marksService.getGlassesMarkDto());
-        model.addAttribute("forms", formService.getFormDto());
-
-        return "index";
-    }
-
     @GetMapping("/file/xls")
     public String getFileXls() throws NoSuchMethodException, IOException, IllegalAccessException, InvocationTargetException {
         glassesService.getFile("glasses");

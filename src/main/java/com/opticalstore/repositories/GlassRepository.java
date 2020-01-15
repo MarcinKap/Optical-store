@@ -11,9 +11,17 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface GlassRepository extends JpaRepository<Glasses, Long> {
+
+//    public List<Glasses> findAllBy   OrderByGlassesNumberAsc();
+
+    public List<Glasses> findAllByGlassesType(String GlassesType, Sort sort);
+
+    public List<Glasses> findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPriceOrPolarizationOrWidthOfTheLensOrGlassesMarks(String GlassesType, Sort sort);
+
 
 
     @Query("select g from Glasses g where g.glassesNumber = ?1")

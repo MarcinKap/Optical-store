@@ -12,10 +12,6 @@
                 ul.
                 <td th:text="${a.getStreet()}"></td>
                 <td th:text="${a.getApartmentNumber()}"></td>
-
-                <!--                    <form action="/update-glasses" method="get" >-->
-                <!--                        <input type="hidden" th:value="${a.getGlassesNumber()}" name="glassesNumber">-->
-                <!--                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>-->
                 <table class="table table-bordered" style="color: white; background-color: black; opacity: 0.7">
                 <form action="account-menu/account-adresses/update-adresses" method="get">
                     <input type="hidden" th:value="${a.getId()}" name="adressId">

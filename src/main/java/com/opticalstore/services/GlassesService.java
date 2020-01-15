@@ -6,7 +6,6 @@ import com.opticalstore.mappers.GlassesMapper;
 import com.opticalstore.models.Glasses;
 import com.opticalstore.models.GlassesDto;
 import com.opticalstore.repositories.GlassRepository;
-import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +31,7 @@ public class GlassesService {
                 .ofNullable(glassRepository.findGlassesByNumber(glassNumber))
                 .orElse(null);
     }
+
     public Glasses getGlassesById(Long id) {
         return Optional
                 .ofNullable(glassRepository.findGlassesById(id))
@@ -44,6 +44,7 @@ public class GlassesService {
                 .ofNullable(glassRepository.findGlassesByType(type))
                 .orElse(null);
     }
+
     public List<Glasses> getGlassesByParam(String glassesType,
                                            String glassesGender,
                                            String form,
@@ -66,6 +67,7 @@ public class GlassesService {
                         glassesMarks))
                 .orElse(null);
     }
+
     public List<Glasses> getGlasses() {
         return glassRepository.findAll();
     }
@@ -81,7 +83,6 @@ public class GlassesService {
     public Glasses saveGlasses(Glasses glasses) {
         return glassRepository.save(glasses);
     }
-
 
 
     public Glasses updateGlasses(Long id, Glasses glasses) {
@@ -101,6 +102,7 @@ public class GlassesService {
                 })
                 .orElse(null);
     }
+
     public void updateGlassesVoid(Long glassesNumber, Glasses glasses) {
         Optional.ofNullable(glassRepository.findGlassesByNumber(glassesNumber))
                 .ifPresent(p -> {
@@ -116,9 +118,11 @@ public class GlassesService {
                     glassRepository.save(p);
                 });
     }
+
     public boolean deleteGlassesById(Long id) {
         return glassRepository.deleteGlassesById(id) == 1; // 1 if success.
     }
+
     public void getFile(String filename) throws InvocationTargetException,
             NoSuchMethodException, IllegalAccessException, IOException {
         CreatorXLS<Glasses> glassesFile = new CreatorXLS<>(Glasses.class);
@@ -126,84 +130,88 @@ public class GlassesService {
     }
 
 
-
 //    public List <Glasses> sortGlassesbyParam (String parameter){
 //        return glassRepository.findAll(Sort.by(parameter).ascending());
 //    }
 
 
-    public List <Glasses> sortGlassesbyParam (String parameter, Boolean  ascending){
-        if(ascending==true) {
+    public List<Glasses> sortGlassesbyParam(String parameter, Boolean ascending) {
+        if (ascending) {
             return glassRepository.findAll(Sort.by(parameter).ascending());
-        }else{
-        return glassRepository.findAll(Sort.by(parameter).descending());
+        } else {
+            return glassRepository.findAll(Sort.by(parameter).descending());
         }
     }
 
 
-    public List<Glasses> getGlassesWithParams(Optional<String> parameter, Optional<Boolean> ascending, Optional<String> glassesType) {
+    public List<Glasses> getGlassesWithParams(Optional<String> orderBy, Optional<Boolean> ascOrDesc, Optional<String> searchingByParameter, Optional<String> searchingByValue ) {
+        System.out.println("czy ja cos tu cokolwiek dostaje");
 
-        //jeśli jest parameter to sortujemy
-        //jeśli jest glassesType to nie wyszukujemy wszystkich tylko konkretne
-        if (!ascending.isPresent()) {
-            ascending = Optional.of(true);
+        //jeśli jest orderBy to sortujemy
+        //jeśli jest searchingByParameter to nie wyszukujemy wszystkich tylko konkretne
+//        if (!ascOrDesc.isPresent()) {
+//            ascOrDesc = Optional.of(true);
+//        }
+
+        System.out.println("ascOrDesc wynosi: " + ascOrDesc.get());
+        if (orderBy.isPresent()) {
+            System.out.println("orderBy to:" + orderBy.get());
+            System.out.println("g." + orderBy.get());
+        } else {
+            System.out.println("nie ma orderBy");
         }
-        System.out.println("ascending wynosi: " + ascending.get());
-        if (parameter.isPresent()){
-                System.out.println("parameter to:" + parameter.get());
-            System.out.println("g."+ parameter.get());
-        }else{
-            System.out.println("nie ma parameter");
+        if (searchingByParameter.isPresent()) {
+            System.out.println("searchingByParameter to: " + searchingByParameter.get());
+        } else {
+            System.out.println("nie ma searchingByParameter");
         }
-if(glassesType.isPresent()){
-            System.out.println("glassesType to: " + glassesType.get());
-}else{
-    System.out.println("nie ma glassesType");
-}
+        if(searchingByValue.isPresent()){
+            System.out.println("searchingByValue to: " + searchingByValue.get());
+        }else {
+            System.out.println("nie ma searchingByValue");
+        }
 
-        parameter = Optional.of("glassesType");
-
-        if(ascending.get()==true){
-            if(parameter.isPresent()){
-                if(glassesType.isPresent()){
+        if (ascOrDesc.get()) {
+            if (orderBy.isPresent()) {
+                if (searchingByParameter.isPresent() && !searchingByParameter.get().isEmpty()) {
+                    //orderBy daje infor o tym przez co bedziemy sortować
+                    //muszę znalezc metodę która przyjmie dla Stringa searchingByParameter i otrzymam okulary tylko po glassestypie oraz bede mogl podac orderBy
                     System.out.println("opcja 1");
-                    return glassRepository.findGlassesByTypeAndSortAscending(glassesType.get(), parameter.get());
-                }else{
+                    return glassRepository.findAllByGlassesType(searchingByValue.get(), Sort.by(orderBy.get()).ascending());
+//                    return glassRepository.findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPriceOrPolarizationOrWidthOfTheLensOrGlassesMarks(searchingByValue.get(), Sort.by(orderBy.get()).ascending());
+                } else {
                     System.out.println("opcja 2");
-                    return glassRepository.findAll(Sort.by(parameter.get()).ascending());
+                    return glassRepository.findAll(Sort.by(orderBy.get()).ascending());
                 }
-            }else{
-                if(glassesType.isPresent()){
+            } else {
+                if (searchingByParameter.isPresent() && !searchingByParameter.get().isEmpty()) {
                     System.out.println("opcja 3");
-                    return glassRepository.findGlassesByType(glassesType.get());
-                }else{
+                    return glassRepository.findGlassesByType(searchingByValue.get());
+                } else {
                     System.out.println("opcja 4");
                     return glassRepository.findAll();
                 }
             }
-        }else{
-            if(parameter.isPresent()){
-                if(glassesType.isPresent()){
+        } else {
+            if (orderBy.isPresent()) {
+                if (searchingByParameter.isPresent() && !searchingByParameter.get().isEmpty()) {
                     System.out.println("opcja 5");
-                    List<Glasses> glassesList = glassRepository.findGlassesByType(glassesType.get());
 //                    return glassRepository.findById()
-                    return glassRepository.findGlassesByTypeAndSortDescending(glassesType.get(), parameter.get());
-                }else{
+                    return glassRepository.findAllByGlassesType(searchingByValue.get(), Sort.by(orderBy.get()).descending());
+                } else {
                     System.out.println("opcja 6");
-                    return glassRepository.findAll(Sort.by(parameter.get()).descending());
+                    return glassRepository.findAll(Sort.by(orderBy.get()).descending());
                 }
-            }else{
-                if(glassesType.isPresent()){
+            } else {
+                if (searchingByParameter.isPresent() && !searchingByParameter.get().isEmpty()) {
                     System.out.println("opcja 7");
-                    return glassRepository.findGlassesByType(glassesType.get());
-                }else{
+                    return glassRepository.findGlassesByType(searchingByValue.get());
+                } else {
                     System.out.println("opcja 8");
                     return glassRepository.findAll();
                 }
             }
         }
-
-
 
 
     }
