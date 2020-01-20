@@ -20,7 +20,33 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
 
     public List<Glasses> findAllByGlassesType(String GlassesType, Sort sort);
 
-    public List<Glasses> findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPriceOrPolarizationOrWidthOfTheLensOrGlassesMarks(String GlassesType, Sort sort);
+    public List<Glasses> findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPolarization(Optional<String> GlassesType, Optional<Long> GlassesNumber, Optional<String> GlassesGender, Optional<String> Form, Optional<Boolean> Polarization, Sort sort);
+    public List<Glasses> findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPolarization(Optional<String> GlassesType, Optional<Long> GlassesNumber, Optional<String> GlassesGender, Optional<String> Form, Optional<Boolean> Polarization);
+
+
+//    @Query("select g from Glasses g where (:glassesType is null or g.glassesType = :glassesType) and (:glassesNumber is null or g.glassesNumber = :glassesNumber) and (:glassesGender is null or g.glassesGender = :glassesGender) and (:form is null or g.form = :form) and (:polarization is null or g.polarization = :polarization)")
+//    public List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(@Param("glassesType")Optional<String> glassesType,@Param("glassesNumber") Optional<Long> glassesNumber,@Param("glassesGender") Optional<String> glassesGender, @Param("form") Optional<String> form,@Param("polarization") Optional<Boolean> polarization, Sort sort);
+//
+//    @Query("select g from Glasses g where (:glassesType is null or g.glassesType = :glassesType) and (:glassesNumber is null or g.glassesNumber = :glassesNumber) and (:glassesGender is null or g.glassesGender = :glassesGender) and (:form is null or g.form = :form) and (:polarization is null or g.polarization = :polarization)")
+//    public List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(@Param("glassesType")Optional<String> glassesType,@Param("glassesNumber") Optional<Long> glassesNumber,@Param("glassesGender") Optional<String> glassesGender, @Param("form") Optional<String> form,@Param("polarization") Optional<Boolean> polarization);
+
+//bez glassesnumber
+    @Query("select g from Glasses g where (:glassesType is null or g.glassesType = :glassesType) and (:glassesNumber is null or :glassesNumber=0  or g.glassesNumber = :glassesNumber) and (:glassesGender is null or g.glassesGender = :glassesGender) and (:glassesMarks is null or :glassesMarks='' or g.glassesMarks = :glassesMarks) and (:form is null or :form ='' or g.form = :form) and (:polarization is null or g.polarization = :polarization)")
+    public List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(@Param("glassesType")Optional<String> glassesType,@Param("glassesNumber") Optional<Long> glassesNumber,@Param("glassesGender") Optional<String> glassesGender,@Param("glassesMarks") Optional<String> glassesMarks, @Param("form") Optional<String> form,@Param("polarization") Optional<Boolean> polarization, Sort sort);
+
+    @Query("select g from Glasses g where (:glassesType is null or g.glassesType = :glassesType) and (:glassesNumber is null or g.glassesNumber = :glassesNumber) and (:glassesGender is null or g.glassesGender = :glassesGender) and (:glassesMarks is null or :glassesMarks='' or g.glassesMarks = :glassesMarks) and (:form is null or :form ='' or g.form = :form) and (:polarization is null or g.polarization = :polarization)")
+    public List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(@Param("glassesType")Optional<String> glassesType,@Param("glassesNumber") Optional<Long> glassesNumber,@Param("glassesGender") Optional<String> glassesGender, @Param("glassesMarks") Optional<String> glassesMarks, @Param("form") Optional<String> form,@Param("polarization") Optional<Boolean> polarization);
+
+
+
+
+//    @Query("select g from Glasses g where COALESCE(g.glassesNumber, ?1) = ?1 AND COALESCE(g.glassesType, ?2) = ?2 AND COALESCE(g.glassesGender, ?3) = ?3 AND COALESCE(g.form, ?4) = ?4 AND COALESCE(g.polarization, ?5) = ?5")
+//    List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(String glassesType, Long GlassesNumber, String GlassesGender, String Form, Boolean Polarization, Sort sort);
+
+//    @Query("select g from Glasses g where COALESCE(g.glassesNumber, ?1) = ?1 AND COALESCE(g.glassesType, ?2) = ?2 AND COALESCE(g.glassesGender, ?3) = ?3 AND COALESCE(g.form, ?4) = ?4 AND COALESCE(g.polarization, ?5) = ?5")
+
+//    List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(String glassesType, Long GlassesNumber, String GlassesGender, String Form, Boolean Polarization);
+
 
 
 

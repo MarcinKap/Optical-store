@@ -10,32 +10,21 @@
                 <a th:if="${#httpServletRequest.getQueryString() ==null}">
 
                     <a class="w3-bar-item w3-button button"
-                        th:href="@{/(searchingByParameter=glassesType, searchingByValue=eyeglasses)}" th:text="#{menu.prescription_glasses}">
+                        th:href="@{/(glassesType=eyeglasses)}" th:text="#{menu.prescription_glasses}">
                     </a>
                     <a class="w3-bar-item w3-button button"
-                       th:href="@{/(searchingByParameter=glassesType, searchingByValue=sunglasses)}" th:text="#{menu.sunglasses}">
+                       th:href="@{/(glassesType=sunglasses)}" th:text="#{menu.sunglasses}">
                     </a>
                 </a>
                 <a th:if="${#httpServletRequest.getQueryString() !=null}">
                     <a class="w3-bar-item w3-button button"
-                       th:classappend="${#request.getQueryString().contains('eyeglasses') ? 'active':''}" th:href="@{/(searchingByParameter=glassesType, searchingByValue=eyeglasses)}" th:text="#{menu.prescription_glasses}">
+                       th:classappend="${#request.getQueryString().contains('eyeglasses') ? 'active':''}" th:href="@{/(glassesType=eyeglasses)}" th:text="#{menu.prescription_glasses}">
                     </a>
                     <a class="w3-bar-item w3-button button"
-                       th:classappend="${#request.getQueryString().contains('sunglasses') ? 'active':''}"  th:href="@{/(searchingByParameter=glassesType, searchingByValue=sunglasses)}" th:text="#{menu.sunglasses}">
+                       th:classappend="${#request.getQueryString().contains('sunglasses') ? 'active':''}"  th:href="@{/(glassesType=sunglasses)}" th:text="#{menu.sunglasses}">
                     </a>
                 </a>
 
-<!--                <a class="w3-bar-item w3-button button"-->
-<!--                 th:if="${#request.getQueryString() !=null}"  th:href="@{/(searchingByParameter=glassesType, searchingByValue=Korekcyjne)}" th:text="#{menu.prescription_glasses}" th:classappend="${#request.getQueryString().contains('Korekcyjne') ? 'active':''}" >-->
-<!--&lt;!&ndash;                th:href="@{/(searchingByParameter=glassesType, searchingByValue=Korekcyjne)}" th:text="#{menu.prescription_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/prescription-glasses' ? 'active':''}" >&ndash;&gt;-->
-<!--                </a>-->
-<!--                <a class="w3-bar-item w3-button button"-->
-<!--                   th:if="${#request.getQueryString() ==null}"  th:href="@{/(searchingByParameter=glassesType, searchingByValue=Korekcyjne)}" th:text="#{menu.prescription_glasses}">-->
-<!--                    &lt;!&ndash;                th:href="@{/(searchingByParameter=glassesType, searchingByValue=Korekcyjne)}" th:text="#{menu.prescription_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/prescription-glasses' ? 'active':''}" >&ndash;&gt;-->
-<!--                </a>-->
-<!--                <a class="w3-bar-item w3-button button"-->
-<!--                   th:text="#{menu.sunglasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/sunglasses' ? 'active':''}" th:href="@{/(searchingByParameter=glassesType, searchingByValue=Przeciwsłoneczne)}">-->
-<!--                </a>-->
                 <a class="w3-bar-item w3-button button"
                    th:text="#{menu.add_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/add-glasses' ? 'active':''}" href="/add-glasses"
                    th:if="${#request.isUserInRole('ADMIN')}">
