@@ -24,5 +24,14 @@ public class GlassesSearchingForm {
     private Optional<String> glassesMarks;
     private Optional<String> form;
     private Optional<Boolean> polarization;
+    private Optional<Integer> widthOfTheLensLowerLimit;
+    private Optional<Integer> widthOfTheLensUpperLimit;
+    private Optional<Double> priceLowerLimit;
+    private Optional<Double> priceUpperLimit;
+
+    
+
+
+
 
 }

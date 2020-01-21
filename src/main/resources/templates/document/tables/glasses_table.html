@@ -18,13 +18,17 @@
 
                     <th>
                         <form th:action="${#httpServletRequest.requestURI}">
-                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null}" th:value="${#httpServletRequest.getParameter('glassesType')}">
-                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
-                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
-                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
-                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null}" th:value="${#httpServletRequest.getParameter('form')}">
+                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null and #httpServletRequest.getParameter('glassesType') != ''}" th:value="${#httpServletRequest.getParameter('glassesType')}">
+                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null and #httpServletRequest.getParameter('glassesNumber') != 0}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
+                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null and #httpServletRequest.getParameter('glassesGender') != ''}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
+                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null and #httpServletRequest.getParameter('glassesMarks') != ''}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
+                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null and #httpServletRequest.getParameter('form') != ''}" th:value="${#httpServletRequest.getParameter('form')}">
                             <input type="hidden" name="polarization" th:if="${#httpServletRequest.getParameter('polarization') != null}" th:value="${#httpServletRequest.getParameter('polarization')}">
-                            <input type="hidden" name="orderBy" th:value="glassesNumber">
+                            <input type="hidden" name="widthOfTheLensLowerLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit') != null and #httpServletRequest.getParameter('widthOfTheLensLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit')}">
+                            <input type="hidden" name="widthOfTheLensUpperLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit') != null and #httpServletRequest.getParameter('widthOfTheLensUpperLimit') != '0' }" th:value="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit')}">
+                            <input type="hidden" name="priceLowerLimit" th:if="${#httpServletRequest.getParameter('priceLowerLimit') != null and #httpServletRequest.getParameter('priceLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceLowerLimit')}">
+                            <input type="hidden" name="priceUpperLimit" th:if="${#httpServletRequest.getParameter('priceUpperLimit') != null and #httpServletRequest.getParameter('priceUpperLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceUpperLimit')}">
+                            <input type="hidden" name="orderBy" th:value="widthOfTheLens">
                             <input type="hidden" name="ascOrDesc" th:value="${ascOrDesc}">
                             <input type="submit" value="Numer zamówieniowy">
                         </form>
@@ -35,13 +39,17 @@
                     </th>
                     <th>
                         <form th:action="${#httpServletRequest.requestURI}">
-                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null}" th:value="${#httpServletRequest.getParameter('glassesType')}">
-                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
-                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
-                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
-                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null}" th:value="${#httpServletRequest.getParameter('form')}">
+                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null and #httpServletRequest.getParameter('glassesType') != ''}" th:value="${#httpServletRequest.getParameter('glassesType')}">
+                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null and #httpServletRequest.getParameter('glassesNumber') != 0}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
+                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null and #httpServletRequest.getParameter('glassesGender') != ''}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
+                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null and #httpServletRequest.getParameter('glassesMarks') != ''}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
+                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null and #httpServletRequest.getParameter('form') != ''}" th:value="${#httpServletRequest.getParameter('form')}">
                             <input type="hidden" name="polarization" th:if="${#httpServletRequest.getParameter('polarization') != null}" th:value="${#httpServletRequest.getParameter('polarization')}">
-                            <input type="hidden" name="orderBy" th:value="glassesType">
+                            <input type="hidden" name="widthOfTheLensLowerLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit') != null and #httpServletRequest.getParameter('widthOfTheLensLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit')}">
+                            <input type="hidden" name="widthOfTheLensUpperLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit') != null and #httpServletRequest.getParameter('widthOfTheLensUpperLimit') != '0' }" th:value="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit')}">
+                            <input type="hidden" name="priceLowerLimit" th:if="${#httpServletRequest.getParameter('priceLowerLimit') != null and #httpServletRequest.getParameter('priceLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceLowerLimit')}">
+                            <input type="hidden" name="priceUpperLimit" th:if="${#httpServletRequest.getParameter('priceUpperLimit') != null and #httpServletRequest.getParameter('priceUpperLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceUpperLimit')}">
+                            <input type="hidden" name="orderBy" th:value="widthOfTheLens">
                             <input type="hidden" name="ascOrDesc" th:value="${ascOrDesc}">
                             <input type="submit" value="Typ">
                         </form>
@@ -51,13 +59,17 @@
                     </th>
                     <th>
                         <form th:action="${#httpServletRequest.requestURI}">
-                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null}" th:value="${#httpServletRequest.getParameter('glassesType')}">
-                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
-                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
-                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
-                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null}" th:value="${#httpServletRequest.getParameter('form')}">
+                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null and #httpServletRequest.getParameter('glassesType') != ''}" th:value="${#httpServletRequest.getParameter('glassesType')}">
+                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null and #httpServletRequest.getParameter('glassesNumber') != 0}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
+                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null and #httpServletRequest.getParameter('glassesGender') != ''}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
+                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null and #httpServletRequest.getParameter('glassesMarks') != ''}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
+                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null and #httpServletRequest.getParameter('form') != ''}" th:value="${#httpServletRequest.getParameter('form')}">
                             <input type="hidden" name="polarization" th:if="${#httpServletRequest.getParameter('polarization') != null}" th:value="${#httpServletRequest.getParameter('polarization')}">
-                            <input type="hidden" name="orderBy" th:value="glassesMarks">
+                            <input type="hidden" name="widthOfTheLensLowerLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit') != null and #httpServletRequest.getParameter('widthOfTheLensLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit')}">
+                            <input type="hidden" name="widthOfTheLensUpperLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit') != null and #httpServletRequest.getParameter('widthOfTheLensUpperLimit') != '0' }" th:value="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit')}">
+                            <input type="hidden" name="priceLowerLimit" th:if="${#httpServletRequest.getParameter('priceLowerLimit') != null and #httpServletRequest.getParameter('priceLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceLowerLimit')}">
+                            <input type="hidden" name="priceUpperLimit" th:if="${#httpServletRequest.getParameter('priceUpperLimit') != null and #httpServletRequest.getParameter('priceUpperLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceUpperLimit')}">
+                            <input type="hidden" name="orderBy" th:value="widthOfTheLens">
                             <input type="hidden" name="ascOrDesc" th:value="${ascOrDesc}">
                             <input type="submit" value="Marka">
                         </form>
@@ -67,13 +79,17 @@
                     </th>
                     <th>
                         <form th:action="${#httpServletRequest.requestURI}">
-                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null}" th:value="${#httpServletRequest.getParameter('glassesType')}">
-                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
-                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
-                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
-                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null}" th:value="${#httpServletRequest.getParameter('form')}">
+                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null and #httpServletRequest.getParameter('glassesType') != ''}" th:value="${#httpServletRequest.getParameter('glassesType')}">
+                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null and #httpServletRequest.getParameter('glassesNumber') != 0}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
+                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null and #httpServletRequest.getParameter('glassesGender') != ''}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
+                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null and #httpServletRequest.getParameter('glassesMarks') != ''}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
+                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null and #httpServletRequest.getParameter('form') != ''}" th:value="${#httpServletRequest.getParameter('form')}">
                             <input type="hidden" name="polarization" th:if="${#httpServletRequest.getParameter('polarization') != null}" th:value="${#httpServletRequest.getParameter('polarization')}">
-                            <input type="hidden" name="orderBy" th:value="form">
+                            <input type="hidden" name="widthOfTheLensLowerLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit') != null and #httpServletRequest.getParameter('widthOfTheLensLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit')}">
+                            <input type="hidden" name="widthOfTheLensUpperLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit') != null and #httpServletRequest.getParameter('widthOfTheLensUpperLimit') != '0' }" th:value="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit')}">
+                            <input type="hidden" name="priceLowerLimit" th:if="${#httpServletRequest.getParameter('priceLowerLimit') != null and #httpServletRequest.getParameter('priceLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceLowerLimit')}">
+                            <input type="hidden" name="priceUpperLimit" th:if="${#httpServletRequest.getParameter('priceUpperLimit') != null and #httpServletRequest.getParameter('priceUpperLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceUpperLimit')}">
+                            <input type="hidden" name="orderBy" th:value="widthOfTheLens">
                             <input type="hidden" name="ascOrDesc" th:value="${ascOrDesc}">
                             <input type="submit" value="Krztałt">
                         </form>
@@ -83,13 +99,17 @@
                     </th>
                     <th>
                         <form th:action="${#httpServletRequest.requestURI}">
-                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null}" th:value="${#httpServletRequest.getParameter('glassesType')}">
-                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
-                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
-                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
-                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null}" th:value="${#httpServletRequest.getParameter('form')}">
+                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null and #httpServletRequest.getParameter('glassesType') != ''}" th:value="${#httpServletRequest.getParameter('glassesType')}">
+                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null and #httpServletRequest.getParameter('glassesNumber') != 0}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
+                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null and #httpServletRequest.getParameter('glassesGender') != ''}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
+                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null and #httpServletRequest.getParameter('glassesMarks') != ''}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
+                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null and #httpServletRequest.getParameter('form') != ''}" th:value="${#httpServletRequest.getParameter('form')}">
                             <input type="hidden" name="polarization" th:if="${#httpServletRequest.getParameter('polarization') != null}" th:value="${#httpServletRequest.getParameter('polarization')}">
-                            <input type="hidden" name="orderBy" th:value="glassesGender">
+                            <input type="hidden" name="widthOfTheLensLowerLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit') != null and #httpServletRequest.getParameter('widthOfTheLensLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit')}">
+                            <input type="hidden" name="widthOfTheLensUpperLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit') != null and #httpServletRequest.getParameter('widthOfTheLensUpperLimit') != '0' }" th:value="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit')}">
+                            <input type="hidden" name="priceLowerLimit" th:if="${#httpServletRequest.getParameter('priceLowerLimit') != null and #httpServletRequest.getParameter('priceLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceLowerLimit')}">
+                            <input type="hidden" name="priceUpperLimit" th:if="${#httpServletRequest.getParameter('priceUpperLimit') != null and #httpServletRequest.getParameter('priceUpperLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceUpperLimit')}">
+                            <input type="hidden" name="orderBy" th:value="widthOfTheLens">
                             <input type="hidden" name="ascOrDesc" th:value="${ascOrDesc}">
                             <input type="submit" value="Płeć">
                         </form>
@@ -99,13 +119,17 @@
                     </th>
                     <th>
                         <form th:action="${#httpServletRequest.requestURI}">
-                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null}" th:value="${#httpServletRequest.getParameter('glassesType')}">
-                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
-                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
-                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
-                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null}" th:value="${#httpServletRequest.getParameter('form')}">
+                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null and #httpServletRequest.getParameter('glassesType') != ''}" th:value="${#httpServletRequest.getParameter('glassesType')}">
+                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null and #httpServletRequest.getParameter('glassesNumber') != 0}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
+                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null and #httpServletRequest.getParameter('glassesGender') != ''}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
+                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null and #httpServletRequest.getParameter('glassesMarks') != ''}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
+                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null and #httpServletRequest.getParameter('form') != ''}" th:value="${#httpServletRequest.getParameter('form')}">
                             <input type="hidden" name="polarization" th:if="${#httpServletRequest.getParameter('polarization') != null}" th:value="${#httpServletRequest.getParameter('polarization')}">
-                            <input type="hidden" name="orderBy" th:value="polarization">
+                            <input type="hidden" name="widthOfTheLensLowerLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit') != null and #httpServletRequest.getParameter('widthOfTheLensLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit')}">
+                            <input type="hidden" name="widthOfTheLensUpperLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit') != null and #httpServletRequest.getParameter('widthOfTheLensUpperLimit') != '0' }" th:value="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit')}">
+                            <input type="hidden" name="priceLowerLimit" th:if="${#httpServletRequest.getParameter('priceLowerLimit') != null and #httpServletRequest.getParameter('priceLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceLowerLimit')}">
+                            <input type="hidden" name="priceUpperLimit" th:if="${#httpServletRequest.getParameter('priceUpperLimit') != null and #httpServletRequest.getParameter('priceUpperLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceUpperLimit')}">
+                            <input type="hidden" name="orderBy" th:value="widthOfTheLens">
                             <input type="hidden" name="ascOrDesc" th:value="${ascOrDesc}">
                             <input type="submit" value="Polaryzacja">
                         </form>
@@ -115,13 +139,17 @@
                     </th>
                     <th>
                         <form th:action="${#httpServletRequest.requestURI}">
-                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null}" th:value="${#httpServletRequest.getParameter('glassesType')}">
-                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
-                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
-                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
-                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null}" th:value="${#httpServletRequest.getParameter('form')}">
+                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null and #httpServletRequest.getParameter('glassesType') != ''}" th:value="${#httpServletRequest.getParameter('glassesType')}">
+                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null and #httpServletRequest.getParameter('glassesNumber') != 0}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
+                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null and #httpServletRequest.getParameter('glassesGender') != ''}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
+                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null and #httpServletRequest.getParameter('glassesMarks') != ''}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
+                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null and #httpServletRequest.getParameter('form') != ''}" th:value="${#httpServletRequest.getParameter('form')}">
                             <input type="hidden" name="polarization" th:if="${#httpServletRequest.getParameter('polarization') != null}" th:value="${#httpServletRequest.getParameter('polarization')}">
-                            <input type="hidden" name="orderBy" th:value="widthOfTheLens">
+                            <input type="hidden" name="widthOfTheLensLowerLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit') != null and #httpServletRequest.getParameter('widthOfTheLensLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit')}">
+                            <input type="hidden" name="widthOfTheLensUpperLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit') != null and #httpServletRequest.getParameter('widthOfTheLensUpperLimit') != '0' }" th:value="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit')}">
+                            <input type="hidden" name="priceLowerLimit" th:if="${#httpServletRequest.getParameter('priceLowerLimit') != null and #httpServletRequest.getParameter('priceLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceLowerLimit')}">
+                            <input type="hidden" name="priceUpperLimit" th:if="${#httpServletRequest.getParameter('priceUpperLimit') != null and #httpServletRequest.getParameter('priceUpperLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceUpperLimit')}">
+                           <input type="hidden" name="orderBy" th:value="widthOfTheLens">
                             <input type="hidden" name="ascOrDesc" th:value="${ascOrDesc}">
                             <input type="submit" value="Szerokość">
                         </form>
@@ -131,13 +159,17 @@
                     </th>
                     <th>
                         <form th:action="${#httpServletRequest.requestURI}">
-                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null}" th:value="${#httpServletRequest.getParameter('glassesType')}">
-                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
-                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
-                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
-                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null}" th:value="${#httpServletRequest.getParameter('form')}">
+                            <input type="hidden" name="glassesType" th:if="${#httpServletRequest.getParameter('glassesType') != null and #httpServletRequest.getParameter('glassesType') != ''}" th:value="${#httpServletRequest.getParameter('glassesType')}">
+                            <input type="hidden" name="glassesNumber" th:if="${#httpServletRequest.getParameter('glassesNumber') != null and #httpServletRequest.getParameter('glassesNumber') != 0}" th:value="${#httpServletRequest.getParameter('glassesNumber')}">
+                            <input type="hidden" name="glassesGender" th:if="${#httpServletRequest.getParameter('glassesGender') != null and #httpServletRequest.getParameter('glassesGender') != ''}" th:value="${#httpServletRequest.getParameter('glassesGender')}">
+                            <input type="hidden" name="glassesMarks" th:if="${#httpServletRequest.getParameter('glassesMarks') != null and #httpServletRequest.getParameter('glassesMarks') != ''}" th:value="${#httpServletRequest.getParameter('glassesMarks')}">
+                            <input type="hidden" name="form" th:if="${#httpServletRequest.getParameter('form') != null and #httpServletRequest.getParameter('form') != ''}" th:value="${#httpServletRequest.getParameter('form')}">
                             <input type="hidden" name="polarization" th:if="${#httpServletRequest.getParameter('polarization') != null}" th:value="${#httpServletRequest.getParameter('polarization')}">
-                            <input type="hidden" name="orderBy" th:value="price">
+                            <input type="hidden" name="widthOfTheLensLowerLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit') != null and #httpServletRequest.getParameter('widthOfTheLensLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('widthOfTheLensLowerLimit')}">
+                            <input type="hidden" name="widthOfTheLensUpperLimit" th:if="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit') != null and #httpServletRequest.getParameter('widthOfTheLensUpperLimit') != '0' }" th:value="${#httpServletRequest.getParameter('widthOfTheLensUpperLimit')}">
+                            <input type="hidden" name="priceLowerLimit" th:if="${#httpServletRequest.getParameter('priceLowerLimit') != null and #httpServletRequest.getParameter('priceLowerLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceLowerLimit')}">
+                            <input type="hidden" name="priceUpperLimit" th:if="${#httpServletRequest.getParameter('priceUpperLimit') != null and #httpServletRequest.getParameter('priceUpperLimit') != '0'}" th:value="${#httpServletRequest.getParameter('priceUpperLimit')}">
+                            <input type="hidden" name="orderBy" th:value="widthOfTheLens">
                             <input type="hidden" name="ascOrDesc" th:value="${ascOrDesc}">
                             <input type="submit" value="Cena">
                         </form>

@@ -21,6 +21,7 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
     public List<Glasses> findAllByGlassesType(String GlassesType, Sort sort);
 
     public List<Glasses> findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPolarization(Optional<String> GlassesType, Optional<Long> GlassesNumber, Optional<String> GlassesGender, Optional<String> Form, Optional<Boolean> Polarization, Sort sort);
+
     public List<Glasses> findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPolarization(Optional<String> GlassesType, Optional<Long> GlassesNumber, Optional<String> GlassesGender, Optional<String> Form, Optional<Boolean> Polarization);
 
 
@@ -30,25 +31,50 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
 //    @Query("select g from Glasses g where (:glassesType is null or g.glassesType = :glassesType) and (:glassesNumber is null or g.glassesNumber = :glassesNumber) and (:glassesGender is null or g.glassesGender = :glassesGender) and (:form is null or g.form = :form) and (:polarization is null or g.polarization = :polarization)")
 //    public List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(@Param("glassesType")Optional<String> glassesType,@Param("glassesNumber") Optional<Long> glassesNumber,@Param("glassesGender") Optional<String> glassesGender, @Param("form") Optional<String> form,@Param("polarization") Optional<Boolean> polarization);
 
-//bez glassesnumber
-    @Query("select g from Glasses g where (:glassesType is null or g.glassesType = :glassesType) and (:glassesNumber is null or :glassesNumber=0  or g.glassesNumber = :glassesNumber) and (:glassesGender is null or g.glassesGender = :glassesGender) and (:glassesMarks is null or :glassesMarks='' or g.glassesMarks = :glassesMarks) and (:form is null or :form ='' or g.form = :form) and (:polarization is null or g.polarization = :polarization)")
-    public List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(@Param("glassesType")Optional<String> glassesType,@Param("glassesNumber") Optional<Long> glassesNumber,@Param("glassesGender") Optional<String> glassesGender,@Param("glassesMarks") Optional<String> glassesMarks, @Param("form") Optional<String> form,@Param("polarization") Optional<Boolean> polarization, Sort sort);
+    //bez glassesnumber
+    @Query("select g from Glasses g where (:glassesType is null or g.glassesType = :glassesType)" +
+            " and (:glassesNumber is null or :glassesNumber=0  or g.glassesNumber = :glassesNumber)" +
+            " and (:glassesGender is null or g.glassesGender = :glassesGender)" +
+            " and (:glassesMarks is null or :glassesMarks='' or g.glassesMarks = :glassesMarks)" +
+            " and (:form is null or :form ='' or g.form = :form)" +
+            " and (:polarization is null or g.polarization = :polarization)" +
+            " and (:widthOfTheLensLowerLimit is null or :widthOfTheLensLowerLimit=0  or g.widthOfTheLens >= :widthOfTheLensLowerLimit)" +
+            " and (:widthOfTheLensUpperLimit is null or :widthOfTheLensUpperLimit=0  or g.widthOfTheLens <= :widthOfTheLensUpperLimit)" +
+            " and (:priceLowerLimit is null or :priceUpperLimit=0.0  or g.price >= :priceLowerLimit)" +
+            " and (:priceUpperLimit is null or :priceUpperLimit=0.0  or g.price <= :priceUpperLimit)")
+    public List<Glasses> findAllByGlassesSearchingFormWithSort(
+            @Param("glassesType") Optional<String> glassesType,
+            @Param("glassesNumber") Optional<Long> glassesNumber,
+            @Param("glassesGender") Optional<String> glassesGender,
+            @Param("glassesMarks") Optional<String> glassesMarks,
+            @Param("form") Optional<String> form,
+            @Param("polarization") Optional<Boolean> polarization,
+            @Param("widthOfTheLensLowerLimit") Optional<Integer> widthOfTheLensLowerLimit,
+            @Param("widthOfTheLensUpperLimit") Optional<Integer> widthOfTheLensUpperLimit,
+            @Param("priceLowerLimit") Optional<Double> priceLowerLimit,
+            @Param("priceUpperLimit") Optional<Double> priceUpperLimit, Sort sort);
 
-    @Query("select g from Glasses g where (:glassesType is null or g.glassesType = :glassesType) and (:glassesNumber is null or g.glassesNumber = :glassesNumber) and (:glassesGender is null or g.glassesGender = :glassesGender) and (:glassesMarks is null or :glassesMarks='' or g.glassesMarks = :glassesMarks) and (:form is null or :form ='' or g.form = :form) and (:polarization is null or g.polarization = :polarization)")
-    public List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(@Param("glassesType")Optional<String> glassesType,@Param("glassesNumber") Optional<Long> glassesNumber,@Param("glassesGender") Optional<String> glassesGender, @Param("glassesMarks") Optional<String> glassesMarks, @Param("form") Optional<String> form,@Param("polarization") Optional<Boolean> polarization);
-
-
-
-
-//    @Query("select g from Glasses g where COALESCE(g.glassesNumber, ?1) = ?1 AND COALESCE(g.glassesType, ?2) = ?2 AND COALESCE(g.glassesGender, ?3) = ?3 AND COALESCE(g.form, ?4) = ?4 AND COALESCE(g.polarization, ?5) = ?5")
-//    List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(String glassesType, Long GlassesNumber, String GlassesGender, String Form, Boolean Polarization, Sort sort);
-
-//    @Query("select g from Glasses g where COALESCE(g.glassesNumber, ?1) = ?1 AND COALESCE(g.glassesType, ?2) = ?2 AND COALESCE(g.glassesGender, ?3) = ?3 AND COALESCE(g.form, ?4) = ?4 AND COALESCE(g.polarization, ?5) = ?5")
-
-//    List<Glasses> findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(String glassesType, Long GlassesNumber, String GlassesGender, String Form, Boolean Polarization);
-
-
-
+    @Query("select g from Glasses g where (:glassesType is null or :glassesType ='' or g.glassesType = :glassesType)" +
+            " and (:glassesNumber is null or :glassesNumber=0  or g.glassesNumber = :glassesNumber)" +
+            " and (:glassesGender is null or :glassesGender = '' or  g.glassesGender = :glassesGender)" +
+            " and (:glassesMarks is null or :glassesMarks='' or g.glassesMarks = :glassesMarks)" +
+            " and (:form is null or :form ='' or g.form = :form)" +
+            " and (:polarization is null or g.polarization = :polarization)" +
+            " and (:widthOfTheLensLowerLimit is null or :widthOfTheLensLowerLimit=0  or g.widthOfTheLens >= :widthOfTheLensLowerLimit)" +
+            " and (:widthOfTheLensUpperLimit is null or :widthOfTheLensUpperLimit=0  or g.widthOfTheLens <= :widthOfTheLensUpperLimit)" +
+            " and (:priceLowerLimit is null or :priceUpperLimit=0.0  or g.price >= :priceLowerLimit)" +
+            " and (:priceUpperLimit is null or :priceUpperLimit=0.0  or g.price <= :priceUpperLimit)")
+    public List<Glasses> findAllByGlassesSearchingForm(
+            @Param("glassesType") Optional<String> glassesType,
+            @Param("glassesNumber") Optional<Long> glassesNumber,
+            @Param("glassesGender") Optional<String> glassesGender,
+            @Param("glassesMarks") Optional<String> glassesMarks,
+            @Param("form") Optional<String> form,
+            @Param("polarization") Optional<Boolean> polarization,
+            @Param("widthOfTheLensLowerLimit") Optional<Integer> widthOfTheLensLowerLimit,
+            @Param("widthOfTheLensUpperLimit") Optional<Integer> widthOfTheLensUpperLimit,
+            @Param("priceLowerLimit") Optional<Double> priceLowerLimit,
+            @Param("priceUpperLimit") Optional<Double> priceUpperLimit);
 
     @Query("select g from Glasses g where g.glassesNumber = ?1")
     Glasses findGlassesByNumber(Long glassesNumber);
@@ -56,20 +82,8 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
     @Query("select g from Glasses g where g.glassesType = ?1")
     List<Glasses> findGlassesByType(String glassesType);
 
-    @Query("select g from Glasses g where g.glassesType = ?1")
-    List<Glasses> findGlassesByTypeAndSort(String glassesType, Sort sort);
-
-    @Query("select g from Glasses g where g.glassesType = ?1 order by ?2 asc")
-    List<Glasses> findGlassesByTypeAndSortAscending( String glassesType, String orderBy);
-
-    @Query("select g from Glasses g where g.glassesType = ?1 order by ?2 desc ")
-    List<Glasses> findGlassesByTypeAndSortDescending(String glassesType, String orderBy);
-
     @Query("select g from Glasses g where g.id = ?1")
     Glasses findGlassesById(Long id);
-
-
-
 
 
     @Query
@@ -113,7 +127,6 @@ public interface GlassRepository extends JpaRepository<Glasses, Long> {
     @Modifying
     @Query("delete from Glasses g where g.id = ?1")
     int deleteGlassesById(Long id);
-
 
 
 //    @Query("select g from g Glasses ORDER BY param ")

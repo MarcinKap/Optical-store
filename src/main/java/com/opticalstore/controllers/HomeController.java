@@ -38,6 +38,7 @@ public class HomeController {
 
 
         System.out.println(httpServletRequest.getRequestURI());
+
         model.addAttribute("ascOrDesc", ascOrDesc.get());
         model.addAttribute("glasses", glassesService.getGlassesWithParams(glassesSearchingForm, ascOrDesc));
 
