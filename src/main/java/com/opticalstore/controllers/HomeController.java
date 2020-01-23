@@ -4,24 +4,27 @@ package com.opticalstore.controllers;
 import com.opticalstore.mappers.AdressesMapper;
 import com.opticalstore.mappers.CompaniesAdressesMapper;
 import com.opticalstore.mappers.CountriesMapper;
+import com.opticalstore.models.Glasses;
 import com.opticalstore.models.GlassesSearchingForm;
 import com.opticalstore.services.*;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 //
 //@NoArgsConstructor
 @AllArgsConstructor
 @Controller
 public class HomeController {
-
-    private HttpServletRequest httpServletRequest;
     private GlassesService glassesService;
     private FormService formService;
     private MarksService marksService;
@@ -33,20 +36,31 @@ public class HomeController {
     public CompaniesAdressesMapper companiesAdressesMapper;
 
     @GetMapping("/")
-    public String homePage(Model model, @ModelAttribute("glassesSearchingForm") Optional<GlassesSearchingForm> glassesSearchingForm) {
+    public String homePage(
+            Model model,
+            @ModelAttribute("glassesSearchingForm") Optional<GlassesSearchingForm> glassesSearchingForm,
+            @Param("page") Optional<Integer> page,
+            @Param("pageSize") Optional<Integer> pageSize) {
+
+
+
+//      Sending information for searching glasses
         Optional<Boolean> ascOrDesc = glassesService.ascOrDescSettings(glassesSearchingForm.get().getAscOrDesc());
-
-
-        System.out.println(httpServletRequest.getRequestURI());
-
         model.addAttribute("ascOrDesc", ascOrDesc.get());
-        model.addAttribute("glasses", glassesService.getGlassesWithParams(glassesSearchingForm, ascOrDesc));
-
         model.addAttribute("glassesSearchingForm", glassesSearchingForm.get());
 
-//        if (httpServletRequest.getQueryString() != null) {
-//            addingPresenceAttributesFromCurrentGlassesSearchingForm(model, glassesSearchingForm);
-//        }
+//      Creating GlassesList
+        System.out.println("Page size" + pageSize);
+
+        Page<Glasses> glassesList = glassesService.getGlassesWithParamsPaginated(glassesSearchingForm, ascOrDesc, page, pageSize);
+        if (glassesList.getTotalPages() > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, glassesList.getTotalPages())
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);   // stream page numbers
+        }
+        model.addAttribute("glasses", glassesList);
+
 
 
         model.addAttribute("marks", marksService.getGlassesMarkDto());
@@ -54,28 +68,5 @@ public class HomeController {
         return "index";
     }
 
-    public void addingPresenceAttributesFromCurrentGlassesSearchingForm(Model model, Optional<GlassesSearchingForm> glassesSearchingForm) {
-
-        if (glassesSearchingForm.get().getGlassesType() != null) {
-            model.addAttribute("glassesType", glassesSearchingForm.get().getGlassesType().get());
-        }
-        if (glassesSearchingForm.get().getPolarization() != null) {
-            model.addAttribute("polarization", glassesSearchingForm.get().getPolarization().get());
-        }
-        if (glassesSearchingForm.get().getGlassesMarks() != null) {
-            model.addAttribute("glassesMarks", glassesSearchingForm.get().getGlassesMarks().get());
-        }
-        if (glassesSearchingForm.get().getGlassesNumber() != null) {
-            model.addAttribute("glassesNumber", glassesSearchingForm.get().getGlassesNumber().get());
-        }
-        if (glassesSearchingForm.get().getGlassesGender() != null) {
-            model.addAttribute("glassesGender", glassesSearchingForm.get().getGlassesGender().get());
-        }
-        if (glassesSearchingForm.get().getForm() != null) {
-            model.addAttribute("form", glassesSearchingForm.get().getForm().get());
-        }
-
-
-    }
 
 }

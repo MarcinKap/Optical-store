@@ -7,6 +7,8 @@ import com.opticalstore.models.Glasses;
 import com.opticalstore.models.GlassesDto;
 import com.opticalstore.models.GlassesSearchingForm;
 import com.opticalstore.repositories.GlassRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -26,26 +28,21 @@ public class GlassesService {
         this.glassRepository = glassRepository;
         this.glassesMapper = glassesMapper;
     }
-
     public Glasses getGlassesByNumber(Long glassNumber) {
         return Optional
                 .ofNullable(glassRepository.findGlassesByNumber(glassNumber))
                 .orElse(null);
     }
-
     public Glasses getGlassesById(Long id) {
         return Optional
                 .ofNullable(glassRepository.findGlassesById(id))
                 .orElse(null);
     }
-
-
     public List<Glasses> getGlassesByType(String type) {
         return Optional
                 .ofNullable(glassRepository.findGlassesByType(type))
                 .orElse(null);
     }
-
     public List<Glasses> getGlassesByParam(String glassesType,
                                            String glassesGender,
                                            String form,
@@ -68,7 +65,6 @@ public class GlassesService {
                         glassesMarks))
                 .orElse(null);
     }
-
     public List<Glasses> getGlasses() {
         return glassRepository.findAll();
     }
@@ -131,47 +127,12 @@ public class GlassesService {
     }
 
 
-//    public List <Glasses> sortGlassesbyParam (String parameter){
-//        return glassRepository.findAll(Sort.by(parameter).ascending());
-//    }
-
-
-    public List<Glasses> sortGlassesbyParam(String parameter, Boolean ascending) {
-        if (ascending) {
-            return glassRepository.findAll(Sort.by(parameter).ascending());
-        } else {
-            return glassRepository.findAll(Sort.by(parameter).descending());
-        }
-    }
-
 
     public List<Glasses> getGlassesWithParams(Optional<GlassesSearchingForm> glassesSearchingForm, Optional<Boolean> ascOrDesc) {
-        System.out.println("czy ja cos tu cokolwiek dostaje");
-
-        //jeśli jest orderBy to sortujemy
-        //jeśli jest searchingByParameter to nie wyszukujemy wszystkich tylko konkretne
-//        if (!ascOrDesc.isPresent()) {
-//            ascOrDesc = Optional.of(true);
-//        }
-
-
-//        System.out.println("polaryzajca" + glassesSearchingForm.get().getPolarization());
-//        System.out.println("marks" + glassesSearchingForm.get().getGlassesMarks());
-//        System.out.println("gender" + glassesSearchingForm.get().getGlassesGender());
-//        System.out.println("number" +glassesSearchingForm.get().getGlassesNumber());
-//        System.out.println("type" +glassesSearchingForm.get().getGlassesType());
-//        System.out.println("form" +glassesSearchingForm.get().getForm());
-
-
-        System.out.println("polaryzacja " + glassesSearchingForm.get().getPolarization());
-
-
         if (glassesSearchingForm.get().getOrderBy() != null) {
             if (ascOrDesc.get()) {
                 if (!checkingParameterPresence(glassesSearchingForm)) {
                     System.out.println("Opcja 1");
-
-//                    return glassRepository.findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(glassesSearchingForm.get().getGlassesType(), glassesSearchingForm.get().getGlassesNumber(), glassesSearchingForm.get().getGlassesGender(), glassesSearchingForm.get().getGlassesMarks(), glassesSearchingForm.get().getForm(), glassesSearchingForm.get().getPolarization(), Sort.by(Sort.Direction.ASC, glassesSearchingForm.get().getOrderBy().get()));
                     return glassRepository.findAllByGlassesSearchingFormWithSort(
                             glassesSearchingForm.get().getGlassesType(),
                             glassesSearchingForm.get().getGlassesNumber(),
@@ -184,11 +145,9 @@ public class GlassesService {
                             glassesSearchingForm.get().getPriceLowerLimit(),
                             glassesSearchingForm.get().getPriceUpperLimit(),
                             Sort.by(Sort.Direction.ASC, glassesSearchingForm.get().getOrderBy().get()));
-//                    return glassRepository.findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPolarization(glassesSearchingForm.get().getGlassesType(), glassesSearchingForm.get().getGlassesNumber(), glassesSearchingForm.get().getGlassesGender(), glassesSearchingForm.get().getForm(), glassesSearchingForm.get().getPolarization(), Sort.by(Sort.Direction.ASC, glassesSearchingForm.get().getOrderBy().get()));
                 } else {
                     System.out.println("Opcja 2");
                     return glassRepository.findAll(Sort.by(Sort.Direction.ASC, glassesSearchingForm.get().getOrderBy().get()));
-
                 }
             } else {
                 if (!checkingParameterPresence(glassesSearchingForm)) {
@@ -205,16 +164,11 @@ public class GlassesService {
                             glassesSearchingForm.get().getPriceLowerLimit(),
                             glassesSearchingForm.get().getPriceUpperLimit(),
                             Sort.by(Sort.Direction.DESC, glassesSearchingForm.get().getOrderBy().get()));
-
-
-//                    return glassRepository.findAllByGlassesTypeAndGlassesNumberAndGlassesGenderAndFormAndPolarization(glassesSearchingForm.get().getGlassesType(), glassesSearchingForm.get().getGlassesNumber(), glassesSearchingForm.get().getGlassesGender(), glassesSearchingForm.get().getGlassesMarks(), glassesSearchingForm.get().getForm(), glassesSearchingForm.get().getPolarization(), Sort.by(Sort.Direction.DESC, glassesSearchingForm.get().getOrderBy().get()));
-//                    return glassRepository.findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPolarization(glassesSearchingForm.get().getGlassesType(), glassesSearchingForm.get().getGlassesNumber(), glassesSearchingForm.get().getGlassesGender(), glassesSearchingForm.get().getForm(), glassesSearchingForm.get().getPolarization(), Sort.by(Sort.Direction.DESC, glassesSearchingForm.get().getOrderBy().get()));
                 } else {
                     System.out.println("Opcja 4");
                     return glassRepository.findAll(Sort.by(Sort.Direction.DESC, glassesSearchingForm.get().getOrderBy().get()));
                 }
             }
-
         } else {
             if (!checkingParameterPresence(glassesSearchingForm)) {
                 System.out.println("Opcja 5");
@@ -229,17 +183,12 @@ public class GlassesService {
                         glassesSearchingForm.get().getWidthOfTheLensUpperLimit(),
                         glassesSearchingForm.get().getPriceLowerLimit(),
                         glassesSearchingForm.get().getPriceUpperLimit());
-
-                //                return glassRepository.findAllByGlassesTypeOrGlassesNumberOrGlassesGenderOrFormOrPolarization(glassesSearchingForm.get().getGlassesType(), glassesSearchingForm.get().getGlassesNumber(), glassesSearchingForm.get().getGlassesGender(), glassesSearchingForm.get().getForm(), glassesSearchingForm.get().getPolarization());
             } else {
                 System.out.println("Opcja 6");
                 return glassRepository.findAll();
             }
-
-
         }
     }
-
     public Optional<Boolean> ascOrDescSettings(Optional<Boolean> ascOrDesc) {
         System.out.println("ascordesc" + ascOrDesc);
         if (ascOrDesc == null) {
@@ -248,7 +197,6 @@ public class GlassesService {
             return Optional.of(!ascOrDesc.get());
         }
     }
-
     public boolean checkingParameterPresence(Optional<GlassesSearchingForm> glassesSearchingForm) {
 
         if (glassesSearchingForm.get().getGlassesType() == null
@@ -266,6 +214,98 @@ public class GlassesService {
         } else {
             return false;
         }
-
     }
+
+
+
+
+
+
+    public Page<Glasses> getGlassesWithParamsPaginated(
+            Optional<GlassesSearchingForm> glassesSearchingForm,
+            Optional<Boolean> ascOrDesc,
+            Optional<Integer> page,
+            Optional<Integer> pageSize) {
+
+        System.out.println("pagesize przed: " + pageSize);
+
+        int currentPage = (page).orElse(1)-1;
+        Integer currentPageSize = pageSize.orElse(4);
+        System.out.println("pagesize: " + pageSize);
+
+        if (glassesSearchingForm.get().getOrderBy() != null) {
+            if (ascOrDesc.get()) {
+                if (!checkingParameterPresence(glassesSearchingForm)) {
+                    System.out.println("Opcja 1");
+                    return glassRepository.findAllByGlassesSearchingFormWithSortWithPaginating(
+                            glassesSearchingForm.get().getGlassesType(),
+                            glassesSearchingForm.get().getGlassesNumber(),
+                            glassesSearchingForm.get().getGlassesGender(),
+                            glassesSearchingForm.get().getGlassesMarks(),
+                            glassesSearchingForm.get().getForm(),
+                            glassesSearchingForm.get().getPolarization(),
+                            glassesSearchingForm.get().getWidthOfTheLensLowerLimit(),
+                            glassesSearchingForm.get().getWidthOfTheLensUpperLimit(),
+                            glassesSearchingForm.get().getPriceLowerLimit(),
+                            glassesSearchingForm.get().getPriceUpperLimit(),
+                            PageRequest.of(
+                                    currentPage,
+                                    currentPageSize,
+                                    Sort.by(glassesSearchingForm.get().getOrderBy().get()).ascending().and(Sort.by(glassesSearchingForm.get().getOrderBy().get()))));
+                } else {
+                    System.out.println("Opcja 2");
+                    return glassRepository.findAll(PageRequest.of(
+                            currentPage,
+                            currentPageSize,
+                            Sort.by(glassesSearchingForm.get().getOrderBy().get()).ascending().and(Sort.by(glassesSearchingForm.get().getOrderBy().get()))));
+                }
+            } else {
+                if (!checkingParameterPresence(glassesSearchingForm)) {
+                    System.out.println("Opcja 3");
+                    return glassRepository.findAllByGlassesSearchingFormWithSortWithPaginating(
+                            glassesSearchingForm.get().getGlassesType(),
+                            glassesSearchingForm.get().getGlassesNumber(),
+                            glassesSearchingForm.get().getGlassesGender(),
+                            glassesSearchingForm.get().getGlassesMarks(),
+                            glassesSearchingForm.get().getForm(),
+                            glassesSearchingForm.get().getPolarization(),
+                            glassesSearchingForm.get().getWidthOfTheLensLowerLimit(),
+                            glassesSearchingForm.get().getWidthOfTheLensUpperLimit(),
+                            glassesSearchingForm.get().getPriceLowerLimit(),
+                            glassesSearchingForm.get().getPriceUpperLimit(),
+                            PageRequest.of(
+                                    currentPage,
+                                    currentPageSize,
+                                    Sort.by(glassesSearchingForm.get().getOrderBy().get()).descending().and(Sort.by(glassesSearchingForm.get().getOrderBy().get()))));
+                } else {
+                    System.out.println("Opcja 4");
+                    return glassRepository.findAll(PageRequest.of(
+                            currentPage,
+                            currentPageSize,
+                            Sort.by(glassesSearchingForm.get().getOrderBy().get()).descending().and(Sort.by(glassesSearchingForm.get().getOrderBy().get()))));
+                }
+            }
+        } else {
+            if (!checkingParameterPresence(glassesSearchingForm)) {
+                System.out.println("Opcja 5");
+                return glassRepository.findAllByGlassesSearchingFormWithPaginating(
+                        glassesSearchingForm.get().getGlassesType(),
+                        glassesSearchingForm.get().getGlassesNumber(),
+                        glassesSearchingForm.get().getGlassesGender(),
+                        glassesSearchingForm.get().getGlassesMarks(),
+                        glassesSearchingForm.get().getForm(),
+                        glassesSearchingForm.get().getPolarization(),
+                        glassesSearchingForm.get().getWidthOfTheLensLowerLimit(),
+                        glassesSearchingForm.get().getWidthOfTheLensUpperLimit(),
+                        glassesSearchingForm.get().getPriceLowerLimit(),
+                        glassesSearchingForm.get().getPriceUpperLimit(),
+                        PageRequest.of(currentPage, currentPageSize));
+            } else {
+                System.out.println("Opcja 6");
+                return glassRepository.findAll(PageRequest.of(currentPage, currentPageSize));
+            }
+        }
+    }
+
+
 }
