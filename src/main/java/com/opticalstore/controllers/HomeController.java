@@ -61,8 +61,6 @@ public class HomeController {
         }
         model.addAttribute("glasses", glassesList);
 
-
-
         model.addAttribute("marks", marksService.getGlassesMarkDto());
         model.addAttribute("forms", formService.getFormDto());
         return "index";

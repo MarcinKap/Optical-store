@@ -1,13 +1,7 @@
 package com.opticalstore.models;
 
-import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import lombok.*;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import java.util.Optional;
-import java.util.OptionalLong;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
