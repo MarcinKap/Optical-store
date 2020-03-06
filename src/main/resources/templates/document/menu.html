@@ -1,48 +1,77 @@
 <div class="menu" xmlns:th="http://www.thymeleaf.org" th:fragment="menu_section"
 >
-    <div class='w3-card-2 topnav notranslate'>
-        <div style="overflow:auto;">
-            <div class="  w3-bar w3-left" style="width:100%;overflow:hidden;height:40px">
-                <a class="w3-bar-item w3-button button"
-                   th:text="#{menu.home_page}" th:classappend="${#httpServletRequest.getRequestURI() == '/' && #request.getQueryString()== null ? 'active':''}" href="/" >
-                </a>
+    <nav class="menu">
+        <ul class='menu'>
+            <!--        <li>-->
+            <!--            <a href="/" class="shop-name">-->
+            <!--                    Sklep Optyczny-->
+            <!--            </a>-->
+            <!--        </li>-->
+            <li>
 
-                <a th:if="${#httpServletRequest.getQueryString() ==null}">
-
-                    <a class="w3-bar-item w3-button button"
-                        th:href="@{/(glassesType=eyeglasses)}" th:text="#{menu.prescription_glasses}">
-                    </a>
-                    <a class="w3-bar-item w3-button button"
-                       th:href="@{/(glassesType=sunglasses)}" th:text="#{menu.sunglasses}">
-                    </a>
+                <a
+                   th:classappend="${#httpServletRequest.getRequestURI() == '/' && #request.getQueryString()== null ? 'active':''}"
+                   href="/">
+                    <i class="fas fa-home"></i>
+                    <i th:text="#{menu.home_page}"></i>
                 </a>
-                <a th:if="${#httpServletRequest.getQueryString() !=null}">
-                    <a class="w3-bar-item w3-button button"
-                       th:classappend="${#request.getQueryString().contains('eyeglasses') ? 'active':''}" th:href="@{/(glassesType=eyeglasses)}" th:text="#{menu.prescription_glasses}">
-                    </a>
-                    <a class="w3-bar-item w3-button button"
-                       th:classappend="${#request.getQueryString().contains('sunglasses') ? 'active':''}"  th:href="@{/(glassesType=sunglasses)}" th:text="#{menu.sunglasses}">
-                    </a>
+            </li>
+            <li>
+                <a th:href="@{/(glassesType=eyeglasses)}" >
+                    <i th:text="#{menu.prescription_glasses}"></i>
                 </a>
-
-                <a class="w3-bar-item w3-button button"
-                   th:text="#{menu.add_glasses}" th:classappend="${#httpServletRequest.getRequestURI() == '/add-glasses' ? 'active':''}" href="/add-glasses"
-                   th:if="${#request.isUserInRole('ADMIN')}">
+            </li>
+            <li>
+                <a th:href="@{/(glassesType=sunglasses)}" >
+                    <i th:text="#{menu.sunglasses}"></i>
                 </a>
+            </li>
 
-                <a class="w3-bar-item w3-button button" href="/account-menu/account-index"
-                   th:text="#{menu.my_account}" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}"
+
+            <!--        <li>-->
+            <!--            <div th:if="${#httpServletRequest.getQueryString() ==null}">-->
+            <!--                <a-->
+            <!--                        th:href="@{/(glassesType=eyeglasses)}" th:text="#{menu.prescription_glasses}">-->
+            <!--                </a>-->
+            <!--                <a-->
+            <!--                        th:href="@{/(glassesType=sunglasses)}" th:text="#{menu.sunglasses}">-->
+            <!--                </a>-->
+            <!--            </div>-->
+            <!--        </li>-->
+            <!--        <li>-->
+            <!--            <a th:if="${#httpServletRequest.getQueryString() !=null}">-->
+            <!--                <a-->
+            <!--                        th:classappend="${#request.getQueryString().contains('eyeglasses') ? 'active':''}"-->
+            <!--                        th:href="@{/(glassesType=eyeglasses)}" th:text="#{menu.prescription_glasses}">-->
+            <!--                </a>-->
+            <!--                <a-->
+            <!--                        th:classappend="${#request.getQueryString().contains('sunglasses') ? 'active':''}"-->
+            <!--                        th:href="@{/(glassesType=sunglasses)}" th:text="#{menu.sunglasses}">-->
+            <!--                </a>-->
+            <!--            </a>-->
+            <!--        </li>-->
+            <li>
+                <a
+                        th:text="#{menu.add_glasses}"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/add-glasses' ? 'active':''}"
+                        href="/add-glasses"
+                        th:if="${#request.isUserInRole('ADMIN')}">
+                </a>
+            </li>
+            <li>
+                <a href="/account-menu/account-index"
+                   th:text="#{menu.my_account}"
+                   th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}"
                    th:classappend="
                    (${#httpServletRequest.getRequestURI().startsWith('/account-menu') ? 'active':''})">
                 </a>
-                <a class="w3-bar-item w3-button button" href="/api/v1/glasses/download/file/xls/glasses.xls"
+            </li>
+            <li>
+                <a href="/api/v1/glasses/download/file/xls/glasses.xls"
                    th:text="#{menu.download_glasses_database}" th:if="${#request.isUserInRole('ADMIN')}">
                 </a>
-
-            </div>
-        </div>
-    </div>
-
-    <hr>
+            </li>
+        </ul>
+    </nav>
 
 </div>

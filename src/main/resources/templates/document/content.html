@@ -1,31 +1,52 @@
-<div class="container" xmlns:th="http://www.thymeleaf.org" th:fragment="content_section_title"
+<div class="container-fluid" xmlns:th="http://www.thymeleaf.org" th:fragment="content_section_title"
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
-    <div class="content-menu">
-        <a sec:authorize="isAuthenticated()">
-            Witaj <b sec:authentication="name"></b>
-        </a>
-        <a href="/login" th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
-            <button class="rounded-buttons btn-success grey-color-of-button"
-                    th:classappend="${#httpServletRequest.getRequestURI() == '/login' ? 'active-2nd-option':''}">
-                Logowanie
-            </button>
-        </a>
-        <a class="" href="/register" th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
-            <button class="rounded-buttons btn-success grey-color-of-button "
-                    th:classappend="${#httpServletRequest.getRequestURI() == '/register' ? 'active-2nd-option':''}">
-                Rejestracja
-            </button>
-        </a>
-        <a class="" href="/logout" th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}">
-            <button class="rounded-buttons btn-success grey-color-of-button">Wylogowanie</button>
-        </a>
+    <ul class="header-panel">
+
+        <div class="shop-name">
+            <img src="https://cdn.pixabay.com/photo/2016/11/07/13/04/yoga-1805784_1280.png">
+            <i th:text="#{shop_name}"></i>
+        </div>
+
+        <div sec:authorize="isAuthenticated()" class="h-d:1stchild">
+            <div th:text="#{content.hello}">
+            </div>
+            <div sec:authentication="name">
+            </div>
+        </div>
+        <div th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
+            <a href="/login"
+               class="btn btn-primary btn-sm h-d-btn"
+               th:classappend="${#httpServletRequest.getRequestURI() == '/login' ? 'active-2nd-option':''}"
+               th:text="#{content.login}">
+            </a>
+        </div>
+        <div th:if="${!#request.isUserInRole('ADMIN') and !#request.isUserInRole('USER')}">
+            <a class="btn btn-primary btn-sm h-d-btn" href="/register"
+               th:classappend="${#httpServletRequest.getRequestURI() == '/register' ? 'active-2nd-option':''}"
+               th:text="#{content.register}">
+            </a>
+        </div>
+        <div th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('USER')}">
+            <a href="/logout" class="btn btn-primary btn-sm h-d-btn"
+               th:text="#{content.logout}">
+            </a>
+        </div>
+    </ul>
+
+    <div th:replace="document/menu :: menu_section"></div>
+
+
+    <div class="col-sm text-center content-bn">
+
+            <img src="https://cdn.pixabay.com/photo/2017/03/11/13/19/oilseed-rape-2135026_960_720.jpg"/>
+                    <img src="https://cdn.pixabay.com/photo/2018/04/30/19/43/summer-3363788_960_720.jpg" />
+                    <img src="https://cdn.pixabay.com/photo/2015/09/02/12/33/books-918521_960_720.jpg" />
+<!--                    <img src="https://cdn.pixabay.com/photo/2015/09/05/00/37/girl-923573_960_720.jpg" />-->
+<!--                    <img src="https://cdn.pixabay.com/photo/2016/11/29/01/33/beach-1866568_960_720.jpg" />-->
+
+
     </div>
-    <br>
-    <div class="col-sm text-center">
-        <a href="/" class="font-weight-light content title-head ">
-                Sklep Optyczny
-        </a>
-    </div>
+
 </div>
