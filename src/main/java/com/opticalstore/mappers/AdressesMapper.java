@@ -5,7 +5,7 @@ import com.opticalstore.models.AdressesDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AdressesMapper implements Mapper<Adresses, AdressesDto> {
+public class  AdressesMapper implements Mapper<Adresses, AdressesDto> {
 
 
     @Override
