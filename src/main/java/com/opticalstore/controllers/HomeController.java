@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,19 +36,19 @@ public class HomeController {
     public CompaniesAdressesService companiesAdressesService;
     public CompaniesAdressesMapper companiesAdressesMapper;
 
+
     @GetMapping("/")
     public String homePage(
             Model model,
             @ModelAttribute("glassesSearchingForm") Optional<GlassesSearchingForm> glassesSearchingForm,
             @Param("page") Optional<Integer> page,
-            @Param("pageSize") Optional<Integer> pageSize) {
-
-
+            @Param("pageSize") Optional<Integer> pageSize) throws IOException {
 
 //      Sending information for searching glasses
         Optional<Boolean> ascOrDesc = glassesService.ascOrDescSettings(glassesSearchingForm.get().getAscOrDesc());
         model.addAttribute("ascOrDesc", ascOrDesc.get());
         model.addAttribute("glassesSearchingForm", glassesSearchingForm.get());
+
 
 //      Creating GlassesList
         System.out.println("Page size" + pageSize);

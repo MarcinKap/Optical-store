@@ -24,7 +24,7 @@
         <form action="#" th:action="@{/signup}" th:object="${loginUser}" method="post">
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" th:field="*{email}" placeholder="Email" required="required">
+                    <input type="text" th:field="*{email}" placeholder="Email" required="required" class="form-control">
                 </div>
 
                 <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="error"></div>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-sm-2 col-md-6 form-group">
                     <div class="input-group">
-                        <input type="password" th:field="*{password}" placeholder="Hasło" required="required"/>
+                        <input type="password" th:field="*{password}" placeholder="Hasło" required="required" class="form-control"/>
                     </div>
                     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                           th:class="error"> </span>
@@ -41,14 +41,14 @@
             <div class="row">
                 <div class="col-sm-6 col-md-6 form-group">
                     <div class="input-group">
-                        <input type="text" name="name" placeholder="Imię" required="required"/>
+                        <input type="text" name="name" placeholder="Imię" required="required" class="form-control"/>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-6 form-group">
                     <div class="input-group">
-                        <input type="text" name="lastName" placeholder="Nazwisko" required="required"/>
+                        <input type="text" name="lastName" placeholder="Nazwisko" required="required" class="form-control"/>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <br>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-sm" style="color: white">zarejestruj</button>
+                <button type="submit" class="btn btn-primary btn-sm" style="color: white">zarejestruj</button>
             </div>
 
         </form>

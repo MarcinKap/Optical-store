@@ -18,6 +18,8 @@ public class CompaniesAdresses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
     private String companyName;
     private int nipNumber;
     private String city;

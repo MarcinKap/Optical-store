@@ -14,6 +14,8 @@ import java.util.List;
 
 @Repository
 public interface AdressesRepository extends JpaRepository<Adresses, Long> {
+
+
     @Transactional //spring
     @Modifying //spring
     @Query("delete from Adresses a where a.id = ?1")
