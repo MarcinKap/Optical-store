@@ -41,9 +41,9 @@
                            th:value="${#httpServletRequest.getParameter('orderBy')}">
                     <input type="hidden" name="ascOrDesc" th:value="${!ascOrDesc}">
 
-                    <input type="submit" name="pageSize"  th:value="2">
-                    <input type="submit" name="pageSize"  th:value="5">
-                    <input type="submit" name="pageSize"  th:value="10">
+                    <input type="submit" name="pageSize"  th:value="2" class="btn btn-primary btn-sm">
+                    <input type="submit" name="pageSize"  th:value="5" class="btn btn-primary btn-sm">
+                    <input type="submit" name="pageSize"  th:value="10" class="btn btn-primary btn-sm">
 
 
             </form>
@@ -469,7 +469,7 @@
                 th:each="pageNumber : ${pageNumbers}">
 
 
-                        <input type="hidden" name="pageSize" th:value="${glasses.size}">
+                        <input type="hidden" name="pageSize" th:value="${glasses.size}" >
                         <input type="submit" name="page"  th:value="${pageNumber}">
 
             </tr>

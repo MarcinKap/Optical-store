@@ -24,6 +24,8 @@ public class AdressesService {
         this.adressesRepository = adressesRepository;
         this.userAppRepository = userAppRepository;
     }
+
+
     public List<AdressesDto> getAdressesDto() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserApp userApp = (UserApp) authentication.getPrincipal();
